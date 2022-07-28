@@ -8,7 +8,7 @@ namespace RisingLava
     {
         [Toggle(Label = "Enable Lava", Tooltip = "Uncheck this box to disable the mod.\nRESTART REQUIRED.")]
         public bool EnableMod = true;
-        [Slider(Label = "Base Lava level", Tooltip = "The base level of the lava, in meters, relative to the default surface of the ocean.\nCan be changed more precisely in the mod files.", DefaultValue = 0, Min = -1700, Max = 50, Step = 10)]
+        [Slider(Label = "Base Lava level", Tooltip = "The base level of the lava, in meters, relative to the default surface of the ocean.\nCan be changed more precisely in the mod files.\nCANNOT MODIFY WITHOUT CREATING A NEW SAVE OR USING MOD COMMANDS.", DefaultValue = 0, Min = -1700, Max = 50, Step = 10)]
         public float LavaLevel = -1700;
         [Toggle(Label = "Affects creatures", Tooltip = "Whether fish should die when below lava or not.")]
         public bool KillFish = true;
