@@ -20,8 +20,8 @@ namespace RisingLava
         public float IntervalChange = 0f;
         [Slider(Label = "Rise/fall speed", Tooltip = "The speed, in 1/4 meters per second, of which the lava level rises/falls.", DefaultValue = 4f, Min = 1f, Max = 16f, Step = 1f)]
         public float LavaMoveSpeed = 4f;
-        [Slider(Label = "Lava level upper limit", Tooltip = "The lava can never rise above this value (in meters).", DefaultValue = 50f, Min = -100f, Max = 100f, Step = 5f)]
-        public float LavaLevelMax = 4f;
+        [Slider(Label = "Lava level upper limit", Tooltip = "The lava can never rise above this value (in meters).", DefaultValue = -5f, Min = -100f, Max = -5f, Step = 5f)]
+        public float LavaLevelMax = -5f;
         [Toggle(Label = "Disable on-screen messages", Tooltip = "Uncheck this box to disable the on screen messages that appear when typing commands.")]
         public bool DisableErrorMessages = false;
     }
