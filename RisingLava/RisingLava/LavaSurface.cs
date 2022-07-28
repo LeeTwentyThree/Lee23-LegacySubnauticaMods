@@ -42,7 +42,6 @@ namespace RisingLava
 
             if (!_fixedMaterial && !_runningCoroutine)
             {
-                Helpers.ApplySNShaders(transform.GetChild(0).gameObject, 3f, 1f, 1f);
                 UseLavaFallMaterial();
             }
         }
@@ -89,7 +88,9 @@ namespace RisingLava
                     gameObject.transform.GetChild(1).GetComponentInChildren<MeshRenderer>().material = lavaMaterial;
                     _fixedMaterial = true;
                 }
+                Helpers.ApplySNShaders(transform.GetChild(0).gameObject, 3f, 1f, 1f);
                 _runningCoroutine = false;
+                gameObject.AddComponent<SkyApplier>().renderers = gameObject.GetComponentsInChildren<Renderer>();
             }
             StartCoroutine(GrabPrefabCoroutine());
         }
