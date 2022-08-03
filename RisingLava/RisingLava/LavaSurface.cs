@@ -30,6 +30,7 @@ namespace RisingLava
             }
             var spawned = Instantiate(Main.assetBundle.LoadAsset<GameObject>("LavaPlane_Prefab"));
             main = spawned.AddComponent<LavaSurface>();
+            main.gameObject.EnsureComponent<LavaLightManager>();
             return main;
         }
 
@@ -38,7 +39,7 @@ namespace RisingLava
             var mainCam = MainCamera.camera.transform.position;
             var posXZ = new Vector2(mainCam.x, mainCam.z);
             posXZ = new Vector2(Mathf.Round(posXZ.x / gridWidthLength) * gridWidthLength, Mathf.Round(posXZ.y / gridWidthLength) * gridWidthLength);
-            transform.position = new Vector3(posXZ.x, Main.LavaLevel, posXZ.y);
+            transform.position = new Vector3(posXZ.x, Main.LavaLevel, posXZ.y) + GetLavaModelOffset();
 
             if (!_fixedMaterial && !_runningCoroutine)
             {
@@ -87,12 +88,26 @@ namespace RisingLava
                     lavaMaterial.SetFloat("_InvFade", 3f);
                     gameObject.transform.GetChild(1).GetComponentInChildren<MeshRenderer>().material = lavaMaterial;
                     _fixedMaterial = true;
+                    var planeMaterial = gameObject.transform.GetChild(0).GetComponentInChildren<MeshRenderer>().material;
+                    planeMaterial.SetColor("_GlowColor", new Color(1.50f, 1.40f, 1f));
                 }
                 Helpers.ApplySNShaders(transform.GetChild(0).gameObject, 3f, 1f, 1f);
                 _runningCoroutine = false;
                 gameObject.AddComponent<SkyApplier>().renderers = gameObject.GetComponentsInChildren<Renderer>();
             }
             StartCoroutine(GrabPrefabCoroutine());
+        }
+
+        private float lavaModelCycleDuration = 60f;
+        private float lavaModelCycleStrength = 11f;
+
+        private float lavaModelHeightCycleLengthScale = 0.6f;
+        private float lavaModelHeightCycleHeightScale = 0.1f;
+
+        private Vector3 GetLavaModelOffset()
+        {
+            var angleRadians = Mathf.PI * 2f * Time.time / lavaModelCycleDuration;
+            return new Vector3(Mathf.Cos(angleRadians) * lavaModelCycleStrength, Mathf.Sin(Time.time / lavaModelHeightCycleLengthScale) * lavaModelHeightCycleHeightScale, Mathf.Sin(angleRadians) * lavaModelCycleStrength);
         }
     }
 }

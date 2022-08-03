@@ -47,5 +47,47 @@ namespace RisingLava
                 return config.LavaLevel;
             }
         }
+
+        public static bool AutoModeEnabled
+        {
+            get
+            {
+                if (LavaCommands.overrideAutoMode.overriden)
+                {
+                    return LavaCommands.overrideAutoMode.value;
+                }
+                return config.AutomaticChange;
+            }
+        }
+
+        public static float MaxLavaLevel
+        {
+            get
+            {
+                if (LavaCommands.overrideMaxHeight.overriden)
+                {
+                    return LavaCommands.overrideMaxHeight.value;
+                }
+                return config.LavaLevelMax;
+            }
+        }
+
+        public static float LavaMoveSpeed
+        {
+            get
+            {
+                if (LavaCommands.overrideLavaSpeed.overriden)
+                {
+                    return LavaCommands.overrideLavaSpeed.value * 4f;
+                }
+                return config.LavaMoveSpeed;
+            }
+        }
+
+        public const float kLavaTempIncrease = 40f;
+        public const float kLavaHeatHeight = 20f;
+        public const float kUnderlavaTemperature = 700f;
+
+        public const float kDistortionEffectHeight = 40f;
     }
 }

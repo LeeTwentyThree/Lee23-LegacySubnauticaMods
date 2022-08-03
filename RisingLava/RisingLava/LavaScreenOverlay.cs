@@ -39,6 +39,8 @@ namespace RisingLava
             }
             _instance = Instantiate(Main.assetBundle.LoadAsset<GameObject>("LavaOverlay_Prefab")).AddComponent<LavaScreenOverlay>();
             _instance.overlayImage = _instance.gameObject.GetComponentInChildren<Image>();
+            var scaler = _instance.gameObject.AddComponent<uGUI_CanvasScaler>();
+            scaler.distance = 0.05f;
             return _instance;
         }
 

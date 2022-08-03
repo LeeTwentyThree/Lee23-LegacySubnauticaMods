@@ -52,7 +52,7 @@ namespace RisingLava
         {
             get
             {
-                return Main.config.AutomaticChange;
+                return Main.AutoModeEnabled;
             }
         }
 
@@ -64,7 +64,7 @@ namespace RisingLava
                 targetLavaLevel = lavaLevel + Main.config.IntervalChange;
                 if (Main.config.IntervalChange > 0f)
                 {
-                    targetLavaLevel = Mathf.Clamp(targetLavaLevel, float.MinValue, Main.config.LavaLevelMax);
+                    targetLavaLevel = Mathf.Clamp(targetLavaLevel, float.MinValue, Main.MaxLavaLevel);
                 }
                 save.TimeLastChange = DayNightCycle.main.timePassedSinceOrigin;
                 lavaIsMoving = true;
@@ -91,7 +91,7 @@ namespace RisingLava
             }
             if (lavaIsMoving)
             {
-                lavaLevel = Mathf.MoveTowards(lavaLevel, targetLavaLevel, Time.deltaTime * Main.config.LavaMoveSpeed / 4f);
+                lavaLevel = Mathf.MoveTowards(lavaLevel, targetLavaLevel, Time.deltaTime * Main.LavaMoveSpeed / 4f);
                 if (Mathf.Approximately(lavaLevel, targetLavaLevel))
                 {
                     lavaIsMoving = false;

@@ -86,5 +86,12 @@ namespace RisingLava
                 }
             }
         }
+
+        public static FMODAsset GetFMODAsset(string path)
+        {
+            var asset = ScriptableObject.CreateInstance<FMODAsset>();
+            asset.path = path;
+            return asset;
+        }
     }
 }

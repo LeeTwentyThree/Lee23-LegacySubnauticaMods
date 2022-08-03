@@ -12,12 +12,17 @@ namespace RisingLava
 
         private float _sizzleRange = 10f;
         private float _timeLastSizzle;
-        private float _sizzleDelay = 1f;
-        private float _sizzleDamageAmount = 0.5f;
+        private float _sizzleDelay = 1.5f;
+        private float _sizzleDamageAmount = 0.25f;
 
         private void Start()
         {
             _player = GetComponent<Player>();
+        }
+
+        private bool PlayerIsUnderWater()
+        {
+            return _player.transform.position.y < Ocean.main.GetOceanLevel();
         }
 
         private void Update()
@@ -40,8 +45,19 @@ namespace RisingLava
             if (Time.time > _timeLastDamage + _damageDelay)
             {
                 _timeLastDamage = Time.time;
-                _player.liveMixin.TakeDamage(_damageAmount, _player.transform.position, DamageType.Normal);
-                _player.liveMixin.TakeDamage(0.1f, _player.transform.position, DamageType.Heat);
+                if (PlayerIsUnderWater())
+                {
+                    _player.liveMixin.TakeDamage(_damageAmount, _player.transform.position, DamageType.Normal);
+                    _player.liveMixin.TakeDamage(0.1f, _player.transform.position, DamageType.Heat);
+                }
+                else
+                {
+                    if (GameModeUtils.IsInvisible() || NoDamageConsoleCommand.main.GetNoDamageCheat())
+                    {
+                        return;
+                    }
+                    _player.liveMixin.Kill();
+                }
             }
         }
 
