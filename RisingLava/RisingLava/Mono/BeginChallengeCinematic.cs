@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace RisingLava
+namespace RisingLava.Mono
 {
     public class BeginChallengeCinematic : MonoBehaviour
     {

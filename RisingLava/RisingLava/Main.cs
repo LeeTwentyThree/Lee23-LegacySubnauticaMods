@@ -4,6 +4,7 @@ using SMLHelper.V2.Handlers;
 using System.IO;
 using System.Reflection;
 using UnityEngine;
+using RisingLava.Mono;
 
 namespace RisingLava
 {
@@ -16,6 +17,8 @@ namespace RisingLava
 
         public static AssetBundle assetBundle;
 
+        public static Prefabs.Tools.LavaMonitor lavaMonitor;
+
         [QModPatch]
         public static void Entry()
         {
@@ -25,6 +28,9 @@ namespace RisingLava
             harmony.PatchAll(assembly);
 
             ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(LavaCommands));
+
+            lavaMonitor = new Prefabs.Tools.LavaMonitor();
+            lavaMonitor.Patch();
         }
 
         public static bool EnabledInConfig

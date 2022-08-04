@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace RisingLava
+namespace RisingLava.Mono
 {
     public class FloatInLava : MonoBehaviour
     {

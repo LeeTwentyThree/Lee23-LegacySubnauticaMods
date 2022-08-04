@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace RisingLava
+namespace RisingLava.Mono
 {
     public class LavaScreenOverlay : MonoBehaviour
     {

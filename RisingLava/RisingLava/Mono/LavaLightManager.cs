@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace RisingLava
+namespace RisingLava.Mono
 {
     public class LavaLightManager : MonoBehaviour
     {

@@ -6,7 +6,7 @@ using System.IO;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace RisingLava
+namespace RisingLava.Mono
 {
     public class LavaMove : MonoBehaviour
     {

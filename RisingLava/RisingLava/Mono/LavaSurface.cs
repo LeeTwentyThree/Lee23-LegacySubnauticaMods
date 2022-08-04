@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UWE;
 
-namespace RisingLava
+namespace RisingLava.Mono
 {
     public class LavaSurface : MonoBehaviour
     {
