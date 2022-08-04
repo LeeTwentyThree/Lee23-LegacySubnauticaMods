@@ -84,6 +84,14 @@ namespace RisingLava
             }
         }
 
+        public static float ActualLavaMoveSpeed
+        {
+            get
+            {
+                return LavaMoveSpeed / 4f;
+            }
+        }
+
         public const float kLavaTempIncrease = 40f;
         public const float kLavaHeatHeight = 20f;
         public const float kUnderlavaTemperature = 700f;

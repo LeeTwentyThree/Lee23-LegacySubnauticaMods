@@ -1,4 +1,5 @@
 ﻿using SMLHelper.V2.Commands;
+using UnityEngine;
 
 namespace RisingLava
 {
@@ -93,6 +94,40 @@ namespace RisingLava
             overrideLavaSpeed.overriden = false;
             overrideMaxHeight.overriden = false;
             overrideAutoMode.overriden = false;
+        }
+
+        [ConsoleCommand("lavachallengeduration")]
+        public static void PrintLavaChallengeDuration()
+        {
+            if (Main.LavaMoveSpeed == 0)
+            {
+                ErrorMessage.AddMessage("This challenge will go on for eternity, Rise/fall speed is set to 0.");
+                return;
+            }
+            if (Main.MaxLavaLevel <= Main.LavaLevel)
+            {
+                ErrorMessage.AddMessage("The challenge has already ended. The lava level has reached its limit.");
+                return;
+            }
+            if (Main.config.IntervalDuration > 0)
+            {
+                ErrorMessage.AddMessage("An accurate estimate can only be provided if the `Time between movements` setting is set to 0. Sorry!");
+                ErrorMessage.AddMessage("It looks better if you leave it at zero, anyway... and if you're worried about it rising too fast, just use the `lavamovespeed [speed]` command!");
+                return;
+            }
+            var heightDifference = Mathf.Abs(Main.MaxLavaLevel - Main.LavaLevel);
+            var timeToReachTop = heightDifference / Main.ActualLavaMoveSpeed;
+            ErrorMessage.AddMessage($"It will take the lava approximately {timeToReachTop} seconds to move up {heightDifference} meters.");
+            var minutes = Mathf.Floor(timeToReachTop / 60);
+            var seconds = Mathf.Round(timeToReachTop % 60);
+            ErrorMessage.AddMessage($"In other words, {minutes} minutes and {seconds} seconds.");
+            ErrorMessage.AddMessage($"The lava will move at a rate of {Main.ActualLavaMoveSpeed} meters per second.");
+
+            if (!Main.AutoModeEnabled)
+            {
+                ErrorMessage.AddMessage("Use the `beginlavachallenge` command to make it rise!");
+                return;
+            }
         }
 
         public static OverrideSetting<float> overrideLavaSpeed = new OverrideSetting<float>("Rise/fall speed");
