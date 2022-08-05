@@ -50,7 +50,7 @@ namespace RisingLava
                 {
                     return wm.lavaLevel;
                 }
-                return config.LavaLevel;
+                return config.BaseLavaLevel;
             }
         }
 
@@ -62,7 +62,7 @@ namespace RisingLava
                 {
                     return LavaCommands.overrideAutoMode.value;
                 }
-                return config.AutomaticChange;
+                return config.BeginAutomatically;
             }
         }
 

@@ -42,7 +42,7 @@ namespace RisingLava.Mono
             save.Load();
             if (firstLoad)
             {
-                save.LavaLevel = Main.config.LavaLevel;
+                save.LavaLevel = Main.config.BaseLavaLevel;
                 save.TimeLastChange = 0f;
             }
             lavaLevel = save.LavaLevel;
@@ -59,10 +59,10 @@ namespace RisingLava.Mono
         private void Update()
         {
             CalculateLavaLevel();
-            if (DayNightCycle.main.timePassedSinceOrigin > save.TimeLastChange + Main.config.IntervalDuration && AutomaticallyChange)
+            if (DayNightCycle.main.timePassedSinceOrigin > save.TimeLastChange + Main.config.MovementIntervalDuration && AutomaticallyChange)
             {
-                targetLavaLevel = lavaLevel + Main.config.IntervalChange;
-                if (Main.config.IntervalChange > 0f)
+                targetLavaLevel = lavaLevel + Main.config.MovementIntervalChange;
+                if (Main.config.MovementIntervalChange > 0f)
                 {
                     targetLavaLevel = Mathf.Clamp(targetLavaLevel, float.MinValue, Main.MaxLavaLevel);
                 }

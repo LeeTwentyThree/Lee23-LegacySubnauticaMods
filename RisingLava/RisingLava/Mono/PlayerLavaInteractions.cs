@@ -45,18 +45,31 @@ namespace RisingLava.Mono
             if (Time.time > _timeLastDamage + _damageDelay)
             {
                 _timeLastDamage = Time.time;
-                if (PlayerIsUnderWater())
+                var instakill = false;
+                if (!PlayerIsUnderWater())
                 {
-                    _player.liveMixin.TakeDamage(_damageAmount, _player.transform.position, DamageType.Normal);
-                    _player.liveMixin.TakeDamage(0.1f, _player.transform.position, DamageType.Heat);
+                    var playerY = Player.main.transform.position.y;
+                    if (playerY < Ocean.main.GetOceanLevel() + 2f)
+                    {
+                        instakill = true;
+                    }
+                    else if (playerY < Main.LavaLevel + 5f)
+                    {
+                        instakill = true;
+                    }
                 }
-                else
+                if (instakill)
                 {
                     if (GameModeUtils.IsInvisible() || NoDamageConsoleCommand.main.GetNoDamageCheat())
                     {
                         return;
                     }
                     _player.liveMixin.Kill();
+                }
+                else
+                {
+                    _player.liveMixin.TakeDamage(_damageAmount, _player.transform.position, DamageType.Normal);
+                    _player.liveMixin.TakeDamage(0.1f, _player.transform.position, DamageType.Heat);
                 }
             }
         }

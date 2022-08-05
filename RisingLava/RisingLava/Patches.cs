@@ -18,7 +18,7 @@ namespace RisingLava
                 {
                     return;
                 }
-                if (Main.config.KillFish)
+                if (Main.config.AffectEnvironment)
                 {
                     __instance.gameObject.EnsureComponent<LiveMixinBurn>().lm = __instance;
                 }

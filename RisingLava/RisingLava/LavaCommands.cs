@@ -110,7 +110,7 @@ namespace RisingLava
                 ErrorMessage.AddMessage("The challenge has already ended. The lava level has reached its limit.");
                 return;
             }
-            if (Main.config.IntervalDuration > 0)
+            if (Main.config.MovementIntervalDuration > 0)
             {
                 ErrorMessage.AddMessage("An accurate estimate can only be provided if the `Time between movements` setting is set to 0. Sorry!");
                 ErrorMessage.AddMessage("It looks better if you leave it at zero, anyway... and if you're worried about it rising too fast, just use the `lavamovespeed [speed]` command!");
