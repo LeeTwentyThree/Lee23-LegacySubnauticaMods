@@ -12,17 +12,19 @@ namespace RisingLava
         public float BaseLavaLevel = -1700;
         [Toggle(Label = "Affects environment", Tooltip = "Whether fish, plants, etc. should die when below lava or not. I recommend leaving this on.")]
         public bool AffectEnvironment = true;
-        [Toggle(Label = "Begin challenge automatically", Tooltip = "RESTART REQUIRED. Unless you want to use the `beginlavachallenge` command!")]
+        [Toggle(Label = "Affects static objects", Tooltip = "If enabled, static objects (wrecks, boulders, etc.) will be picked up by the lava and float.")]
+        public bool UnweldObjects = true;
+        [Toggle(Label = "Begin challenge automatically", Tooltip = "RESTART REQUIRED. In most cases you should use the `beginlavachallenge` command instead.")]
         public bool BeginAutomatically = false;
-        [Slider(Label = "Time between movements", Tooltip = "The amount of time, in seconds, between each lava level change. I recommend zero seconds for the most smooth experience.", DefaultValue = 0, Min = 0, Max = 600, Step = 5)]
+        //[Slider(Label = "Time between movements", Tooltip = "The amount of time, in seconds, between each lava level change. I recommend zero seconds for the most smooth experience.", DefaultValue = 0, Min = 0, Max = 600, Step = 5)]
         public float MovementIntervalDuration = 0;
-        [Slider(Label = "Distance per movement", Tooltip = "The distance in meters that the lava will move during each change, can be positive or negative.", DefaultValue = 25, Min = -25, Max = 25, Step = 1)]
+        //[Slider(Label = "Distance per movement", Tooltip = "The distance in meters that the lava will move during each change, can be positive or negative.", DefaultValue = 25, Min = -25, Max = 25, Step = 1)]
         public float MovementIntervalChange = 25;
-        [Slider(Label = "Rise/fall speed", Tooltip = "The speed, in 1/4 meters per second, of which the lava level rises/falls.\nUse the `lavamovespeed [metersPerSecond]` command to input a more specific value.", DefaultValue = 4f, Min = 1f, Max = 32f, Step = 1f)]
+        [Slider(Label = "Rise/fall speed (x0.25 m/s)", Tooltip = "The speed, in 1/4 meters per second, of which the lava level rises/falls.\nUse the `lavamovespeed [metersPerSecond]` command to input a more specific value.", DefaultValue = 4f, Min = 1f, Max = 40f, Step = 1f)]
         public float LavaMoveSpeed = 4f;
         [Slider(Label = "Lava level upper limit", Tooltip = "The lava can never rise above this value (in meters).\nUse the `lavalevelmax [maxYLevel]` command to input a more specific value.", DefaultValue = -30f, Min = -50, Max = 200, Step = 5f)]
         public float LavaLevelMax = -30f;
-        [Slider(Label = "Heat distortion strength", Tooltip = "The strength of the heat distortion effect, present when above lava. Lowering this value may cause visual inconsistencies in certain biomes.", DefaultValue = 4f, Min = 0f, Max = 5f, Step = 0.5f)]
+        [Slider(Label = "Heat distortion strength", Tooltip = "The strength of the heat distortion effect, present when above lava. Lowering this value may cause visual inconsistencies in certain biomes, do not put it below 1.", DefaultValue = 4f, Min = 0f, Max = 5f, Step = 0.5f)]
         public float HeatDistortionEffectStrength = 4f;
         [Toggle(Label = "Disable on-screen messages", Tooltip = "Uncheck this box to disable the on screen messages that appear when typing commands.")]
         public bool DisableErrorMessages = false;

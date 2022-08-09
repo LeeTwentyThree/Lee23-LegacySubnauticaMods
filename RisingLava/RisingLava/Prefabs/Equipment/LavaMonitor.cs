@@ -24,9 +24,14 @@ namespace RisingLava.Prefabs.Tools
 
         public override string[] StepsToFabricatorTab => new string[] { "Personal", "Equipment" };
 
+        protected override Atlas.Sprite GetItemSprite()
+        {
+            return new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("LavaTablet_Icon"));
+        }
+
         protected override TechData GetBlueprintRecipe()
         {
-            return new TechData(new Ingredient(TechType.Titanium, 2), new Ingredient(TechType.WiringKit, 1), new Ingredient(TechType.CopperWire, 1)) { craftAmount = 1};
+            return new TechData(new Ingredient(TechType.WiringKit, 1), new Ingredient(TechType.CopperWire, 1)) { craftAmount = 1};
         }
 
         public override GameObject GetGameObject()
@@ -56,6 +61,8 @@ namespace RisingLava.Prefabs.Tools
             var monitor = prefab.AddComponent<Mono.Equipment.LavaMonitor>();
             monitor.mainCollider = prefab.GetComponent<Collider>();
             monitor.drawSound = Helpers.GetFMODAsset("event:/player/key terminal_close");
+
+            prefab.transform.Find("ViewModel").Find("UI").gameObject.AddComponent<Mono.Equipment.LavaMonitorUI>();
 
             return prefab;
         }

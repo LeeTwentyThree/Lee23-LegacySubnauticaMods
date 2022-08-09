@@ -82,10 +82,13 @@ namespace RisingLava
         [ConsoleCommand("beginlavachallenge")]
         public static void BeginChallenge()
         {
-            overrideAutoMode.FeedNewValue(true, true);
             if (!BeginChallengeCinematic.CinematicActive())
             {
                 BeginChallengeCinematic.BeginCinematic();
+            }
+            else
+            {
+                overrideAutoMode.FeedNewValue(true, true);
             }
         }
 
@@ -129,6 +132,20 @@ namespace RisingLava
                 ErrorMessage.AddMessage("Use the `beginlavachallenge` command to make it rise!");
                 return;
             }
+        }
+
+        [ConsoleCommand("stoplava")]
+        public static void StopLavaMovement()
+        {
+            if (LavaMove.main == null)
+            {
+                ErrorMessage.AddMessage("No lava found!");
+            }
+            if (Main.AutoModeEnabled)
+            {
+                PauseAutoMode();
+            }
+            LavaMove.main.SetLavaLevelTarget(Main.LavaLevel);
         }
 
         public static OverrideSetting<float> overrideLavaSpeed = new OverrideSetting<float>("Rise/fall speed");

@@ -4,6 +4,11 @@ namespace RisingLava
 {
     public static class Helpers
     {
+        public static float Distance1D(float a, float b)
+        {
+            return Mathf.Abs(a - b);
+        }
+
         public static void ApplySNShaders(GameObject prefab, float shininess = 8f, float specularInt = 1f, float glowStrength = 1f, Material glassMaterial = null)
         {
             var renderers = prefab.GetComponentsInChildren<Renderer>(true);

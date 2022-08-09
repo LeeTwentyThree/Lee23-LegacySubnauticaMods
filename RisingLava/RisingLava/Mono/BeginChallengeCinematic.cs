@@ -17,6 +17,7 @@ namespace RisingLava.Mono
             Utils.PlayFMODAsset(sound, Player.main.transform.position);
             ScreenShake();
             yield return new WaitForSeconds(4f);
+            LavaCommands.overrideAutoMode.FeedNewValue(true, true);
             DisplayText();
             Destroy(gameObject);
             instance = null;

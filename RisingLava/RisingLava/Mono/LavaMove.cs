@@ -118,5 +118,13 @@ namespace RisingLava.Mono
                 return targetLavaLevel;
             }
         }
+
+        public bool IsMoving
+        {
+            get
+            {
+                return lavaIsMoving;
+            }
+        }
     }
 }

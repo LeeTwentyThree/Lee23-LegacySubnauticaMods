@@ -31,6 +31,7 @@ namespace RisingLava.Mono
             var spawned = Instantiate(Main.assetBundle.LoadAsset<GameObject>("LavaPlane_Prefab"));
             main = spawned.AddComponent<LavaSurface>();
             main.gameObject.EnsureComponent<LavaLightManager>();
+            main.gameObject.EnsureComponent<UnweldObjects>();
             return main;
         }
 
