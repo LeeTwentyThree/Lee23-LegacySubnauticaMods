@@ -98,5 +98,10 @@ namespace RisingLava
             asset.path = path;
             return asset;
         }
+
+        public static float JessyMap(float value, float from1, float to1, float from2, float to2) // thanks Jessy
+        {
+            return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
+        }
     }
 }

@@ -14,11 +14,14 @@ namespace RisingLava.Mono.Equipment
         private GameObject dangerRoot;
         private GameObject safeRoot;
         private GameObject approachingRoot;
+        private GameObject timerRoot;
         private Text statusText;
         private Text speedText;
         private Text timeText;
         private Text depthText;
+        private Text upperLimitText;
         private Image statusImage;
+        private RectTransform fillBarLava;
 
         private void Start()
         {
@@ -40,11 +43,14 @@ namespace RisingLava.Mono.Equipment
             dangerRoot = tabMainRoot.Find("Danger").gameObject;
             safeRoot = tabMainRoot.Find("Safe").gameObject;
             approachingRoot = tabMainRoot.Find("Approaching").gameObject;
+            timerRoot = tabMainRoot.Find("TimerRoot").gameObject;
 
             statusText = tabMainRoot.Find("StateText").GetComponent<Text>();
             speedText = tabMainRoot.Find("SpeedText").GetComponent<Text>();
-            timeText = tabMainRoot.Find("TimeText").GetComponent<Text>();
+            timeText = timerRoot.transform.Find("TimeText").GetComponent<Text>();
             depthText = tabMainRoot.Find("DepthText").GetComponent<Text>();
+            upperLimitText = tabMainRoot.Find("FillBarUpperLimit").GetComponent<Text>();
+            fillBarLava = tabMainRoot.Find("FillBarRoot").Find("FillBarFillLava").GetComponent<RectTransform>();
 
             statusImage = tabMainRoot.Find("StateImage").GetComponent<Image>();
         }
@@ -75,6 +81,8 @@ namespace RisingLava.Mono.Equipment
             dangerRoot.SetActive(false);
             safeRoot.SetActive(false);
             approachingRoot.SetActive(false);
+            upperLimitText.text = GetUpperLimitText();
+            fillBarLava.localScale = new Vector3(1f, GetPercentToTop(), 1f);
             switch (safety)
             {
                 default:
@@ -90,6 +98,28 @@ namespace RisingLava.Mono.Equipment
                     break;
             }
             dangerRoot.SetActive(IsInDanger());
+        }
+
+        public string GetUpperLimitText()
+        {
+            var max = Mathf.Abs(Mathf.Round(Main.MaxLavaLevel));
+            if (max == 0)
+            {
+                return $"Expected Height\n0m";
+            }
+            else if (max > 0)
+            {
+                return $"Expected Height\n{max}m above surface";
+            }
+            else
+            {
+                return $"Expected Height\n+{max}m below surface";
+            }
+        }
+        
+        private float GetPercentToTop()
+        {
+            return Helpers.JessyMap(Main.LavaLevel, Main.config.BaseLavaLevel, Main.MaxLavaLevel, 0f, 1f);
         }
 
         public bool IsInDanger()
@@ -118,7 +148,7 @@ namespace RisingLava.Mono.Equipment
             {
                 return "N/A";
             }
-            return (Main.ActualLavaMoveSpeed + Mathf.PerlinNoise(Time.time, 4f) - 0.5f).ToString("0.0") + " m/s";
+            return (Main.ActualLavaMoveSpeed + (Mathf.PerlinNoise(Time.time, 4f) - 0.5f) / 4f).ToString("0.0") + " m/s";
         }
 
         public string GetTimeText()
@@ -126,8 +156,10 @@ namespace RisingLava.Mono.Equipment
             var main = LavaMove.main;
             if (main == null || Main.ActualLavaMoveSpeed == 0f || !main.AutomaticallyChange)
             {
+                timerRoot.SetActive(false);
                 return "Remaining time undeterminable";
             }
+            timerRoot.SetActive(true);
             if (Main.LavaLevel >= Main.MaxLavaLevel)
             {
                 return "Eruption survived, congratulations!";

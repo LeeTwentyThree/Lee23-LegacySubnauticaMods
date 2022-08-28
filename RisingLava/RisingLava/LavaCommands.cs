@@ -134,6 +134,19 @@ namespace RisingLava
             }
         }
 
+        [ConsoleCommand("resumelava")]
+        public static void ResumeLavaMovement()
+        {
+            if (LavaMove.main == null)
+            {
+                ErrorMessage.AddMessage("No lava found!");
+            }
+            if (!Main.AutoModeEnabled)
+            {
+                overrideAutoMode.FeedNewValue(true);
+            }
+        }
+
         [ConsoleCommand("stoplava")]
         public static void StopLavaMovement()
         {
