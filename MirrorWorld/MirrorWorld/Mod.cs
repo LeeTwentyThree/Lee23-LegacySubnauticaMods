@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
 using QModManager.API.ModLoading;
 using System.Reflection;
-using UnityEngine;
+using SMLHelper.V2.Handlers;
 
 namespace MirrorWorld
 {
@@ -9,6 +9,8 @@ namespace MirrorWorld
     public static class Mod
     {
         public static Assembly modAssembly = Assembly.GetExecutingAssembly();
+
+        public static Config config = OptionsPanelHandler.Main.RegisterModOptions<Config>();
 
         [QModPatch]
         public static void Entry()
