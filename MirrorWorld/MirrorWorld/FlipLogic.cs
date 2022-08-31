@@ -39,7 +39,7 @@ namespace MirrorWorld
 
         public static float GetTerrainY()
         {
-            return Mod.config.yAxis ? -2048f : 0f;
+            return Mod.config.yAxis ? Mod.config.shallowsYLevel : 0f;
         }
     }
 }
