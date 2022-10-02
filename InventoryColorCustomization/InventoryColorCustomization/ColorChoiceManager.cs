@@ -10,7 +10,7 @@ namespace InventoryColorCustomization
             ColorChoices = new List<ColorChoice>(_defaultColorChoices);
             foreach (var loadedBackground in CustomColorChoiceManager.loadedBackgrounds)
             {
-                ColorChoices.Add(new CustomColorChoice(loadedBackground.name, loadedBackground.texture));
+                ColorChoices.Add(new CustomColorChoice(loadedBackground));
             }
             _initialized = true;
         }

@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace InventoryColorCustomization
@@ -37,18 +36,6 @@ namespace InventoryColorCustomization
                 }
             }
             loadedBackgrounds = backgrounds.ToArray();
-        }
-
-        public class CustomBackground
-        {
-            public string name;
-            public Texture2D texture;
-
-            public CustomBackground(string name, Texture2D texture)
-            {
-                this.name = name;
-                this.texture = texture;
-            }
         }
     }
 }
