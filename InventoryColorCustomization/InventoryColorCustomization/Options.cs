@@ -20,12 +20,15 @@ namespace InventoryColorCustomization
 
         public override void BuildModOptions()
         {
-            AddBackgroundColorOption(CraftData.BackgroundType.Normal, "Normal Item Color");
-            AddBackgroundColorOption(CraftData.BackgroundType.ExosuitArm, "Exosuit Arm Color");
-            AddBackgroundColorOption(CraftData.BackgroundType.PlantWater, "Plant Color");
-            AddBackgroundColorOption(CraftData.BackgroundType.PlantAir, "Land Plant Color");
-            AddBackgroundColorOption(CraftData.BackgroundType.PlantWaterSeed, "Seed Color");
-            AddBackgroundColorOption(CraftData.BackgroundType.PlantAirSeed, "Land Seed Color");
+            AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.Normal), "Normal Item Color");
+            AddBackgroundColorOption(new BackgroundType(BackgroundTypeManager.Category_Creatures), "Creatures Color");
+            AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.ExosuitArm), "Exosuit Arm Color");
+            AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.PlantWater), "Plant Color");
+            AddBackgroundColorOption(new BackgroundType(BackgroundTypeManager.Category_Precursor), "Precursor Items Color");
+            AddBackgroundColorOption(new BackgroundType(BackgroundTypeManager.Category_Hybrid), "Hybrid Tech Color");
+            AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.PlantAir), "Land Plant Color");
+            AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.PlantWaterSeed), "Seed Color");
+            AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.PlantAirSeed), "Land Seed Color");
             AddToggleOption("TransparentBackgrounds", "Transparent Backgrounds", savedOptions.TransparentBackgrounds);
             AddToggleOption("SquareIcons", "Use Square Icons", savedOptions.SquareIcons);
 
@@ -49,7 +52,7 @@ namespace InventoryColorCustomization
         public void OnChoiceChanged(object sender, ChoiceChangedEventArgs eventArgs)
         {
             var key = eventArgs.Id;
-            int value = ItemBackgroundData.ChoiceNameToIndex(key, eventArgs.Value);
+            int value = ItemBackgroundUtils.ChoiceNameToIndex(key, eventArgs.Value);
             if (savedOptions.BackgroundColorChoices == null)
             {
                 savedOptions.BackgroundColorChoices = new Dictionary<string, int>();
@@ -66,11 +69,11 @@ namespace InventoryColorCustomization
             savedOptions.Save();
         }
 
-        private void AddBackgroundColorOption(CraftData.BackgroundType backgroundType, string label)
+        private void AddBackgroundColorOption(BackgroundType backgroundType, string label)
         {
-            string id = ItemBackgroundData.GetBackgroundData(backgroundType).ID;
-            var choices = ItemBackgroundData.GetColorChoiceNames(backgroundType);
-            AddChoiceOption(id, label, choices, savedOptions.GetBackgroundColorChoice(ItemBackgroundData.GetBackgroundData(backgroundType).ID));
+            string id = backgroundType.GetData().ID;
+            var choices = ItemBackgroundUtils.GetColorChoiceNames(backgroundType);
+            AddChoiceOption(id, label, choices, savedOptions.GetBackgroundColorChoice(ItemBackgroundUtils.GetBackgroundData(backgroundType).ID));
         }
 
         public int GetSelectedIndexForBackground(string backgroundType)

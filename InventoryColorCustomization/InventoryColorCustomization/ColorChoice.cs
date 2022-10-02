@@ -15,12 +15,12 @@ namespace InventoryColorCustomization
             this.color = color;
         }
 
-        public virtual string GetName(CraftData.BackgroundType backgroundType)
+        public virtual string GetName(BackgroundType backgroundType)
         {
             return name;
         }
 
-        public virtual Atlas.Sprite GetSprite(CraftData.BackgroundType backgroundType)
+        public virtual Atlas.Sprite GetSprite(BackgroundType backgroundType)
         {
             if (mySprite == null)
             {

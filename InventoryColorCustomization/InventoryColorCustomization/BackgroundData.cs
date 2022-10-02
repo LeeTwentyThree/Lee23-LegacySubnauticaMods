@@ -3,26 +3,38 @@ using System.IO;
 
 namespace InventoryColorCustomization
 {
-    internal static partial class ItemBackgroundData
+    // data related to an item background, including default textures (if any)
+    internal class BackgroundData
     {
-        internal class BackgroundData
+        public BackgroundType BackgroundType;
+
+        public Texture2D DefaultTexture { get; private set; }
+
+        public Atlas.Sprite DefaultSprite { get; private set; }
+
+        public string ID
         {
-            public CraftData.BackgroundType BackgroundType;
-            public string DefaultTextureFileName;
-
-            public Texture2D DefaultTexture { get; private set; }
-
-            public Atlas.Sprite DefaultSprite { get; private set; }
-
-            public string ID { get { return BackgroundType.ToString() + "Color"; } }
-
-            public BackgroundData(CraftData.BackgroundType backgroundType, string defaultTextureFileName)
+            get
             {
-                BackgroundType = backgroundType;
-                DefaultTextureFileName = defaultTextureFileName;
-                DefaultTexture = BackgroundIconGenerator.LoadTextureFromFile(Main.GetPathInAssetsFolder(Path.Combine("Default", DefaultTextureFileName + ".png")));
-                DefaultSprite = BackgroundIconGenerator.TextureToSprite(DefaultTexture);
+                if (BackgroundType.UseEnum)
+                {
+                    return BackgroundType.enumValue.ToString() + "Color";
+                }
+                else
+                {
+                    return BackgroundType.stringValue + "Color";
+                }
             }
+        }
+
+        public BackgroundData(BackgroundType backgroundType, string defaultTextureFileName = null)
+        {
+            BackgroundType = backgroundType;
+            if (!string.IsNullOrEmpty(defaultTextureFileName))
+            {
+                DefaultTexture = BackgroundIconGenerator.LoadTextureFromFile(Main.GetPathInAssetsFolder(Path.Combine("Default", defaultTextureFileName + ".png")));
+            }
+            DefaultSprite = BackgroundIconGenerator.TextureToSprite(DefaultTexture);
         }
     }
 }

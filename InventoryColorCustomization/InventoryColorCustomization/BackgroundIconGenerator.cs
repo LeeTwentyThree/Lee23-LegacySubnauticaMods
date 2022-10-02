@@ -13,7 +13,7 @@ namespace InventoryColorCustomization
             {
                 if (_referenceTexture == null)
                 {
-                    _referenceTexture = LoadTextureFromFile(Main.GetPathInAssetsFolder("Grayscale"));
+                    _referenceTexture = LoadTextureFromFile(Main.GetPathInAssetsFolder("Grayscale.png"));
                 }
                 return _referenceTexture;
             }
@@ -60,19 +60,42 @@ namespace InventoryColorCustomization
         public static Atlas.Sprite CreatePaintedIcon(Color color)
         {
             var grayscale = ReferenceTexture;
-            return TextureToSprite(PaintGrayscaleTexture(ReferenceTexture, color));
+            return TextureToSprite(PaintGrayscaleTexture(grayscale, color));
+        }
+
+        private static Color PaintGrayPixel(Color gray, Color hue)
+        {
+            return new Color(gray.r * hue.r, gray.g * hue.g, gray.b * hue.b, gray.a * hue.a);
         }
 
         private static Texture2D PaintGrayscaleTexture(Texture2D grayscale, Color newColor) // give life to a grayscale image!!!
         {
-            var pixels = grayscale.GetPixels();
-            Texture2D newTex = new Texture2D(grayscale.width, grayscale.height, TextureFormat, false, LinearColorSpace);
-            for (int i = 0; i < pixels.Length; i++)
+            if (grayscale == null)
             {
-                pixels[i] = pixels[i] * newColor;
+                return null;
             }
-            newTex.SetPixels(pixels);
+
+            Texture2D newTex = new Texture2D(grayscale.width, grayscale.height, TextureFormat.ARGB32, false, LinearColorSpace);
+
+            var fillPixels = new Color[newTex.width * newTex.height];
+
+            for (int i = 0; i < fillPixels.Length; i++)
+            {
+                fillPixels[i] = Color.clear;
+            }
+
+            newTex.SetPixels(fillPixels);
+
+            for (int x = 0; x < grayscale.width; x++)
+            {
+                for (int y = 0; y < grayscale.height; y++)
+                {
+                    newTex.SetPixel(x, y, PaintGrayPixel(grayscale.GetPixel(x, y), newColor));
+                }
+            }
+
             newTex.Apply();
+
             return newTex;
         }
     }

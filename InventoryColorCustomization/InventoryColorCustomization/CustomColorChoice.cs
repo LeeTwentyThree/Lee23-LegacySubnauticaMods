@@ -8,30 +8,37 @@ namespace InventoryColorCustomization
         {
         }
 
-        public override string GetName(CraftData.BackgroundType backgroundType)
+        public override string GetName(BackgroundType backgroundType)
         {
-            switch (backgroundType)
+            if (backgroundType.UseEnum)
             {
-                case CraftData.BackgroundType.Normal:
-                    return "Default (blue)";
-                case CraftData.BackgroundType.Blueprint:
-                    return "Default (purple)";
-                case CraftData.BackgroundType.PlantWater:
-                    return "Default (blue)";
-                case CraftData.BackgroundType.PlantWaterSeed:
-                    return "Default (blue)";
-                case CraftData.BackgroundType.PlantAir:
-                    return "Default (green)";
-                case CraftData.BackgroundType.PlantAirSeed:
-                    return "Default (green)";
-                case CraftData.BackgroundType.ExosuitArm:
-                    return "Default (purple)";
-                default:
-                    return "Unknown";
+                switch (backgroundType.enumValue)
+                {
+                    case CraftData.BackgroundType.Normal:
+                        return "Default (blue)";
+                    case CraftData.BackgroundType.Blueprint:
+                        return "Default (purple)";
+                    case CraftData.BackgroundType.PlantWater:
+                        return "Default (blue)";
+                    case CraftData.BackgroundType.PlantWaterSeed:
+                        return "Default (blue)";
+                    case CraftData.BackgroundType.PlantAir:
+                        return "Default (green)";
+                    case CraftData.BackgroundType.PlantAirSeed:
+                        return "Default (green)";
+                    case CraftData.BackgroundType.ExosuitArm:
+                        return "Default (purple)";
+                    default:
+                        return "Unknown";
+                }
+            }
+            else
+            {
+                return "Unknown";
             }
         }
 
-        public override Atlas.Sprite GetSprite(CraftData.BackgroundType backgroundType)
+        public override Atlas.Sprite GetSprite(BackgroundType backgroundType)
         {
             return null;
         }

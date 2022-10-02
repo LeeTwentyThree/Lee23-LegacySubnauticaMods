@@ -8,11 +8,12 @@ namespace InventoryColorCustomization.Patches
     {
         // public static Atlas.Sprite GetBackground(CraftData.BackgroundType backgroundType)
         [HarmonyPatch(nameof(SpriteManager.GetBackground))] // original method gets an Atlas.Sprite for the item background
-        [HarmonyPatch(new System.Type[] { typeof(CraftData.BackgroundType) })] // clarify the correct method overload
+        [HarmonyPatch(new System.Type[] { typeof(TechType) })] // clarify the correct method overload
         [HarmonyPrefix()]
-        public static bool SetBackgroundSpritePostfix(CraftData.BackgroundType backgroundType, ref Atlas.Sprite __result)
+        public static bool SetBackgroundSpritePostfix(TechType techType, ref Atlas.Sprite __result)
         {
-            var backgroundData = ItemBackgroundData.GetBackgroundData(backgroundType).ID;
+            var actualBackgroundType = BackgroundTypeManager.GetBackgroundType(techType);
+            var backgroundData = actualBackgroundType.GetData().ID;
             if (backgroundData == null)
             {
                 return true;
@@ -22,8 +23,8 @@ namespace InventoryColorCustomization.Patches
             {
                 return true;
             }
-            var choice = ItemBackgroundData.GetColorChoice(choiceIndex);
-            __result = choice.GetSprite(backgroundType);
+            var choice = ItemBackgroundUtils.GetColorChoiceAtIndex(choiceIndex);
+            __result = choice.GetSprite(actualBackgroundType);
             return false;
         }
     }
