@@ -23,7 +23,8 @@ namespace InventoryColorCustomization
         {
             if (ColorChoiceManager.ColorChoices == null || savedOptions == null || savedOptions.BackgroundColorChoices == null) return;
             int maxChoices = ColorChoiceManager.ColorChoices.Count;
-            var keys = savedOptions.BackgroundColorChoices.Keys;
+            string[] keys = new string[savedOptions.BackgroundColorChoices.Count];
+            savedOptions.BackgroundColorChoices.Keys.CopyTo(keys, 0);
             foreach (var key in keys)
             {
                 if (savedOptions.BackgroundColorChoices[key] >= maxChoices)
