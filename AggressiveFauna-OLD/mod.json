@@ -1,0 +1,10 @@
+{
+  "Id": "AggressiveFauna",
+  "DisplayName": "More Aggressive Fauna",
+  "Author": "Lee23 (credit to Cattlesquat for DeathRun aggression code)",
+  "Version": "1.0.0",
+  "Enable": true,
+  "AssemblyName": "AggressiveFauna.dll",
+  "Dependencies": ["SMLHelper"],
+  "Game": "Subnautica"
+}
