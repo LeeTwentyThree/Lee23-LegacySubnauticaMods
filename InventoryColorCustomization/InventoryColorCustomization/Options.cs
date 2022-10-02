@@ -21,12 +21,14 @@ namespace InventoryColorCustomization
 
         private void EnsureSettingsAreValid()
         {
+            if (ColorChoiceManager.ColorChoices == null || savedOptions == null || savedOptions.BackgroundColorChoices == null) return;
             int maxChoices = ColorChoiceManager.ColorChoices.Count;
-            foreach (var selectedChoice in savedOptions.BackgroundColorChoices)
+            var keys = savedOptions.BackgroundColorChoices.Keys;
+            foreach (var key in keys)
             {
-                if (selectedChoice.Value >= maxChoices)
+                if (savedOptions.BackgroundColorChoices[key] >= maxChoices)
                 {
-                    savedOptions.BackgroundColorChoices[selectedChoice.Key] = 0;
+                    savedOptions.BackgroundColorChoices[key] = 0;
                 }
             }
         }

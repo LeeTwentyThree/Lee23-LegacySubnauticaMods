@@ -10,13 +10,14 @@ public static class Main
 {
     internal static Assembly assembly = Assembly.GetExecutingAssembly();
     internal static string assetFolderPath = Path.Combine(Path.GetDirectoryName(assembly.Location), "Assets");
-    internal static Options modConfig = new Options();
+    internal static Options modConfig;
 
     [QModPatch]
     public static void Entry()
     {
-        CustomColorChoiceManager.LoadCustomFiles();
+        CustomColorChoiceManager.LoadCustomFiles(); // must be loaded before the color choices are created
         ColorChoiceManager.Initialize();
+        modConfig = new Options(); // must be initialized after the color choices are finalized
         OptionsPanelHandler.RegisterModOptions(modConfig);
         var harmony = new Harmony("Lee23.InventoryColorCustomization");
         harmony.PatchAll(assembly);
