@@ -2,10 +2,11 @@
 
 namespace InventoryColorCustomization
 {
-    internal class DefaultColorChoice : ColorChoice
+    internal class CustomColorChoice : ColorChoice
     {
-        public DefaultColorChoice() : base("Default", Color.white)
+        public CustomColorChoice(string name, Texture2D texture) : base(name, Color.white)
         {
+            this.texture = texture;
         }
 
         public override string GetName(BackgroundType backgroundType)
@@ -34,23 +35,19 @@ namespace InventoryColorCustomization
             }
             else
             {
-                switch (backgroundType.stringValue)
-                {
-                    default:
-                        return "Undefined";
-                }
+                return "Unknown";
             }
         }
 
-        private Atlas.Sprite mySprite; // do not drink my Sprite!
+        private Texture2D texture;
 
         public override Atlas.Sprite GetSprite(BackgroundType backgroundType)
         {
-            if (mySprite == null)
+            if (cachedSprite == null)
             {
-                mySprite = BackgroundDataManager.GetBackgroundData(backgroundType).DefaultSprite;
+                cachedSprite = BackgroundIconGenerator.TextureToBGSprite(texture);
             }
-            return mySprite;
+            return cachedSprite;
         }
     }
 }

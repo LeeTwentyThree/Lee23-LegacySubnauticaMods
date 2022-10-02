@@ -15,6 +15,7 @@ public static class Main
     [QModPatch]
     public static void Entry()
     {
+        CustomColorChoiceManager.LoadCustomFiles();
         ColorChoiceManager.Initialize();
         OptionsPanelHandler.RegisterModOptions(modConfig);
         var harmony = new Harmony("Lee23.InventoryColorCustomization");

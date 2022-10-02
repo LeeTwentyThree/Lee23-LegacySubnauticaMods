@@ -7,7 +7,7 @@ namespace InventoryColorCustomization
         protected string name;
         protected Color color;
 
-        private Atlas.Sprite mySprite; // do not drink my Sprite!
+        protected Atlas.Sprite cachedSprite;
 
         public ColorChoice(string name, Color color)
         {
@@ -22,11 +22,17 @@ namespace InventoryColorCustomization
 
         public virtual Atlas.Sprite GetSprite(BackgroundType backgroundType)
         {
-            if (mySprite == null)
+            if (cachedSprite == null)
             {
-                mySprite = BackgroundIconGenerator.CreatePaintedIcon(color);
+                cachedSprite = BackgroundIconGenerator.CreatePaintedIcon(color);
             }
-            return mySprite;
+            return cachedSprite;
+        }
+
+        // call this method when the sprite of a color choice needs to be changed
+        public virtual void RefreshSprite()
+        {
+            cachedSprite = null;
         }
     }
 }

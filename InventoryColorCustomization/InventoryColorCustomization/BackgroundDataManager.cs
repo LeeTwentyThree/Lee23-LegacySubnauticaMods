@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace InventoryColorCustomization
 {
-    internal static partial class BackgroundDataManager
+    internal static class BackgroundDataManager
     {
         public static BackgroundData[] BackgroundsDatas = new BackgroundData[]
         {
@@ -20,6 +20,11 @@ namespace InventoryColorCustomization
             new BackgroundData(new BackgroundType(BackgroundTypeManager.Category_Precursor), "Normal"),
         };
 
+        public static BackgroundData GetDefaultBackgroundData()
+        {
+            return BackgroundsDatas[0];
+        }
+
         public static BackgroundData GetBackgroundData(BackgroundType backgroundType)
         {
             foreach (var background in BackgroundsDatas)
@@ -30,6 +35,14 @@ namespace InventoryColorCustomization
                 }
             }
             return null;
+        }
+
+        public static void RefreshAll()
+        {
+            foreach (var data in BackgroundsDatas)
+            {
+                data.RefreshDefaultSprite();
+            }
         }
     }
 }

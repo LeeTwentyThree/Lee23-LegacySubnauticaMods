@@ -5,7 +5,6 @@ namespace InventoryColorCustomization
 {
     internal class SaveOptions : ConfigFile
     {
-        public bool TransparentBackgrounds = true;
         public bool SquareIcons = false;
         public Dictionary<string, int> BackgroundColorChoices = new Dictionary<string, int>(); // id - value
 

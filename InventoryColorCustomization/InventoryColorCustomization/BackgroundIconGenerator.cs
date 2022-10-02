@@ -21,7 +21,7 @@ namespace InventoryColorCustomization
 
         private static Texture2D _referenceTexture;
 
-        public static Atlas.Sprite TextureToSprite(Texture2D texture)
+        public static Atlas.Sprite TextureToBGSprite(Texture2D texture)
         {
             texture.wrapMode = TextureWrapMode.Clamp;
             texture.filterMode = FilterMode.Bilinear;
@@ -45,7 +45,7 @@ namespace InventoryColorCustomization
         {
             get
             {
-                return Main.modConfig.TransparentBackgrounds;
+                return true;
             }
         }
 
@@ -60,7 +60,7 @@ namespace InventoryColorCustomization
         public static Atlas.Sprite CreatePaintedIcon(Color color)
         {
             var grayscale = ReferenceTexture;
-            return TextureToSprite(PaintGrayscaleTexture(grayscale, color));
+            return TextureToBGSprite(PaintGrayscaleTexture(grayscale, color));
         }
 
         private static Color PaintGrayPixel(Color gray, Color hue)

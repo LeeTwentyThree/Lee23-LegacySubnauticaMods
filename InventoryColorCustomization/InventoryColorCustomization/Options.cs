@@ -10,12 +10,25 @@ namespace InventoryColorCustomization
     {
         private SaveOptions savedOptions;
 
-        public Options() : base("Inventory Color Customization (Requires restart!)")
+        public Options() : base("Inventory Color Customization")
         {
             ToggleChanged += OnToggleChanged;
             ChoiceChanged += OnChoiceChanged;
             savedOptions = new SaveOptions();
             savedOptions.Load(true);
+            EnsureSettingsAreValid();
+        }
+
+        private void EnsureSettingsAreValid()
+        {
+            int maxChoices = ColorChoiceManager.ColorChoices.Count;
+            foreach (var selectedChoice in savedOptions.BackgroundColorChoices)
+            {
+                if (selectedChoice.Value >= maxChoices)
+                {
+                    savedOptions.BackgroundColorChoices[selectedChoice.Key] = 0;
+                }
+            }
         }
 
         public override void BuildModOptions()
@@ -28,7 +41,6 @@ namespace InventoryColorCustomization
             AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.PlantAir), "Land Plant Color");
             AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.PlantWaterSeed), "Water Seed Color");
             AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.PlantAirSeed), "Land Seed Color");
-            AddToggleOption("TransparentBackgrounds", "Transparent Backgrounds", savedOptions.TransparentBackgrounds);
             AddToggleOption("SquareIcons", "Use Square Icons", savedOptions.SquareIcons);
 
             // AddBackgroundColorOption(CraftData.BackgroundType.Blueprint, "Blueprint Color (Unused)");
@@ -36,14 +48,18 @@ namespace InventoryColorCustomization
 
         public void OnToggleChanged(object sender, ToggleChangedEventArgs eventArgs)
         {
+            bool refreshRequired = false;
             switch (eventArgs.Id)
             {
-                case "TransparentBackgrounds":
-                    savedOptions.TransparentBackgrounds = eventArgs.Value;
-                    break;
                 case "SquareIcons":
                     savedOptions.SquareIcons = eventArgs.Value;
+                    refreshRequired = true;
                     break;
+            }
+            if (refreshRequired)
+            {
+                ColorChoiceManager.RefreshAll();
+                BackgroundDataManager.RefreshAll();
             }
             savedOptions.Save();
         }
@@ -79,8 +95,6 @@ namespace InventoryColorCustomization
         {
             return savedOptions.GetBackgroundColorChoice(backgroundType);
         }
-
-        public bool TransparentBackgrounds { get { return savedOptions.TransparentBackgrounds; } }
 
         public bool SquareIcons { get { return savedOptions.SquareIcons; } }
 
