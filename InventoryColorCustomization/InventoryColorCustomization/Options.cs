@@ -10,7 +10,7 @@ namespace InventoryColorCustomization
     {
         private SaveOptions savedOptions;
 
-        public Options() : base("Inventory Color Customization (Requires game restart)")
+        public Options() : base("Inventory Color Customization (Requires restart!)")
         {
             ToggleChanged += OnToggleChanged;
             ChoiceChanged += OnChoiceChanged;

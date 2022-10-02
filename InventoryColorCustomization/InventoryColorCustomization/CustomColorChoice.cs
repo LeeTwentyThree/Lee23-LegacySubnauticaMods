@@ -2,9 +2,9 @@
 
 namespace InventoryColorCustomization
 {
-    internal class DefaultColorChoice : ColorChoice
+    internal class CustomColorChoice : ColorChoice
     {
-        public DefaultColorChoice() : base("Default", Color.white)
+        public CustomColorChoice() : base("Default", Color.white)
         {
         }
 
@@ -31,15 +31,9 @@ namespace InventoryColorCustomization
             }
         }
 
-        private Atlas.Sprite mySprite; // do not drink my Sprite!
-
         public override Atlas.Sprite GetSprite(CraftData.BackgroundType backgroundType)
         {
-            if (mySprite == null)
-            {
-                mySprite = ItemBackgroundData.GetBackgroundData(backgroundType).DefaultSprite;
-            }
-            return mySprite;
+            return null;
         }
     }
 }

@@ -20,7 +20,7 @@ namespace InventoryColorCustomization
             {
                 BackgroundType = backgroundType;
                 DefaultTextureFileName = defaultTextureFileName;
-                DefaultTexture = BackgroundIconGenerator.LoadTextureFromFile(Main.GetPathInAssetsFolder(Path.Combine("Default", DefaultTextureFileName + ".png")), TextureFormat.RGBA32);
+                DefaultTexture = BackgroundIconGenerator.LoadTextureFromFile(Main.GetPathInAssetsFolder(Path.Combine("Default", DefaultTextureFileName + ".png")));
                 DefaultSprite = BackgroundIconGenerator.TextureToSprite(DefaultTexture);
             }
         }

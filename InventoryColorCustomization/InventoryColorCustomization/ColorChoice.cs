@@ -2,35 +2,31 @@
 
 namespace InventoryColorCustomization
 {
-    internal static partial class ItemBackgroundData
+    internal class ColorChoice
     {
-        // base class that defines a single possible choice for an item color
+        protected string name;
+        protected Color color;
 
-        internal class ColorChoice
+        private Atlas.Sprite mySprite; // do not drink my Sprite!
+
+        public ColorChoice(string name, Color color)
         {
-            protected string name;
-            protected Color color;
+            this.name = name;
+            this.color = color;
+        }
 
-            public ColorChoice(string name, Color color)
-            {
-                this.name = name;
-                this.color = color;
-            }
+        public virtual string GetName(CraftData.BackgroundType backgroundType)
+        {
+            return name;
+        }
 
-            public virtual string GetName(CraftData.BackgroundType backgroundType)
+        public virtual Atlas.Sprite GetSprite(CraftData.BackgroundType backgroundType)
+        {
+            if (mySprite == null)
             {
-                return name;
+                mySprite = BackgroundIconGenerator.CreatePaintedIcon(color);
             }
-
-            public virtual Color GetColor()
-            {
-                return color;
-            }
-
-            public virtual Atlas.Sprite GetSprite(CraftData.BackgroundType backgroundType)
-            {
-                return null;
-            }
+            return mySprite;
         }
     }
 }
