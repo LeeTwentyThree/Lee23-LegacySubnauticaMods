@@ -11,7 +11,7 @@ namespace InventoryColorCustomization
                 PopulateDictionary();
             }
 
-            if (techTypeCategorizations.TryGetValue(tech, out var category))
+            if (customCategorizations.TryGetValue(tech, out var category))
             {
                 switch (category)
                 {
@@ -21,8 +21,6 @@ namespace InventoryColorCustomization
                         return creatureBackgroundType;
                     case Category_Precursor:
                         return precursorBackgroundType;
-                    case Category_Hybrid:
-                        return hybridBackgroundType;
                 }
             }
             return new BackgroundType(CraftData.GetBackgroundType(tech));
@@ -30,32 +28,31 @@ namespace InventoryColorCustomization
 
         private static void PopulateDictionary()
         {
-            techTypeCategorizations = new Dictionary<TechType, string>();
+            customCategorizations = new Dictionary<TechType, string>();
             foreach (var behaviour in BehaviourData.behaviourTypeList)
             {
-                techTypeCategorizations.Add(behaviour.Key, Category_Creatures);
+                customCategorizations.Add(behaviour.Key, Category_Creatures);
             }
-            techTypeCategorizations.Add(TechType.PrecursorKey_Purple, Category_Precursor);
-            techTypeCategorizations.Add(TechType.PrecursorKey_Orange, Category_Precursor);
-            techTypeCategorizations.Add(TechType.PrecursorKey_Blue, Category_Precursor);
-            techTypeCategorizations.Add(TechType.PrecursorKey_White, Category_Precursor);
-            techTypeCategorizations.Add(TechType.PrecursorKey_Red, Category_Precursor);
-            techTypeCategorizations.Add(TechType.PrecursorIonCrystal, Category_Precursor);
-            techTypeCategorizations.Add(TechType.PrecursorIonPowerCell, Category_Hybrid);
-            techTypeCategorizations.Add(TechType.PrecursorIonBattery, Category_Hybrid);
+            customCategorizations.Add(TechType.PrecursorKey_Purple, Category_Precursor);
+            customCategorizations.Add(TechType.PrecursorKey_Orange, Category_Precursor);
+            customCategorizations.Add(TechType.PrecursorKey_Blue, Category_Precursor);
+            customCategorizations.Add(TechType.PrecursorKey_White, Category_Precursor);
+            customCategorizations.Add(TechType.PrecursorKey_Red, Category_Precursor);
+            customCategorizations.Add(TechType.PrecursorIonCrystal, Category_Precursor);
+            customCategorizations.Add(TechType.PrecursorIonPowerCell, Category_Precursor);
+            customCategorizations.Add(TechType.PrecursorIonBattery, Category_Precursor);
             initializedDictionary = true;
         }
 
         private static bool initializedDictionary;
 
-        private static Dictionary<TechType, string> techTypeCategorizations;
+        private static Dictionary<TechType, string> customCategorizations;
+        private static Dictionary<TechType, CraftData.BackgroundType> vanillaCategorizations;
 
         public const string Category_Creatures = "Creatures";
         public const string Category_Precursor = "Precursor";
-        public const string Category_Hybrid = "Hybrid";
 
         private static BackgroundType creatureBackgroundType = new BackgroundType(Category_Creatures);
         private static BackgroundType precursorBackgroundType = new BackgroundType(Category_Precursor);
-        private static BackgroundType hybridBackgroundType = new BackgroundType(Category_Hybrid);
     }
 }

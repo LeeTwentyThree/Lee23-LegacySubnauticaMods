@@ -23,7 +23,7 @@ namespace InventoryColorCustomization.Patches
             {
                 return true;
             }
-            var choice = ItemBackgroundUtils.GetColorChoiceAtIndex(choiceIndex);
+            var choice = ColorChoiceManager.GetColorChoiceAtIndex(choiceIndex);
             __result = choice.GetSprite(actualBackgroundType);
             return false;
         }

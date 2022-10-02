@@ -48,7 +48,7 @@ namespace InventoryColorCustomization
         {
             if (mySprite == null)
             {
-                mySprite = ItemBackgroundUtils.GetBackgroundData(backgroundType).DefaultSprite;
+                mySprite = BackgroundDataManager.GetBackgroundData(backgroundType).DefaultSprite;
             }
             return mySprite;
         }

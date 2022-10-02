@@ -46,7 +46,7 @@ namespace InventoryColorCustomization
 
         public BackgroundData GetData()
         {
-            return ItemBackgroundUtils.GetBackgroundData(this);
+            return BackgroundDataManager.GetBackgroundData(this);
         }
 
         public bool Equals(BackgroundType other)
