@@ -37,13 +37,15 @@ namespace InventoryColorCustomization
         public override void BuildModOptions()
         {
             AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.Normal), "Normal Item Color");
+            AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.ExosuitArm), "Exosuit Arms Color");
+            AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.PlantWater), "Water Flora Color");
+            AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.PlantAir), "Air Flora Color");
             AddBackgroundColorOption(new BackgroundType(BackgroundTypeManager.Category_Creatures), "Creatures Color");
-            AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.ExosuitArm), "Exosuit Arm Color");
-            AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.PlantWater), "Water Plant Color");
             AddBackgroundColorOption(new BackgroundType(BackgroundTypeManager.Category_Precursor), "Precursor Items Color");
-            AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.PlantAir), "Land Plant Color");
-            AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.PlantWaterSeed), "Water Seed Color");
-            AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.PlantAirSeed), "Land Seed Color");
+            AddBackgroundColorOption(new BackgroundType(BackgroundTypeManager.Category_Tools), "Tools Color");
+            AddBackgroundColorOption(new BackgroundType(BackgroundTypeManager.Category_Deployables), "Deployables Colors");
+            AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.PlantWaterSeed), "Water Seeds Color");
+            AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.PlantAirSeed), "Air Seeds Color");
             AddToggleOption("SquareIcons", "Use Square Icons", savedOptions.SquareIcons);
 
             // AddBackgroundColorOption(CraftData.BackgroundType.Blueprint, "Blueprint Color (Unused)");
@@ -90,7 +92,7 @@ namespace InventoryColorCustomization
         private void AddBackgroundColorOption(BackgroundType backgroundType, string label)
         {
             string id = backgroundType.GetData().ID;
-            var choices = ColorChoiceManager.GetColorChoiceNames(backgroundType);
+            string[] choices = ColorChoiceManager.GetColorChoiceNames(backgroundType);
             AddChoiceOption(id, label, choices, savedOptions.GetBackgroundColorChoice(BackgroundDataManager.GetBackgroundData(backgroundType).ID));
         }
 

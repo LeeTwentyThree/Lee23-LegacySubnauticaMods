@@ -7,6 +7,7 @@ namespace InventoryColorCustomization
     {
         public static CustomBackground[] loadedBackgrounds;
         private static string[] validFileExtensions = new string[] { ".png" };
+        private static bool includeFileExtension = true;
 
         private static string GetCustomFolderPath()
         {
@@ -32,7 +33,7 @@ namespace InventoryColorCustomization
                 var extension = Path.GetExtension(imagePath);
                 if (extension != null && GetFileExtensionValid(extension))
                 {
-                    backgrounds.Add(new CustomBackground(Path.GetFileNameWithoutExtension(imagePath), BackgroundIconGenerator.LoadTextureFromFile(imagePath)));
+                    backgrounds.Add(new CustomBackground(includeFileExtension ? Path.GetFileName(imagePath) : Path.GetFileNameWithoutExtension(imagePath), BackgroundIconGenerator.LoadTextureFromFile(imagePath)));
                 }
             }
             loadedBackgrounds = backgrounds.ToArray();

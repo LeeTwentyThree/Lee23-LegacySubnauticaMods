@@ -18,6 +18,8 @@ namespace InventoryColorCustomization
 
             new BackgroundData(new BackgroundType(BackgroundTypeManager.Category_Creatures), "Normal"),
             new BackgroundData(new BackgroundType(BackgroundTypeManager.Category_Precursor), "Normal"),
+            new BackgroundData(new BackgroundType(BackgroundTypeManager.Category_Tools), "Normal"),
+            new BackgroundData(new BackgroundType(BackgroundTypeManager.Category_Deployables), "Normal"),
         };
 
         public static BackgroundData GetDefaultBackgroundData()

@@ -98,5 +98,11 @@ namespace InventoryColorCustomization
 
             return newTex;
         }
+
+        public static Color GetRepresentationalColor(Texture2D texture)
+        {
+            var pixel = texture.GetPixel(0, 0);
+            return new Color(pixel.r, pixel.g, pixel.b, 1f);
+        }
     }
 }

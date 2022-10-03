@@ -39,7 +39,7 @@ namespace InventoryColorCustomization
                 switch (backgroundType.stringValue)
                 {
                     default:
-                        return "Undefined";
+                        return GetColoredNameString(new BackgroundType(CraftData.BackgroundType.Normal));
                 }
             }
         }
@@ -93,6 +93,11 @@ namespace InventoryColorCustomization
         {
             backgroundSprites = new Dictionary<CraftData.BackgroundType, Atlas.Sprite>();
             defaultSprite = null;
+        }
+
+        public override Color TextColor(BackgroundType backgroundType)
+        {
+            return Color.white;
         }
     }
 }

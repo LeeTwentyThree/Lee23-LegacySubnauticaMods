@@ -4,7 +4,7 @@ namespace InventoryColorCustomization
 {
     internal class CustomColorChoice : ColorChoice
     {
-        public CustomColorChoice(CustomBackground customBackground) : base(customBackground.name, Color.white)
+        public CustomColorChoice(CustomBackground customBackground) : base(customBackground.name + " (Custom)", Color.white)
         {
             this.customBackground = customBackground;
         }
@@ -18,6 +18,11 @@ namespace InventoryColorCustomization
                 cachedSprite = BackgroundIconGenerator.TextureToBGSprite(customBackground.texture);
             }
             return cachedSprite;
+        }
+
+        public override Color TextColor(BackgroundType backgroundType)
+        {
+            return BackgroundIconGenerator.GetRepresentationalColor(GetSprite(backgroundType).texture);
         }
     }
 }

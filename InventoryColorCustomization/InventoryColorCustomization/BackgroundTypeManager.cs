@@ -21,6 +21,10 @@ namespace InventoryColorCustomization
                         return creatureBackgroundType;
                     case Category_Precursor:
                         return precursorBackgroundType;
+                    case Category_Tools:
+                        return toolsBackgroundType;
+                    case Category_Deployables:
+                        return deployablesBackgroundType;
                 }
             }
             return new BackgroundType(CraftData.GetBackgroundType(tech));
@@ -41,18 +45,45 @@ namespace InventoryColorCustomization
             customCategorizations.Add(TechType.PrecursorIonCrystal, Category_Precursor);
             customCategorizations.Add(TechType.PrecursorIonPowerCell, Category_Precursor);
             customCategorizations.Add(TechType.PrecursorIonBattery, Category_Precursor);
+
+            customCategorizations.Add(TechType.Terraformer, Category_Tools);
+            customCategorizations.Add(TechType.Transfuser, Category_Tools);
+            customCategorizations.Add(TechType.AirBladder, Category_Tools);
+            customCategorizations.Add(TechType.Flare, Category_Tools);
+            customCategorizations.Add(TechType.Flashlight, Category_Tools);
+            customCategorizations.Add(TechType.Builder, Category_Tools);
+            customCategorizations.Add(TechType.LaserCutter, Category_Tools);
+            customCategorizations.Add(TechType.LEDLight, Category_Tools);
+            customCategorizations.Add(TechType.DiveReel, Category_Tools);
+            customCategorizations.Add(TechType.PropulsionCannon, Category_Tools);
+            customCategorizations.Add(TechType.Welder, Category_Tools);
+            customCategorizations.Add(TechType.RepulsionCannon, Category_Tools);
+            customCategorizations.Add(TechType.Scanner, Category_Tools);
+            customCategorizations.Add(TechType.StasisRifle, Category_Tools);
+            customCategorizations.Add(TechType.Knife, Category_Tools);
+            customCategorizations.Add(TechType.HeatBlade, Category_Tools);
+
+            customCategorizations.Add(TechType.Beacon, Category_Deployables);
+            customCategorizations.Add(TechType.CyclopsDecoy, Category_Deployables);
+            customCategorizations.Add(TechType.Gravsphere, Category_Deployables);
+            customCategorizations.Add(TechType.Constructor, Category_Deployables);
+            customCategorizations.Add(TechType.Seaglide, Category_Deployables);
+            customCategorizations.Add(TechType.SmallStorage, Category_Deployables);
             initializedDictionary = true;
         }
 
         private static bool initializedDictionary;
 
         private static Dictionary<TechType, string> customCategorizations;
-        private static Dictionary<TechType, CraftData.BackgroundType> vanillaCategorizations;
 
         public const string Category_Creatures = "Creatures";
         public const string Category_Precursor = "Precursor";
+        public const string Category_Tools = "Tools";
+        public const string Category_Deployables = "Deployables";
 
         private static BackgroundType creatureBackgroundType = new BackgroundType(Category_Creatures);
         private static BackgroundType precursorBackgroundType = new BackgroundType(Category_Precursor);
+        private static BackgroundType toolsBackgroundType = new BackgroundType(Category_Tools);
+        private static BackgroundType deployablesBackgroundType = new BackgroundType(Category_Deployables);
     }
 }
