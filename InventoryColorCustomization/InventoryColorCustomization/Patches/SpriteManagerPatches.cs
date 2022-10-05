@@ -13,12 +13,13 @@ namespace InventoryColorCustomization.Patches
         public static bool SetBackgroundSpritePostfix(TechType techType, ref Atlas.Sprite __result)
         {
             var actualBackgroundType = BackgroundTypeManager.GetBackgroundType(techType);
-            var backgroundData = actualBackgroundType.GetData().ID;
+            var backgroundData = actualBackgroundType.GetData();
             if (backgroundData == null)
             {
                 return true;
             }
-            var choiceIndex = Main.modConfig.GetSelectedIndexForBackground(backgroundData);
+            var backgroundDataId = backgroundData.ID;
+            var choiceIndex = Main.modConfig.GetSelectedIndexForBackground(backgroundDataId);
             if (choiceIndex < 0) // if invalid (-1), use original background
             {
                 return true;
