@@ -101,7 +101,12 @@ namespace InventoryColorCustomization
 
         public static Color GetRepresentationalColor(Texture2D texture)
         {
-            var pixel = texture.GetPixel(0, 0);
+            Color pixel = default;
+            if (texture.height == 0)
+            {
+                var verticalPositionToCheck = texture.height - 1;
+                pixel = texture.GetPixel(0, verticalPositionToCheck);
+            }
             return new Color(pixel.r, pixel.g, pixel.b, 1f);
         }
     }
