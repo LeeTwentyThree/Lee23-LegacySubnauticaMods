@@ -100,9 +100,9 @@ namespace InventoryColorCustomization
             
             foreach (var data in CraftData.techData)
             {
-                if (data.Value == null) continue;
-                var foodDrinkTechType = data.Value._techType;
+                var foodDrinkTechType = data.Key;
                 if (foodDrinkTechType == TechType.None) continue;
+                if (data.Value == null) continue;
                 var techTypeName = foodDrinkTechType.ToString();
                 if (techTypeName.StartsWith("cooked", StringComparison.OrdinalIgnoreCase) || techTypeName.StartsWith("cured", StringComparison.OrdinalIgnoreCase))
                 {
