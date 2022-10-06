@@ -44,6 +44,7 @@ namespace InventoryColorCustomization
             AddBackgroundColorOption(new BackgroundType(BackgroundTypeManager.Category_Precursor), "Precursor Items Color");
             AddBackgroundColorOption(new BackgroundType(BackgroundTypeManager.Category_Tools), "Tools Color");
             AddBackgroundColorOption(new BackgroundType(BackgroundTypeManager.Category_Deployables), "Deployables Colors");
+            AddBackgroundColorOption(new BackgroundType(BackgroundTypeManager.Category_FoodDrinks), "Food & Drink Colors");
             AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.PlantWaterSeed), "Water Seeds Color");
             AddBackgroundColorOption(new BackgroundType(CraftData.BackgroundType.PlantAirSeed), "Air Seeds Color");
             AddToggleOption("SquareIcons", "Use Square Icons", savedOptions.SquareIcons);

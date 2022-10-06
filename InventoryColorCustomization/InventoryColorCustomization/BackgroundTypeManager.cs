@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace InventoryColorCustomization
 {
@@ -25,6 +26,8 @@ namespace InventoryColorCustomization
                         return toolsBackgroundType;
                     case Category_Deployables:
                         return deployablesBackgroundType;
+                    case Category_FoodDrinks:
+                        return foodDrinksBackgroundType;
                 }
             }
             return new BackgroundType(CraftData.GetBackgroundType(tech));
@@ -37,6 +40,8 @@ namespace InventoryColorCustomization
             {
                 customCategorizations.Add(behaviour.Key, Category_Creatures);
             }
+
+            // precursor
             customCategorizations.Add(TechType.PrecursorKey_Purple, Category_Precursor);
             customCategorizations.Add(TechType.PrecursorKey_Orange, Category_Precursor);
             customCategorizations.Add(TechType.PrecursorKey_Blue, Category_Precursor);
@@ -46,6 +51,7 @@ namespace InventoryColorCustomization
             customCategorizations.Add(TechType.PrecursorIonPowerCell, Category_Precursor);
             customCategorizations.Add(TechType.PrecursorIonBattery, Category_Precursor);
 
+            // tools
             customCategorizations.Add(TechType.Terraformer, Category_Tools);
             customCategorizations.Add(TechType.Transfuser, Category_Tools);
             customCategorizations.Add(TechType.AirBladder, Category_Tools);
@@ -63,12 +69,47 @@ namespace InventoryColorCustomization
             customCategorizations.Add(TechType.Knife, Category_Tools);
             customCategorizations.Add(TechType.HeatBlade, Category_Tools);
 
+            // deployables
             customCategorizations.Add(TechType.Beacon, Category_Deployables);
             customCategorizations.Add(TechType.CyclopsDecoy, Category_Deployables);
             customCategorizations.Add(TechType.Gravsphere, Category_Deployables);
             customCategorizations.Add(TechType.Constructor, Category_Deployables);
             customCategorizations.Add(TechType.Seaglide, Category_Deployables);
             customCategorizations.Add(TechType.SmallStorage, Category_Deployables);
+
+            // water
+            customCategorizations.Add(TechType.FilteredWater, Category_FoodDrinks);
+            customCategorizations.Add(TechType.DisinfectedWater, Category_FoodDrinks);
+            customCategorizations.Add(TechType.StillsuitWater, Category_FoodDrinks);
+            customCategorizations.Add(TechType.Coffee, Category_FoodDrinks);
+            customCategorizations.Add(TechType.BigFilteredWater, Category_FoodDrinks);
+
+            // misc foods & edible plants
+            customCategorizations.Add(TechType.KooshChunk, Category_FoodDrinks);
+            customCategorizations.Add(TechType.BulboTreePiece, Category_FoodDrinks);
+            customCategorizations.Add(TechType.PurpleVegetable, Category_FoodDrinks);
+            customCategorizations.Add(TechType.HangingFruit, Category_FoodDrinks);
+            customCategorizations.Add(TechType.Melon, Category_FoodDrinks);
+            customCategorizations.Add(TechType.NutrientBlock, Category_FoodDrinks);
+            customCategorizations.Add(TechType.Snack1, Category_FoodDrinks);
+            customCategorizations.Add(TechType.Snack2, Category_FoodDrinks);
+            customCategorizations.Add(TechType.Snack3, Category_FoodDrinks);
+
+            // automatic categorizations
+            
+            foreach (var data in CraftData.techData)
+            {
+                if (data.Value == null) continue;
+                var foodDrinkTechType = data.Value._techType;
+                if (foodDrinkTechType == TechType.None) continue;
+                var techTypeName = foodDrinkTechType.ToString();
+                if (techTypeName.StartsWith("cooked", StringComparison.OrdinalIgnoreCase) || techTypeName.StartsWith("cured", StringComparison.OrdinalIgnoreCase))
+                {
+                    customCategorizations.Add(foodDrinkTechType, Category_FoodDrinks);
+                }
+            }
+
+            // mark as complete to reduce redundant calls
             initializedDictionary = true;
         }
 
@@ -80,10 +121,12 @@ namespace InventoryColorCustomization
         public const string Category_Precursor = "Precursor";
         public const string Category_Tools = "Tools";
         public const string Category_Deployables = "Deployables";
+        public const string Category_FoodDrinks = "FoodDrinks";
 
         private static BackgroundType creatureBackgroundType = new BackgroundType(Category_Creatures);
         private static BackgroundType precursorBackgroundType = new BackgroundType(Category_Precursor);
         private static BackgroundType toolsBackgroundType = new BackgroundType(Category_Tools);
         private static BackgroundType deployablesBackgroundType = new BackgroundType(Category_Deployables);
+        private static BackgroundType foodDrinksBackgroundType = new BackgroundType(Category_FoodDrinks);
     }
 }

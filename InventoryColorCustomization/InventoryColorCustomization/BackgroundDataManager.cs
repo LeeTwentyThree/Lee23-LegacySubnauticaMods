@@ -20,6 +20,7 @@ namespace InventoryColorCustomization
             new BackgroundData(new BackgroundType(BackgroundTypeManager.Category_Precursor), "Normal"),
             new BackgroundData(new BackgroundType(BackgroundTypeManager.Category_Tools), "Normal"),
             new BackgroundData(new BackgroundType(BackgroundTypeManager.Category_Deployables), "Normal"),
+            new BackgroundData(new BackgroundType(BackgroundTypeManager.Category_FoodDrinks), "Normal"),
         };
 
         public static BackgroundData GetDefaultBackgroundData()
