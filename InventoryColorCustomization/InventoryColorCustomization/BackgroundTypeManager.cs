@@ -68,6 +68,7 @@ namespace InventoryColorCustomization
             customCategorizations.Add(TechType.StasisRifle, Category_Tools);
             customCategorizations.Add(TechType.Knife, Category_Tools);
             customCategorizations.Add(TechType.HeatBlade, Category_Tools);
+            customCategorizations.Add(TechType.FireExtinguisher, Category_Tools);
 
             // deployables
             customCategorizations.Add(TechType.Beacon, Category_Deployables);
