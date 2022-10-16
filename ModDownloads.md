@@ -78,11 +78,25 @@ Requirements:
 
 ---
 
-## Commissioned mods
+## Video Commission mods
 
 These mods were not designed for regular playthroughs, but I am uploading them here for people who are curious to try them.
 
 ---
+
+### [MirrorWorld](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/MirrorWorld.zip) - Added Oct 16 2022, last updated August 30 2022
+<div>
+  <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/MirrorWorld.png" width=200px>
+</div>
+
+This mod flips the entire world upside down. There are options to flip it across other axes as well. Good luck beating the game like this, I never tried.
+
+Go watch [The Last Bacon's video](https://youtu.be/WZmFKtRRZwc) on it!
+
+Requirements:
+- [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
+
+--- 
 
 ### [MonkeySayMonkeyGet](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/MonkeySayMonkeyGet.zip) - Added Oct 16 2022, last updated May 22 2022
 <div>
@@ -104,6 +118,8 @@ Requirements:
 </div>
 
 A random event happens every 30 seconds. Maybe a Ghost Leviathan will spawn outside your base. Maybe water (bottles) will rain from the sky. Or Shrek will look down upon you from space. This mod is very dangerous, so install at your own risk.
+
+Go watch [Socksfor1's video](https://youtu.be/j4lmTD8n4ls) on it!
 
 Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
