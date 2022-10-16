@@ -16,7 +16,16 @@ Requirements:
 ### Troubleshooting
 
 - Make sure you pasted the all 4 DLLs in the Plugins folder of the mod download into the '...Subnautica\Subnautica_Data\Plugins' folder in the game.
-- If you are using Windows, hit the Windows key and search "Manage sound devices". Make sure to disable all Input devices besides the microphone you are using.
+- If you are using Windows, hit the Windows key and search "Manage sound devices". Make sure to disable all Input devices besides the microphone you are using.\
+
+### Stupid things you can do
+
+- You can summon just about anything in the game, and give yourself just about any amount of any item you want.
+- You can summon Star Platinum by saying his name. You can tell him to bring you a certain thng, or all of that thing. For example "bring me every acid mushroom". He'll try his best to do that. Of course you can also stop time by saying "The World".
+- You can refill your own oxygen, hunger, health, etc... or starve yourself.
+- You can explode the aurora.
+- You can teleport to just about any place you can name.
+- You can have the game play weird sounds.
 
 ### Credits
 
