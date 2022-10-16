@@ -80,6 +80,10 @@ Requirements:
 
 ## Commissioned mods
 
+These mods were not designed for regular playthroughs, but I am uploading them here for people who are curious to try them.
+
+---
+
 ### [RandomEvents](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/RandomEvents.zip) - Added Oct 16 2022, last updated Nov 5 2021
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/RandomEvents.png" width=200px>
@@ -89,5 +93,3 @@ A random event happens every 30 seconds. Maybe a Ghost Leviathan will spawn outs
 
 Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
-
-These mods were not designed for regular playthroughs, but I am uploading them here for people who are curious to try them.
