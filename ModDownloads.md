@@ -1,7 +1,9 @@
 # Lee23's Subnautica Mods - Download Page
 Mods are sorted alphabetically. Download ZIPs are linked in the title. All files should be extracted into the QMods folder.
 
-### [Bloop & Blaza](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Socksfor1Monsters.zip) - Uploaded Oct 15 2022, last updated June 13 2021
+---
+
+### [Bloop & Blaza](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Socksfor1Monsters.zip) - Added Oct 15 2022, last updated June 13 2021
 <div>
   <img src="https://raw.githubusercontent.com/LeeTwentyThree/Lee23-SubnauticaMods/main/Downloads/Thumbnails/Socksfor1Monsters.png" width=200px>
 </div>
@@ -18,19 +20,34 @@ Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
 - [ECCLibrary](https://www.nexusmods.com/subnautica/mods/619)
 
-### [CustomInventoryColors](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/CustomInventoryColors.zip) - Uploaded Oct 15 2022, last updated Oct 15 2022
+---
+
+### [CustomInventoryColors](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/CustomInventoryColors.zip) - Added Oct 15 2022, last updated Oct 15 2022
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/CustomInventoryColors.png" width=200px>
 </div>
 
 This mod adds several settings into the mod options tab related to changing the backgrounds of inventory icons.
 
-It might seem like a small change, but it helps immensely with inventory management and organization. It looks great, too, and it's fully customizable.
+It might seem like a small change, but I can assure it helps immensely with inventory management and organization. It looks great, too, and it's fully customizable.
 
 If the built-in options are not enough, you have the choice to create your own custom icons by placing images into the Custom folder found within the mod.
 
 Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
 
+---
+
+### [De-Extinction](https://www.nexusmods.com/subnautica/mods/640) - Upload information on Nexus Mods
+<div>
+  <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/Thumbnails/DeExtinction.jpg" height=200px>
+</div>
+
+This wonderful mod was designed by Dinofuzz, and I took the responsiblity to bring these amazing creature models to life. De-Extinction adds 15 concept art creatures into the world alongside some miscellaneous content. Among these features includes several edible fish, massive herbivores, collectible eggs, plankton, and even the Gulper Leviathan!
+
+Requirements:
+- [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
+- [ECCLibrary](https://www.nexusmods.com/subnautica/mods/619)
+
 ## Commissioned mods
-These mods are not designed for regular playthroughs, but I am uploading them here for people who are curious to try them.
+These mods were not designed for regular playthroughs, but I am uploading them here for people who are curious to try them.
