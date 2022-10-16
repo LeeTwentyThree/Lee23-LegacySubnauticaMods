@@ -18,17 +18,12 @@ Requirements:
 ---
 
 ### [Bloop & Blaza](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Socksfor1Monsters.zip) - Added Oct 15 2022, last updated June 13 2021
+[Download page with more information](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/Socksfor1Monsters.md)
 <div>
   <img src="https://raw.githubusercontent.com/LeeTwentyThree/Lee23-SubnauticaMods/main/Downloads/Thumbnails/Socksfor1Monsters.png" width=200px>
 </div>
 
-This mod adds **two** new leviathans into the game.
-
-A mysterious cargo ship crashed onto Planet 4546B five years ago. On board were various species of fauna, bioengineered by a shady company that is not formally recognized by Alterra. Most were destroyed in the explosion, but a few specimens managed to escape the wreckage. These terrors are only known under their codenames BLOOP and BLAZA.
-
-The Bloop resides in shallow waters. Some places that you may have considered safe in the past are not so safe any more! Avoid this hungry beast at all costs.
-
-The Blaza Leviathan inhabits various cave systems on the planet. This creature is over a hundred meters in length and has an incredibly powerful bite. It's swift and slender, so beware of ambush!
+This mod adds two new leviathans into the game! More information on the download page.
 
 Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
