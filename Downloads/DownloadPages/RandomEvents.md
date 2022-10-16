@@ -8,6 +8,8 @@
 
 This mod adds SEVERAL events into the game, which occur randomly at 30 second intervals (more or less depending on the version). There are so many different events that can happen that you'll never see them all.
 
+Maybe a Ghost Leviathan will spawn outside your base. Maybe water (bottles) will rain from the sky. Or Shrek will look down upon you from space. This mod is very dangerous, so install at your own risk.
+
 Maybe set up a hardcore world, time yourself to speedrun, and see how far you can get! I hope you enjoy!
 
 Requirements:
