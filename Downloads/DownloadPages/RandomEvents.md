@@ -29,3 +29,5 @@ Requirements:
 ### Credits
 
 Mod commissioned by Socksfor1, models and art sourced from various sources on the internet, programming done by Lee23. Credit to Snom and Dreamanchik for testing & feedback.
+
+### [Back to mods list](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md)
