@@ -16,7 +16,7 @@ Requirements:
 ### Troubleshooting
 
 - Make sure you pasted the all 4 DLLs in the Plugins folder of the mod download into the '...Subnautica\Subnautica_Data\Plugins' folder in the game.
-- If you are using Windows, hit the Windows key and search "Manage sound devices". Make sure to disable all Input devices besides the microphone you are using.\
+- If you are using Windows, hit the Windows key and search "Manage sound devices". Make sure to disable all Input devices besides the microphone you are using.
 
 ### Stupid things you can do
 
