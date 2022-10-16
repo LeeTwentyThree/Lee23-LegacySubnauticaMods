@@ -84,6 +84,20 @@ These mods were not designed for regular playthroughs, but I am uploading them h
 
 ---
 
+### [MonkeySayMonkeyGet](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/MonkeySayMonkeyGet.zip) - Added Oct 16 2022, last updated May 22 2022
+<div>
+  <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/MonkeySayMonkeyGet.png" width=200px>
+</div>
+
+Whatever you say in real life happens in Subnautica. Sounds too crazy to be true? Well, sort of, because it's extremely buggy! But that's what makes it fun! This crazy mod was designed for Twitch streams, but anyone can use it. As long as you have a mic!
+
+When installing the mod, please open the installation-README.txt file included in the download. This mod will NOT work without doing that.
+
+Requirements:
+- [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
+
+--- 
+
 ### [RandomEvents](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/RandomEvents.zip) - Added Oct 16 2022, last updated Nov 5 2021
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/RandomEvents.png" width=200px>
