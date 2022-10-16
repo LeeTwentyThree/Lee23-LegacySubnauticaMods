@@ -6,7 +6,7 @@
 
 [Alternate version - Events happen every minute](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/RandomEvents%201m.zip)
 
-This mod adds SEVERAL events into the game, which occur randomly at 30 second intervals. There are so many different events that can happen that you'll never see them all.
+This mod adds SEVERAL events into the game, which occur randomly at 30 second intervals (more or less depending on the version). There are so many different events that can happen that you'll never see them all.
 
 Maybe set up a hardcore world, time yourself to speedrun, and see how far you can get! I hope you enjoy!
 
