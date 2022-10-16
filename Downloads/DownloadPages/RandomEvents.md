@@ -8,7 +8,7 @@
 
 This mod adds SEVERAL events into the game, which occur randomly at 30 second intervals. There are so many different events that can happen that you'll never see them all.
 
-Maybe setup a hardcore world, time yourself to speedrun, and see how far you can get! I hope you enjoy!
+Maybe set up a hardcore world, time yourself to speedrun, and see how far you can get! I hope you enjoy!
 
 Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
