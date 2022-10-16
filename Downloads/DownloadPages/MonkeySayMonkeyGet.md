@@ -13,8 +13,18 @@ Requirements:
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/MonkeySayMonkeyGet.png" width=200px>
 </div>
 
+### Troubleshooting
+
+- Make sure you pasted the all 4 DLLs in the Plugins folder of the mod download into the '...Subnautica\Subnautica_Data\Plugins' folder in the game.
+- If you are using Windows, hit the Windows key and search "Manage sound devices". Make sure to disable all Input devices besides the microphone you are using.
+
 ### Credits
 
 Mod commissioned by Socksfor1, programming done by Lee23. The mod uses [this](https://assetstore.unity.com/packages/tools/audio/speech-recognition-system-187171) speech recognition engine.
 
 ### [Back to mods list](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md)
+
+# Changelog
+
+### October 16th, 2022 (upload still pending)
+Fixed Star Platinum's The World ability freezing the player.
