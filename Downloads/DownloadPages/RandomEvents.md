@@ -20,6 +20,9 @@ Requirements:
 <div>
   <a href="https://youtu.be/UydUmDl1fGA"><img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Images/Shrek.png" width=200px></a>
 </div>
+<div>
+  <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Images/ShrekFace.png" width=200px>
+</div>
 
 ### Credits
 
