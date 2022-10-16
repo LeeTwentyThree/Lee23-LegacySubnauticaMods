@@ -139,6 +139,7 @@ Requirements:
 --- 
 
 ### [RandomEvents](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/RandomEvents.zip) - Added Oct 16 2022, last updated Nov 5 2021
+[Download page with more information and alternate downloads](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/RandomEvents.md)
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/RandomEvents.png" width=200px>
 </div>
