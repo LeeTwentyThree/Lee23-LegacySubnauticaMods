@@ -15,6 +15,8 @@ The Sea Voyager acts as a great alternative to a starting base. It has the same 
 Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
 
+---
+
 ### [Bloop & Blaza](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Socksfor1Monsters.zip) - Added Oct 15 2022, last updated June 13 2021
 <div>
   <img src="https://raw.githubusercontent.com/LeeTwentyThree/Lee23-SubnauticaMods/main/Downloads/Thumbnails/Socksfor1Monsters.png" width=200px>
@@ -62,6 +64,8 @@ Requirements:
 - [ECCLibrary](https://www.nexusmods.com/subnautica/mods/619)
 
 [Source Code](https://github.com/LeeTwentyThree/DeExtinction)
+
+---
 
 ### [ECCLibray](https://www.nexusmods.com/subnautica/mods/619) - Upload information on Nexus Mods
 <div>
