@@ -78,7 +78,20 @@ Requirements:
 
 ---
 
+### Wind Turbines - Uploaded on Nexus Mods
+[Download page with more information](https://www.nexusmods.com/subnautica/mods/355)
+<div>
+  <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/WindTurbines.png" height=200px>
+</div>
+
+My first mod! A basic mod that adds a basic power source. Works great with the Sea Voyager.
+
+Requirements:
+- [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
+
 ## Video Commission mods
+
+---
 
 These mods were not designed for regular playthroughs, but I am uploading them here for people who are curious to try them.
 
