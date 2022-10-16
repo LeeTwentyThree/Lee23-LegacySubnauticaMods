@@ -15,3 +15,9 @@ Requirements:
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Images/Blaza.png" width=400px>
 </div>
+
+### Credits
+
+Mod commissioned by Socksfor1, models and art created by Dinofuzz, programming done by Lee23.
+
+Disclaimer: I do not remember who made the sounds or original concept arts! If you know anyone who contributed to this mod, please contact me so I can credit them!
