@@ -1,6 +1,6 @@
 # Bloop & Blaza Mod
 
-This mod adds **two** new leviathans into the game.
+### [Download Here](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Socksfor1Monsters.zip)
 
 A mysterious cargo ship crashed onto Planet 4546B five years ago. On board were various species of fauna, bioengineered by a shady company that is not formally recognized by Alterra. Most were destroyed in the explosion, but a few specimens managed to escape the wreckage. These terrors are only known under their codenames BLOOP and BLAZA.
 
