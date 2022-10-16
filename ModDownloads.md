@@ -49,5 +49,19 @@ Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
 - [ECCLibrary](https://www.nexusmods.com/subnautica/mods/619)
 
+[Source Code](https://github.com/LeeTwentyThree/DeExtinction)
+
+### [ECCLibray](https://www.nexusmods.com/subnautica/mods/619) - Upload information on Nexus Mods
+<div>
+  <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/ECCLibrary.png" width=200px>
+</div>
+
+This is a modding library that helps modders create their own creatures with a flexible system and minimal redundant code. This mod must be installed like any other QMod for creature mods to function properly.
+
+Requirements:
+- [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
+
+[Source Code](https://github.com/LeeTwentyThree/ECCLibrary)
+
 ## Commissioned mods
 These mods were not designed for regular playthroughs, but I am uploading them here for people who are curious to try them.
