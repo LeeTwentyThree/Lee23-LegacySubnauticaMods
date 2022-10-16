@@ -2,10 +2,10 @@
 
 ### [Download Here](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/MonkeySayMonkeyGet.zip)
 
-This mod uses a speech recognition engine to listen to what you are saying and recreate it in-game! If you say "I need 20 titanium" you'll find 20 titanium in your inventory. If you say "I want to kill that Reaper Leviathan" it will die right in front of your eyes. This mod allows for a lot of things, even letting you summon Star Platinum, and the only limit is your imagination and the incredible amount of bugs when it comes to understanding what you're saying.
+This mod uses a speech recognition engine to listen to what you are saying and recreate it in-game! If you say "I need 20 titanium" you'll find 20 titanium in your inventory. If you say "I want to kill that Reaper Leviathan" it will die right in front of your eyes. This mod allows for a lot of things, even JoJo references, and the only limit is your imagination and the incredible amount of bugs when it comes to understanding what you're saying.
 
 If you have an audience to entertain, or just want to goof off in a call with friends, this mod is definitely worth a try.
-
+Cancel changes
 Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
 
