@@ -4,7 +4,7 @@ Mods are sorted alphabetically. Download ZIPs are linked in the title. All files
 ---
 
 ### Alterra Sea Voyager - Uploaded on Nexus Mods
-[Download page with more information](https://www.nexusmods.com/subnautica/mods/604)
+[Download page with more information](https://www.nexusmods.com/subnautica/mods/604) - [Source Code](https://github.com/LeeTwentyThree/SeaVoyagerMod)
 <div>
   <img src="https://raw.githubusercontent.com/LeeTwentyThree/Lee23-SubnauticaMods/main/Downloads/Thumbnails/SeaVoyager-V2.png" width=200px>
 </div>
@@ -33,7 +33,7 @@ Requirements:
 ---
 
 ### [CustomInventoryColors](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/CustomInventoryColors.zip) - Added Oct 15 2022, last updated Oct 15 2022
-[Download page with more information](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/CustomInventoryColors.md)
+[Download page with more information](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/CustomInventoryColors.md) - [Source Code](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/tree/main/InventoryColorCustomization)
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/CustomInventoryColors.png" width=200px>
 </div>
@@ -50,7 +50,7 @@ Requirements:
 ---
 
 ### De-Extinction - Uploaded on Nexus Mods
-[Download page with more information](https://www.nexusmods.com/subnautica/mods/640)
+[Download page with more information](https://www.nexusmods.com/subnautica/mods/640) - [Source Code](https://github.com/LeeTwentyThree/DeExtinction)
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/Thumbnails/DeExtinction.jpg" height=200px>
 </div>
@@ -61,12 +61,10 @@ Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
 - [ECCLibrary](https://www.nexusmods.com/subnautica/mods/619)
 
-[Source Code](https://github.com/LeeTwentyThree/DeExtinction)
-
 ---
 
 ### ECCLibray - Uploaded on Nexus Mods
-[Download page with more information](https://www.nexusmods.com/subnautica/mods/619)
+[Download page with more information](https://www.nexusmods.com/subnautica/mods/619) - [Source Code](https://github.com/LeeTwentyThree/ECCLibrary)
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/ECCLibrary.png" width=200px>
 </div>
@@ -77,8 +75,6 @@ This is a modding library that helps modders create their own creatures with a f
 
 Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
-
-[Source Code](https://github.com/LeeTwentyThree/ECCLibrary)
 
 ## Commissioned mods
 These mods were not designed for regular playthroughs, but I am uploading them here for people who are curious to try them.
