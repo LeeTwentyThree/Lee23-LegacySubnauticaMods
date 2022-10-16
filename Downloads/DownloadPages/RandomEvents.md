@@ -17,6 +17,9 @@ Requirements:
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/RandomEvents.png" width=200px>
 </div>
+<div>
+  <a href="https://youtu.be/UydUmDl1fGA"><img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Images/Shrek.png" width=200px></a>
+</div>
 
 ### Credits
 
