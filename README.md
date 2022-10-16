@@ -1,2 +1,3 @@
-# Lee23-SubnauticaMods
-Various small mods of mine that don't need a repository of their own.
+# Lee23's Subnautica mods
+
+### [Here is a list of my mods for the first Subnautica game](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/ModDownloads.md)
