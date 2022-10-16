@@ -40,7 +40,7 @@ Requirements:
 
 ### [De-Extinction](https://www.nexusmods.com/subnautica/mods/640) - Upload information on Nexus Mods
 <div>
-  <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/Thumbnails/DeExtinction.jpg" width=800px>
+  <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/Thumbnails/DeExtinction.jpg" height=200px>
 </div>
 
 This wonderful mod was designed by Dinofuzz, and I took the responsiblity to bring these amazing creature models to life. De-Extinction adds 15 concept art creatures into the world alongside some miscellaneous content. Among these features includes several edible fish, massive herbivores, collectible eggs, plankton, and even the Gulper Leviathan!
