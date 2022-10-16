@@ -49,6 +49,19 @@ Requirements:
 
 ---
 
+### CustomWaterLevel - Uploaded on Nexus Mods
+[Download page with more information](https://www.nexusmods.com/subnautica/mods/599)
+<div>
+  <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/CustomWaterLevel.png" width=200px>
+</div>
+
+As the name implies, this mod lets you change the water level on 4546B. If you want a fun experience, I would instead recommend playing the [Below Zero version](https://www.nexusmods.com/subnauticabelowzero/mods/255) of this mod, since it is much more challenging and has less issues!
+
+Requirements:
+- [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
+
+---
+
 ### De-Extinction - Uploaded on Nexus Mods
 [Download page with more information](https://www.nexusmods.com/subnautica/mods/640) - [Source Code](https://github.com/LeeTwentyThree/DeExtinction)
 <div>
@@ -89,9 +102,9 @@ My first mod! A basic mod that adds a basic power source. Works great with the S
 Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
 
-## Video Commission mods
-
 ---
+
+## Mods commissioned for streamers
 
 These mods were not designed for regular playthroughs, but I am uploading them here for people who are curious to try them.
 
