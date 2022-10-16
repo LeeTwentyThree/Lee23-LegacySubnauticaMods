@@ -18,3 +18,8 @@ Requirements:
 Mod commissioned by Socksfor1, programming done by Lee23. The mod uses [this](https://assetstore.unity.com/packages/tools/audio/speech-recognition-system-187171) speech recognition engine.
 
 ### [Back to mods list](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md)
+
+# Changelog
+
+### October 16th, 2022 (upload still pending)
+Fixed Star Platinum's The World ability freezing the player.
