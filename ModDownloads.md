@@ -3,6 +3,20 @@ Mods are sorted alphabetically. Download ZIPs are linked in the title. All files
 
 ---
 
+### [Alterra Sea Voyager](https://www.nexusmods.com/subnautica/mods/604) - Upload information on Nexus Mods
+<div>
+  <img src="https://raw.githubusercontent.com/LeeTwentyThree/Lee23-SubnauticaMods/main/Downloads/Thumbnails/SeaVoyager-V2.png" width=200px>
+</div>
+
+Adds a new vehicle in the form of a boat. Being slightly larger than the cyclops, it allows you to quickly travel across planet 4546B and gives you plenty of space for building.
+
+The Sea Voyager acts as a great alternative to a starting base. It has the same functionalities as a base would but it can move freely throughout the surface of 4546B. With the [BuildingTweaks](https://github.com/MrPurple6411/MrPurple6411-Subnautica-Mods/releases) mod by MrPurple you can even build on the deck!
+
+Requirements:
+- [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
+
+---
+
 ### [Bloop & Blaza](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Socksfor1Monsters.zip) - Added Oct 15 2022, last updated June 13 2021
 <div>
   <img src="https://raw.githubusercontent.com/LeeTwentyThree/Lee23-SubnauticaMods/main/Downloads/Thumbnails/Socksfor1Monsters.png" width=200px>
@@ -50,6 +64,8 @@ Requirements:
 - [ECCLibrary](https://www.nexusmods.com/subnautica/mods/619)
 
 [Source Code](https://github.com/LeeTwentyThree/DeExtinction)
+
+---
 
 ### [ECCLibray](https://www.nexusmods.com/subnautica/mods/619) - Upload information on Nexus Mods
 <div>
