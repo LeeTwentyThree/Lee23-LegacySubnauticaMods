@@ -111,6 +111,7 @@ These mods were not designed for regular playthroughs, but I am uploading them h
 ---
 
 ### [MirrorWorld](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/MirrorWorld.zip) - Added Oct 16 2022, last updated August 30 2022
+[Download page with more information](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/MirrorWorld.md)
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/MirrorWorld.png" width=200px>
 </div>
