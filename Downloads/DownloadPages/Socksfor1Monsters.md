@@ -11,3 +11,7 @@ The Blaza Leviathan inhabits various cave systems on the planet. This creature i
 Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
 - [ECCLibrary](https://www.nexusmods.com/subnautica/mods/619)
+
+<div>
+  <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Images/Blaza.png" width=400px>
+</div>
