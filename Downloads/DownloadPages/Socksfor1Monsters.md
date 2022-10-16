@@ -21,3 +21,5 @@ Requirements:
 Mod commissioned by Socksfor1, models and art created by Dinofuzz, programming done by Lee23.
 
 Disclaimer: I do not remember who made the sounds or original concept arts! If you know anyone who contributed to this mod, please contact me so I can credit them!
+
+### [Back to mods list](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md)
