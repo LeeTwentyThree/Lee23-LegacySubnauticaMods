@@ -33,7 +33,7 @@ Requirements:
 ---
 
 ### [CustomInventoryColors](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/CustomInventoryColors.zip) - Added Oct 15 2022, last updated Oct 15 2022
-[Download page with more information](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/CustomInventoryColors.mdd)
+[Download page with more information](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/CustomInventoryColors.md)
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/CustomInventoryColors.png" width=200px>
 </div>
