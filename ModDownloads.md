@@ -8,7 +8,7 @@ Mods are sorted alphabetically. Download ZIPs are linked in the title. All files
 
 This mod adds **two** new leviathans into the game.
 
-A mysterious cargo ship crashed onto Planet 4546B five years ago. On board were various species of fauna, bioengineered by a company that is not officialy recognized by Alterra. Most were destroyed in the explosion, but a few specimens managed to escape the wreckage. These terrors are only known under their codenames BLOOP and BLAZA.
+A mysterious cargo ship crashed onto Planet 4546B five years ago. On board were various species of fauna, bioengineered by a shady company that is not formally recognized by Alterra. Most were destroyed in the explosion, but a few specimens managed to escape the wreckage. These terrors are only known under their codenames BLOOP and BLAZA.
 
 The Bloop resides in shallow waters. Some places that you may have considered safe in the past are not so safe any more! Avoid this hungry beast at all costs.
 
