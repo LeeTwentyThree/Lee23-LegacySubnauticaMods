@@ -23,7 +23,11 @@ Requirements:
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/CustomInventoryColors.png" width=200px>
 </div>
 
-This mod adds several settings into the mod options tab related to changing the backgrounds of inventory icons. I love this mod because it lets you spend so much less time scanning your inventory for one specific thing.
+This mod adds several settings into the mod options tab related to changing the backgrounds of inventory icons.
+
+It might seem like a small change, but it helps immensely with inventory management and organization. It looks great, too, and it's fully customizable.
+
+If the built-in options are not enough, you have the choice to create your own custom icons by placing images into the Custom folder found within the mod.
 
 Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
