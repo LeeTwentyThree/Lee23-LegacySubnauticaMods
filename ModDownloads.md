@@ -3,7 +3,8 @@ Mods are sorted alphabetically. Download ZIPs are linked in the title. All files
 
 ---
 
-### [Alterra Sea Voyager](https://www.nexusmods.com/subnautica/mods/604) - Upload information on Nexus Mods
+### Alterra Sea Voyager - Uploaded on Nexus Mods
+[Download page with more information](https://www.nexusmods.com/subnautica/mods/604)
 <div>
   <img src="https://raw.githubusercontent.com/LeeTwentyThree/Lee23-SubnauticaMods/main/Downloads/Thumbnails/SeaVoyager-V2.png" width=200px>
 </div>
@@ -32,6 +33,7 @@ Requirements:
 ---
 
 ### [CustomInventoryColors](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/CustomInventoryColors.zip) - Added Oct 15 2022, last updated Oct 15 2022
+[Download page with more information](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/edit/main/Downloads/DownloadPages/CustomInventoryColors.md)
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/CustomInventoryColors.png" width=200px>
 </div>
@@ -47,7 +49,8 @@ Requirements:
 
 ---
 
-### [De-Extinction](https://www.nexusmods.com/subnautica/mods/640) - Upload information on Nexus Mods
+### De-Extinction - Uploaded on Nexus Mods
+[Download page with more information](https://www.nexusmods.com/subnautica/mods/640)
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/Thumbnails/DeExtinction.jpg" height=200px>
 </div>
@@ -62,10 +65,13 @@ Requirements:
 
 ---
 
-### [ECCLibray](https://www.nexusmods.com/subnautica/mods/619) - Upload information on Nexus Mods
+### ECCLibray - Uploaded on Nexus Mods
+[Download page with more information](https://www.nexusmods.com/subnautica/mods/619)
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/ECCLibrary.png" width=200px>
 </div>
+
+A necessity for all creature mods.
 
 This is a modding library that helps modders create their own creatures with a flexible system and minimal redundant code. This mod must be installed like any other QMod for creature mods to function properly.
 
