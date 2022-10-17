@@ -1,5 +1,7 @@
 # MonkeySayMonkeyGet
 
+ - Added Oct 16 2022, last updated Oct 16 2022.
+
 ### [Download Here](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/MonkeySayMonkeyGet.zip)
 
 This mod uses a speech recognition engine to listen to what you are saying and recreate it in-game! If you say "I need 20 titanium" you'll find 20 titanium in your inventory. If you say "I want to kill that Reaper Leviathan" it will die right in front of your eyes. This mod allows for a lot of things, even JoJo references, and the only limit is your imagination and the incredible amount of bugs when it comes to understanding what you're saying.
