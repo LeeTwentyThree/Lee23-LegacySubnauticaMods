@@ -1,6 +1,18 @@
 # Lee23's Subnautica Mods - Download Page
 Mods are sorted alphabetically. Download ZIPs are linked in the title. All files should be extracted into the QMods folder.
 
+### Table of Contents
+[Alterra Sea Voyager](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#alterra-sea-voyager---uploaded-on-nexus-mods)  
+[Bloop & Blaza](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#bloop--blaza)  
+[CustomInventoryColors](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#custominventorycolors)  
+[CustomWaterLevel](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#customwaterlevel---uploaded-on-nexus-mods)  
+[De-Extinction](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#de-extinction---uploaded-on-nexus-mods)  
+[ECCLibrary](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#ecclibray---uploaded-on-nexus-mods)  
+[MirrorWorld](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#wind-turbines---uploaded-on-nexus-mods)  
+[MonkeySayMonkeyGet](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#mirrorworld)  
+[RandomEvents](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#monkeysaymonkeyget)  
+[Wind Turbines](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#randomevents)  
+
 ---
 
 ### Alterra Sea Voyager - Uploaded on Nexus Mods
