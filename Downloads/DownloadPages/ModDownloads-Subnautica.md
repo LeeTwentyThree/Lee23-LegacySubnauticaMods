@@ -15,6 +15,10 @@ Mods are sorted alphabetically. Download ZIPs are linked in the title. All files
 
 ---
 
+# Normal mods
+
+---
+
 ### Alterra Sea Voyager - Uploaded on Nexus Mods
 [Download page with more information](https://www.nexusmods.com/subnautica/mods/604)
 <div>
