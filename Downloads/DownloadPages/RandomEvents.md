@@ -1,5 +1,7 @@
 # RandomEvents
 
+Added Oct 16 2022, last updated Nov 5 2021.
+
 ### [Download Here](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/RandomEvents.zip)
 
 [Alternate version - Events happen every second](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/RandomEvents%201s.zip)
