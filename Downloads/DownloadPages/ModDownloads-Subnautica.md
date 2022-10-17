@@ -1,18 +1,6 @@
 # Lee23's Subnautica Mods - Download Page
 Mods are sorted alphabetically. Download ZIPs are linked in the title. All files should be extracted into the QMods folder.
 
-### Table of Contents
-[Alterra Sea Voyager](https://www.nexusmods.com/subnautica/mods/604)
-[Bloop & Blaza](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/Socksfor1Monsters.md)
-[CustomInventoryColors](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/CustomInventoryColors.md)
-[CustomWaterLevel](https://www.nexusmods.com/subnautica/mods/599)
-[De-Extinction](https://www.nexusmods.com/subnautica/mods/640)
-[ECCLibrary](https://www.nexusmods.com/subnautica/mods/619)
-[MirrorWorld](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/MirrorWorld.md)
-[MonkeySayMonkeyGet](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/MonkeySayMonkeyGet.md)
-[RandomEvents](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/RandomEvents.md)
-[Wind Turbines](https://www.nexusmods.com/subnautica/mods/355)
-
 ---
 
 ### Alterra Sea Voyager - Uploaded on Nexus Mods
@@ -30,7 +18,8 @@ Requirements:
 
 ---
 
-### [Bloop & Blaza](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Socksfor1Monsters.zip) - Added Oct 15 2022, last updated June 13 2021
+### [Bloop & Blaza](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Socksfor1Monsters.zip)
+
 [Download page with more information](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/Socksfor1Monsters.md)
 <div>
   <img src="https://raw.githubusercontent.com/LeeTwentyThree/Lee23-SubnauticaMods/main/Downloads/Thumbnails/Socksfor1Monsters.png" width=200px>
@@ -44,7 +33,7 @@ Requirements:
 
 ---
 
-### [CustomInventoryColors](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/CustomInventoryColors.zip) - Added Oct 15 2022, last updated Oct 15 2022
+### [CustomInventoryColors](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/CustomInventoryColors.zip)
 [Download page with more information](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/CustomInventoryColors.md) - [Source Code](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/tree/main/InventoryColorCustomization)
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/CustomInventoryColors.png" width=200px>
@@ -122,7 +111,7 @@ These mods were not designed for regular playthroughs, but I am uploading them h
 
 ---
 
-### [MirrorWorld](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/MirrorWorld.zip) - Added Oct 16 2022, last updated August 30 2022
+### [MirrorWorld](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/MirrorWorld.zip)
 [Download page with more information](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/MirrorWorld.md)
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/MirrorWorld.png" width=200px>
@@ -137,7 +126,7 @@ Requirements:
 
 --- 
 
-### [MonkeySayMonkeyGet](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/MonkeySayMonkeyGet.zip) - Added Oct 16 2022, last updated Oct 16 2022
+### [MonkeySayMonkeyGet](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/MonkeySayMonkeyGet.zip)
 [Download page with more information](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/MonkeySayMonkeyGet.md)
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/MonkeySayMonkeyGet.png" width=200px>
@@ -152,7 +141,7 @@ Requirements:
 
 --- 
 
-### [RandomEvents](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/RandomEvents.zip) - Added Oct 16 2022, last updated Nov 5 2021
+### [RandomEvents](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/RandomEvents.zip)
 [Download page with more information and alternate downloads](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/RandomEvents.md)
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/RandomEvents.png" width=200px>
