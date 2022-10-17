@@ -90,7 +90,7 @@ Requirements:
 ---
 
 ### ECCLibray - Uploaded on Nexus Mods
-[Download page with more information](https://www.nexusmods.com/subnautica/mods/619) - [Source Code](https://github.com/LeeTwentyThree/ECCLibrary)
+[Download page with more information](https://www.nexusmods.com/subnautica/mods/619)
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/ECCLibrary.png" width=200px>
 </div>
