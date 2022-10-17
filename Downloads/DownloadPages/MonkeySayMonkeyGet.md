@@ -1,6 +1,6 @@
 # MonkeySayMonkeyGet
 
- - Added Oct 16 2022, last updated Oct 16 2022.
+Added Oct 16 2022, last updated Oct 16 2022.
 
 ### [Download Here](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/MonkeySayMonkeyGet.zip)
 
