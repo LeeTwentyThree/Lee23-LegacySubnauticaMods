@@ -19,10 +19,10 @@ Here are my personal favorite settings:
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Images/FavoriteSettings.png" width=600px>
 </div>
 
+[Source code for modders](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/tree/main/InventoryColorCustomization)
+
 ### Credits
 
 Programming & art done by me. Thanks to [EldritchCarMaker](https://github.com/EldritchCarMaker) for testing and thanks to [RamuneNeptune](https://github.com/ramennoodlesxv) for inspiring to make this mod with their Below Zero version.
-
-[Source code for modders](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/tree/main/InventoryColorCustomization)
 
 ### [Back to mods list](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md)
