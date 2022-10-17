@@ -16,7 +16,7 @@ Mods are sorted alphabetically. Download ZIPs are linked in the title. All files
 ---
 
 ### Alterra Sea Voyager - Uploaded on Nexus Mods
-[Download page with more information](https://www.nexusmods.com/subnautica/mods/604) - [Source Code](https://github.com/LeeTwentyThree/SeaVoyagerMod)
+[Download page with more information](https://www.nexusmods.com/subnautica/mods/604)
 <div>
   <img src="https://raw.githubusercontent.com/LeeTwentyThree/Lee23-SubnauticaMods/main/Downloads/Thumbnails/SeaVoyager-V2.png" width=200px>
 </div>
@@ -46,7 +46,7 @@ Requirements:
 ---
 
 ### [CustomInventoryColors](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/CustomInventoryColors.zip)
-[Download page with more information](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/CustomInventoryColors.md) - [Source Code](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/tree/main/InventoryColorCustomization)
+[Download page with more information](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/CustomInventoryColors.md)
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/CustomInventoryColors.png" width=200px>
 </div>
@@ -76,7 +76,7 @@ Requirements:
 ---
 
 ### De-Extinction - Uploaded on Nexus Mods
-[Download page with more information](https://www.nexusmods.com/subnautica/mods/640) - [Source Code](https://github.com/LeeTwentyThree/DeExtinction)
+[Download page with more information](https://www.nexusmods.com/subnautica/mods/640)
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/Thumbnails/DeExtinction.jpg" height=200px>
 </div>
