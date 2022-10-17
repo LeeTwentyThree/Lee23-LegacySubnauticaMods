@@ -18,3 +18,7 @@ Requirements:
 Mod commissioned by The Last Bacon, programming done by Lee23.
 
 ### [Back to mods list](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md)
+
+---
+
+###### [Source code for modders](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/tree/main/MirrorWorld)
