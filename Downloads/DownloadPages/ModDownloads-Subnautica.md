@@ -21,8 +21,6 @@ Mods commissioned by streamers
 
 # Normal mods
 
----
-
 ### Alterra Sea Voyager - Uploaded on Nexus Mods
 [Download page with more information](https://www.nexusmods.com/subnautica/mods/604)
 <div>
