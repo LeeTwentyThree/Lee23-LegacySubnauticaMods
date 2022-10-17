@@ -3,7 +3,7 @@ Mods are sorted alphabetically. Download ZIPs are linked in the title. All files
 
 ### Table of Contents
 
-Normal Mods  
+Normal mods  
 - [Alterra Sea Voyager](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#alterra-sea-voyager---uploaded-on-nexus-mods)  
 - [Bloop & Blaza](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#bloop--blaza)  
 - [CustomInventoryColors](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#custominventorycolors)  
