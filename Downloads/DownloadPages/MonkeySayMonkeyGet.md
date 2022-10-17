@@ -35,6 +35,10 @@ Mod commissioned by Socksfor1, programming done by Lee23. The mod uses [this](ht
 
 ### [Back to mods list](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md)
 
+---
+
+[Source code for modders](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/tree/main/MonkeySayMonkeyGet)
+
 # Changelog
 
 ### October 16th, 2022
