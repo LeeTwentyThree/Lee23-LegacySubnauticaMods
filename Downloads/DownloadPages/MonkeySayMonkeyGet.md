@@ -38,4 +38,4 @@ Mod commissioned by Socksfor1, programming done by Lee23. The mod uses [this](ht
 # Changelog
 
 ### October 16th, 2022
-Fixed Star Platinum's The World ability freezing the player.
+- Fixed Star Platinum's The World ability freezing the player.
