@@ -19,8 +19,8 @@ namespace ColorfulCreatures
             var crabsquidMembraneBase = new TextureSet("crab_squid_membrane", "crab_squid_membrane_illum", "crab_squid_membrane_spec");
             var crabsquidVariants = new TextureSetBuilder("crab_squid_variant_", "crab_squid_illum_variant_", "crab_squid_spec_variant_");
             var crabsquidMembraneVariants = new TextureSetBuilder("crab_squid_membrane_variant_", "crab_squid_membrane_illum_variant_", "crab_squid_membrane_spec_variant_");
-            var crabsquidMaterial = new MaterialSet(crabsquidBase, crabsquidVariants.A, crabsquidVariants.B, crabsquidVariants.C, crabsquidVariants.D, crabsquidVariants.E, crabsquidVariants.F, crabsquidVariants.Albino, crabsquidVariants.Melanistic);
-            var crabsquidMembraneMaterial = new MaterialSet(crabsquidMembraneBase, crabsquidMembraneVariants.A, crabsquidMembraneVariants.B, crabsquidMembraneVariants.C, crabsquidMembraneVariants.D, crabsquidMembraneVariants.E, crabsquidMembraneVariants.F, crabsquidMembraneVariants.Albino, crabsquidMembraneVariants.Melanistic);
+            var crabsquidMaterial = new MaterialSet(crabsquidBase, crabsquidVariants.A, crabsquidVariants.B, crabsquidVariants.C, crabsquidVariants.D, crabsquidVariants.E, crabsquidVariants.F, crabsquidVariants.G, crabsquidVariants.Albino, crabsquidVariants.Melanistic);
+            var crabsquidMembraneMaterial = new MaterialSet(crabsquidMembraneBase, crabsquidMembraneVariants.A, crabsquidMembraneVariants.B, crabsquidMembraneVariants.C, crabsquidMembraneVariants.D, crabsquidMembraneVariants.E, crabsquidMembraneVariants.F, crabsquidVariants.G, crabsquidMembraneVariants.Albino, crabsquidMembraneVariants.Melanistic);
             crabsquid.AddRenderer(new CreatureRenderer("models/Crab_Squid/crab_squid_geo/crab_squid_body_geo", crabsquidMaterial, crabsquidMembraneMaterial));
             crabsquid.AddRenderer(new CreatureRenderer("models/Crab_Squid/crab_squid_geo/crab_squid_body_geo_LOD1", crabsquidMaterial, crabsquidMembraneMaterial));
             crabsquid.AddRenderer(new CreatureRenderer("models/Crab_Squid/crab_squid_geo/crab_squid_body_geo_LOD2", crabsquidMaterial, crabsquidMembraneMaterial));
@@ -38,7 +38,7 @@ namespace ColorfulCreatures
             // Peeper
             var peeper = new CreatureColors();
             var peeperBase = new TextureSet("aqua_bird_01", "aqua_bird_01_illum", "aqua_bird_01_spec");
-            var peeperVariants = new TextureSetBuilder("aqua_bird_01_variant", "aqua_bird_01_illum_variant", "aqua_bird_01_spec_variantalbi");
+            var peeperVariants = new TextureSetBuilder("aqua_bird_01_variant", "aqua_bird_01_illum_variant", "aqua_bird_01_spec_variant");
             var peeperMaterial = new MaterialSet(peeperBase, peeperVariants.A, peeperVariants.B, peeperVariants.C, peeperVariants.D, peeperVariants.E, peeperVariants.F, peeperVariants.Albino, peeperVariants.Melanistic);
             peeper.AddRenderer(new CreatureRenderer("model/peeper/aqua_bird_LOD1/Aqua_Bird", peeperMaterial, peeperMaterial));
             peeper.AddRenderer(new CreatureRenderer("model/peeper/aqua_bird/peeper", peeperMaterial, peeperMaterial));

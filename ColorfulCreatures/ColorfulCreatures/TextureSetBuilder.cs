@@ -72,6 +72,14 @@ namespace ColorfulCreatures
             }
         }
 
+        public TextureSet G
+        {
+            get
+            {
+                return Get("g");
+            }
+        }
+
         public TextureSet Albino
         {
             get
