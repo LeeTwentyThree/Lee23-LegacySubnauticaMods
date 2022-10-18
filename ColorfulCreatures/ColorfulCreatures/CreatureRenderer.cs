@@ -5,21 +5,21 @@ namespace ColorfulCreatures
     internal class CreatureRenderer : IRandomizable
     {
         public string pathToModel;
-        public MaterialPreset[] materialData;
+        public MaterialSet[] materialData;
 
-        public CreatureRenderer(string pathToModel, params MaterialPreset[] materials)
+        public CreatureRenderer(string pathToModel, params MaterialSet[] materials)
         {
             this.pathToModel = pathToModel;
             this.materialData = materials;
         }
 
-        public void Randomize()
+        public void Randomize(float value)
         {
             foreach (var preset in materialData)
             {
                 if (preset != null)
                 {
-                    preset.Randomize();
+                    preset.Randomize(value);
                 }
             }
         }

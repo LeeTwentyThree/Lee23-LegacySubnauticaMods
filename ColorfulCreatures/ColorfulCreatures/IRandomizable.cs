@@ -8,6 +8,6 @@ namespace ColorfulCreatures
 {
     internal interface IRandomizable
     {
-        void Randomize();
+        void Randomize(float value);
     }
 }

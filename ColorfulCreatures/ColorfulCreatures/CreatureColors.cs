@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ColorfulCreatures
 {
@@ -15,11 +16,11 @@ namespace ColorfulCreatures
             rendererData.Add(renderer);
         }
 
-        public void Randomize()
+        public void Randomize(float value)
         {
             foreach (var renderer in rendererData)
             {
-                renderer.Randomize();
+                renderer.Randomize(value);
             }
         }
     }

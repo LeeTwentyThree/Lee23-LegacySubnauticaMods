@@ -7,16 +7,41 @@ namespace ColorfulCreatures
     {
         public static readonly Dictionary<string, CreatureColors> creaturePrefabColors = new Dictionary<string, CreatureColors>();
 
+        private static int mainTex = Shader.PropertyToID("_MainTex");
+        private static int illum = Shader.PropertyToID("_Illum");
+        private static int specTex = Shader.PropertyToID("_SpecTex");
+
         public static void Initialize()
         {
+            // Crabsquid
+            var crabsquid = new CreatureColors();
+            var crabsquidBase = new TextureSet("crab_squid", "crab_squid_illum", "crab_squid_spec");
+            var crabsquidMembraneBase = new TextureSet("crab_squid_membrane", "crab_squid_membrane_illum", "crab_squid_membrane_spec");
+            var crabsquidVariants = new TextureSetBuilder("crab_squid_variant_", "crab_squid_illum_variant_", "crab_squid_spec_variant_");
+            var crabsquidMembraneVariants = new TextureSetBuilder("crab_squid_membrane_variant_", "crab_squid_membrane_illum_variant_", "crab_squid_membrane_spec_variant_");
+            var crabsquidMaterial = new MaterialSet(crabsquidBase, crabsquidVariants.A, crabsquidVariants.B, crabsquidVariants.C, crabsquidVariants.D, crabsquidVariants.E, crabsquidVariants.F, crabsquidVariants.Albino, crabsquidVariants.Melanistic);
+            var crabsquidMembraneMaterial = new MaterialSet(crabsquidMembraneBase, crabsquidMembraneVariants.A, crabsquidMembraneVariants.B, crabsquidMembraneVariants.C, crabsquidMembraneVariants.D, crabsquidMembraneVariants.E, crabsquidMembraneVariants.F, crabsquidMembraneVariants.Albino, crabsquidMembraneVariants.Melanistic);
+            crabsquid.AddRenderer(new CreatureRenderer("models/Crab_Squid/crab_squid_geo/crab_squid_body_geo", crabsquidMaterial, crabsquidMembraneMaterial));
+            crabsquid.AddRenderer(new CreatureRenderer("models/Crab_Squid/crab_squid_geo/crab_squid_body_geo_LOD1", crabsquidMaterial, crabsquidMembraneMaterial));
+            crabsquid.AddRenderer(new CreatureRenderer("models/Crab_Squid/crab_squid_geo/crab_squid_body_geo_LOD2", crabsquidMaterial, crabsquidMembraneMaterial));
+            crabsquid.AddRenderer(new CreatureRenderer("models/Crab_Squid/crab_squid_geo/crab_squid_body_geo_LOD3", crabsquidMaterial, crabsquidMembraneMaterial));
+            crabsquid.AddRenderer(new CreatureRenderer("models/Crab_Squid/crab_squid_geo/crab_squid_head_geo1", crabsquidMembraneMaterial));
+            crabsquid.AddRenderer(new CreatureRenderer("models/Crab_Squid/crab_squid_geo/crab_squid_head_geo1_LOD1", crabsquidMembraneMaterial));
+            crabsquid.AddRenderer(new CreatureRenderer("models/Crab_Squid/crab_squid_geo/crab_squid_head_geo1_LOD2", crabsquidMembraneMaterial));
+            crabsquid.AddRenderer(new CreatureRenderer("models/Crab_Squid/crab_squid_geo/crab_squid_head_geo1_LOD3", crabsquidMembraneMaterial));
+            crabsquid.AddRenderer(new CreatureRenderer("models/Crab_Squid/crab_squid_geo/crab_squid_head_geo2", crabsquidMembraneMaterial));
+            crabsquid.AddRenderer(new CreatureRenderer("models/Crab_Squid/crab_squid_geo/crab_squid_head_geo2_LOD1", crabsquidMembraneMaterial));
+            crabsquid.AddRenderer(new CreatureRenderer("models/Crab_Squid/crab_squid_geo/crab_squid_head_geo2_LOD2", crabsquidMembraneMaterial));
+            crabsquid.AddRenderer(new CreatureRenderer("models/Crab_Squid/crab_squid_geo/crab_squid_head_geo2_LOD3", crabsquidMembraneMaterial));
+            Add("4c2808fe-e051-44d2-8e64-120ddcdc8abb", crabsquid);
+
             // Peeper
             var peeper = new CreatureColors();
-            var peeperAlbino = new TextureSet("aqua_bird_01_variantalbi", "aqua_bird_01_illum_variantalbi", "aqua_bird_01_spec_variantalbi");
             var peeperBase = new TextureSet("aqua_bird_01", "aqua_bird_01_illum", "aqua_bird_01_spec");
-            var peeperMelanistic = new TextureSet("aqua_bird_01_variantmela", "aqua_bird_01_illum_variantmela", "aqua_bird_01_spec_variantmela");
-            var peeperMaterial = new MaterialPreset(peeperAlbino, peeperBase, peeperMelanistic);
-            peeper.AddRenderer(new CreatureRenderer("model/peeper/aqua_bird_LOD1/Aqua_Bird", peeperMaterial, null));
-            peeper.AddRenderer(new CreatureRenderer("model/peeper/aqua_bird/peeper", peeperMaterial, null));
+            var peeperVariants = new TextureSetBuilder("aqua_bird_01_variant", "aqua_bird_01_illum_variant", "aqua_bird_01_spec_variantalbi");
+            var peeperMaterial = new MaterialSet(peeperBase, peeperVariants.A, peeperVariants.B, peeperVariants.C, peeperVariants.D, peeperVariants.E, peeperVariants.F, peeperVariants.Albino, peeperVariants.Melanistic);
+            peeper.AddRenderer(new CreatureRenderer("model/peeper/aqua_bird_LOD1/Aqua_Bird", peeperMaterial, peeperMaterial));
+            peeper.AddRenderer(new CreatureRenderer("model/peeper/aqua_bird/peeper", peeperMaterial, peeperMaterial));
             Add("3fcd548b-781f-46ba-b076-7412608deeef", peeper);
         }
 
@@ -33,12 +58,9 @@ namespace ColorfulCreatures
             }
         }
 
-        private static List<MaterialPreset> tempMaterialSets = new List<MaterialPreset>();
-        private static List<TextureSet> tempTextureSets = new List<TextureSet>();
-
         private static void ApplyMaterialsToGameObject(GameObject obj, CreatureColors data)
         {
-            data.Randomize();
+            data.Randomize(Random.value);
             foreach (var rendererData in data.rendererData)
             {
                 var model = obj.transform.Find(rendererData.pathToModel);
@@ -48,18 +70,18 @@ namespace ColorfulCreatures
                 {
                     var materialPreset = rendererData.materialData[i];
                     if (materialPreset == null) continue;
-                    var textureSet = materialPreset.chosenTextureSet; // this is flawed, you don't want to do this more than once
+                    var textureSet = materialPreset.chosenTextureSet;
                     ApplyTexureSetToRenderer(materials, i, textureSet);
                 }
                 rendererComponent.materials = materials;
             }
         }
 
-        private static void ApplyTexureSetToRenderer(Material[] array, int materialIndex, TextureSet set)
+        private static void ApplyTexureSetToRenderer(Material[] materials, int materialIndex, TextureSet set)
         {
-            array[materialIndex].SetTexture("_Color", set.diffuse);
-            array[materialIndex].SetTexture("_Illum", set.illum);
-            array[materialIndex].SetTexture("_SpecTex", set.specular);
+            if (set.useDiffuse) materials[materialIndex].SetTexture(mainTex, set.diffuse);
+            if (set.useIllum) materials[materialIndex].SetTexture(illum, set.illum);
+            if (set.useSpecular) materials[materialIndex].SetTexture(specTex, set.specular);
         }
     }
 }
