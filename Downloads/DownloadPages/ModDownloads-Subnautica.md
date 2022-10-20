@@ -12,10 +12,12 @@ Normal mods
 - [ECCLibrary](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#ecclibray---uploaded-on-nexus-mods)  
 - [Wind Turbines](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#wind-turbines---uploaded-on-nexus-mods)
 
-Mods commissioned by streamers  
+Challenge mods & uncategorized commissions  
 - [MirrorWorld](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#mirrorworld)  
 - [MonkeySayMonkeyGet](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#monkeysaymonkeyget)  
 - [RandomEvents](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#randomevents)
+
+[Accessibility mods](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#accessibility-mods)
 
 ---
 
@@ -123,7 +125,7 @@ Requirements:
 
 ---
 
-# Mods commissioned by streamers
+# Challenge mods & uncategorized commissions
 
 These mods were not designed for regular playthroughs, but I am uploading them here for people who are curious to try them.
 
@@ -171,3 +173,17 @@ Go watch [Socksfor1's video](https://youtu.be/j4lmTD8n4ls) on it!
 
 Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
+
+---
+
+# Accessibility mods
+
+Mods made for very specific purposes. Unless these issues concern you, I do not recommend the following mods as they may interfere with regular gameplay. The following mods were not made for me and do not necessarily reflect my personal beliefs or opinions- I just want more people to be able to enjoy the game.
+
+---
+
+### [HalalSubnautica](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/HalalSubnautica.zip)
+
+This mod conceals tight clothing on the player model with a black cube. Only requires QModManager.
+
+### More coming soon...
