@@ -10,6 +10,9 @@ It might seem like a small change, but I can assure it helps immensely with inve
 
 If the built-in options are not enough, you have the choice to create your own custom icons by placing images into the Custom folder found within the mod.
 
+Requirements:
+- [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
+
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/CustomInventoryColors.png" width=200px>
 </div>
