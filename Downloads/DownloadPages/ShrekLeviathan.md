@@ -1,5 +1,3 @@
-# ShrekLeviathan
-
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/ShrekLeviathan-Text.png" width=800px>
 </div>
