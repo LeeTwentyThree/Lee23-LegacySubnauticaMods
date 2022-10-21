@@ -20,21 +20,24 @@ namespace DebugHelper.Commands
         }
 
         [ConsoleCommand("showcolliders")]
-        public static void ShowColliders() // make this into a coroutine  p         leeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeease                 ALSO add hitTriggers bool
+        public static void ShowColliders(bool hitsTriggers = false)
+        {
+            CoroutineHost.StartCoroutine(ShowCollidersCoroutine(hitsTriggers));
+        }
+
+        private static IEnumerator ShowCollidersCoroutine(bool hitsTriggers)
         {
             if (stasisFieldMaterial == null)
             {
-                ErrorMessage.AddMessage("Materials not loaded! Please try again in a moment.");
-                CoroutineHost.StartCoroutine(LoadStasisFieldMaterial());
-                return;
+                yield return CoroutineHost.StartCoroutine(LoadStasisFieldMaterial());
             }
             Transform scanTransform = MainCameraControl.main.transform;
-            if (Physics.Raycast(scanTransform.position + scanTransform.forward, scanTransform.forward, out RaycastHit hit, 1000f))
+            if (Physics.Raycast(scanTransform.position + scanTransform.forward, scanTransform.forward, out RaycastHit hit, float.MaxValue, -1, hitsTriggers ? QueryTriggerInteraction.Collide : QueryTriggerInteraction.Ignore))
             {
                 if (hit.collider.GetComponentInParent<Player>())
                 {
                     ErrorMessage.AddMessage("Warning: raycast hit player");
-                    return;
+                    yield break;
                 }
                 Transform root = hit.collider.transform;
                 var prefabIdentifier = hit.collider.GetComponentInParent<PrefabIdentifier>();
@@ -77,8 +80,8 @@ namespace DebugHelper.Commands
                 }
                 if (col is CapsuleCollider capsule)
                 {
-                    RenderCollider(parent, GameObject.CreatePrimitive(PrimitiveType.Capsule), new Vector3(capsule.radius * 2f, capsule.height / 2, capsule.radius * 2f), capsule.center);
-                    // account for all rotations!!
+                    var capsuleTransform = RenderCollider(parent, GameObject.CreatePrimitive(PrimitiveType.Capsule), new Vector3(capsule.radius * 2f, capsule.height / 2, capsule.radius * 2f), capsule.center);
+                    capsuleTransform.localEulerAngles = AnglesFromCapsuleDirection(capsule.direction);
                 }
                 if (col is MeshCollider meshCollider)
                 {
@@ -100,6 +103,19 @@ namespace DebugHelper.Commands
             var r = shape.GetComponent<Renderer>();
             r.material = stasisFieldMaterial;
             return shape.transform;
+        }
+
+        private static Vector3 AnglesFromCapsuleDirection(int capsuleDirection)
+        {
+            switch (capsuleDirection)
+            {
+                default: // x
+                    return Vector3.forward * 90;
+                case 1: // y
+                    return Vector3.zero;
+                case 2: // z
+                    return Vector3.right * 90f;
+            }
         }
 
         [ConsoleCommand("lookingat")]
