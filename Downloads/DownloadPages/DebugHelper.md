@@ -23,6 +23,8 @@ Requirements:
 
 `lookingat (hitTriggers = false)` - Returns the name of the hit collider, its parent, attached rigidbody, and entity root. Also useful for RuntimeEditor and similar tools.
 
+`showcolliders` - Renders all the colliders on the object that is being looked at.
+
 ### Credits
 
 Programming done by Lee23.
