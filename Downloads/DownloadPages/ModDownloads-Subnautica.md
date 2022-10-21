@@ -16,6 +16,7 @@ Challenge mods & uncategorized commissions
 - [MirrorWorld](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#mirrorworld)  
 - [MonkeySayMonkeyGet](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#monkeysaymonkeyget)  
 - [RandomEvents](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#randomevents)
+- [ShrekLeviathan](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#shrekleviathan)
 
 [Accessibility mods](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#accessibility-mods)
 
@@ -167,12 +168,20 @@ Requirements:
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/RandomEvents.png" width=200px>
 </div>
 
-A random event happens every 30 seconds. Maybe a Ghost Leviathan will spawn outside your base. Maybe water (bottles) will rain from the sky. Or Shrek will look down upon you from space. This mod is very dangerous, so install at your own risk.
+A random event happens every 30 seconds. Maybe a Ghost Leviathan will spawn outside your base. Maybe water (bottles) will rain from the sky. Or Shrek will look down upon you from space. Yes, there is Among Us too. This mod is very dangerous, so install at your own risk.
 
 Go watch [Socksfor1's video](https://youtu.be/j4lmTD8n4ls) on it!
 
 Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
+
+---
+
+#### ShrekLeviathan
+
+<a href="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ShrekLeviathan.md"><img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/ShrekLeviathan-Text.png" width=400px alt="Shrek Leviathan"></a>
+
+Replaces the Reaper Leviathan with Shrek. Yes, I'm serious. Why? I have no idea.
 
 ---
 
