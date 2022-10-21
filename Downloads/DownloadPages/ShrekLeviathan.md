@@ -1,5 +1,5 @@
 <div>
-  <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/ShrekLeviathan-Text.png" width=800px>
+  <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/ShrekLeviathan-Text.png" width=800px alt="Shrek Leviathan">
 </div>
 
 Added Oct 20 2022, last updated August 17 2020.
