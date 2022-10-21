@@ -25,6 +25,8 @@ Requirements:
 
 `showcolliders` - Renders all the colliders on the object that is being looked at.
 
+`entgal` - Spawns the entity gallery. Very unsafe!
+
 ### Credits
 
 Programming done by Lee23.
