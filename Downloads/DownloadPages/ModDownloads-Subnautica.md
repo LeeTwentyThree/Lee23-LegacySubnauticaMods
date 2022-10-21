@@ -191,7 +191,7 @@ Mods made for very specific purposes. Unless these issues concern you, I do not 
 
 ---
 
-### [HalalSubnautica](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/HalalSubnautica.zip)
+### [HalalSubnautica](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/HalalSubnautica.zip)
 
 This mod conceals tight clothing on the player model with a black cube. Only requires QModManager.
 
