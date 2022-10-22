@@ -26,6 +26,20 @@ Requirements:
 `showcolliders (hitTriggers = false)` - Renders all the colliders on the object that is being looked at.
 
 `entgal` - Spawns the entity gallery. Very unsafe!
+### REPL Console Tools
+This mod adds the [DB](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/DebugHelper/DebugHelper/DB.cs) class (in the global namespace) to assist with debugging and patching at Runtime. Call these methods in the REPL console (RuntimeEditor).
+
+`DB.Help` - Call this in a REPL console if you forget how something is done.
+
+`Listen(MethodInfo original, bool prefix = false)` - Outputs method call information onto the screen whenever the given method is called.
+
+`Mute(MethodInfo original)` - Stops a method from being called entirely.
+
+`Method(string location)` - Returns a MethodInfo by its name (ex: "Peeper.Start").
+
+All of the methods in this class have various overloads which can be viewed [here](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/DebugHelper/DebugHelper/DB.cs).
+
+---
 
 ### Credits
 
