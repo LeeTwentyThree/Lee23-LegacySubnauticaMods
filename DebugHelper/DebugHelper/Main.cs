@@ -13,6 +13,7 @@ namespace DebugHelper
             ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(PrefabCommands));
             ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(AudioCommands));
             ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(ColliderCommands));
+            DB.Setup();
         }
     }
 }
