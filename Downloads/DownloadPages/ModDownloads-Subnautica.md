@@ -18,6 +18,9 @@ Challenge mods & uncategorized commissions
 - [RandomEvents](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#randomevents)
 - [ShrekLeviathan](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#shrekleviathan)
 
+Mods for developers
+- [DebugHelper()
+
 [Accessibility mods](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#accessibility-mods)
 
 ---
@@ -184,6 +187,15 @@ Requirements:
 (Click the cool text)
 
 Replaces the Reaper Leviathan with Shrek. Yes, I'm serious. Why? I have no idea.
+
+---
+
+# Mods for developers
+
+[DebugHelper](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/DebugHelper.zip)
+[Download page with more information](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/DebugHelper.md)
+
+Adds various console commands and a new `DB` class for the REPL console. A list of features can be found on the download page.
 
 ---
 
