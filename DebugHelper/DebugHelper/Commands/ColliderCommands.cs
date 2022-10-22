@@ -1,13 +1,18 @@
 ﻿using UnityEngine;
 using SMLHelper.V2.Commands;
 using System.Collections;
+using System.Collections.Generic;
 using UWE;
 
 namespace DebugHelper.Commands
 {
     public static class ColliderCommands
     {
-        private static Material stasisFieldMaterial;
+        private static Material colliderMaterial; // generic colliders
+        private static Material physicsColliderMaterial; // colliders on non-kinematic rigidbodies
+        private static Material triggerMaterial; // colliders with isTrigger set to true
+
+        private static List<GameObject> colliderRendererObjects = new List<GameObject>();
 
         private static IEnumerator LoadStasisFieldMaterial()
         {
@@ -15,8 +20,12 @@ namespace DebugHelper.Commands
             yield return task;
 
             GameObject stasisRifle = task.GetResult();
-            stasisFieldMaterial = new Material(stasisRifle.GetComponent<StasisRifle>().effectSpherePrefab.GetComponentInChildren<Renderer>().materials[1]);
-            stasisFieldMaterial.color = new Color(0.3f, 1f, 0f);
+            colliderMaterial = new Material(stasisRifle.GetComponent<StasisRifle>().effectSpherePrefab.GetComponentInChildren<Renderer>().materials[1]);
+            colliderMaterial.color = new Color(0.3f, 1f, 0f);
+            physicsColliderMaterial = new Material(stasisRifle.GetComponent<StasisRifle>().effectSpherePrefab.GetComponentInChildren<Renderer>().materials[1]);
+            physicsColliderMaterial.color = new Color(1f, 0.2f, 0.2f);
+            triggerMaterial = new Material(stasisRifle.GetComponent<StasisRifle>().effectSpherePrefab.GetComponentInChildren<Renderer>().materials[1]);
+            triggerMaterial.color = new Color(0.5f, 0.5f, 0.5f);
         }
 
         [ConsoleCommand("showcolliders")]
@@ -25,9 +34,25 @@ namespace DebugHelper.Commands
             CoroutineHost.StartCoroutine(ShowCollidersCoroutine(hitsTriggers));
         }
 
+        [ConsoleCommand("showallcolliders")]
+        public static void ShowCollidersInRange(float maxRange)
+        {
+            CoroutineHost.StartCoroutine(ShowCollidersInRangeCoroutine(maxRange));
+        }
+
+        [ConsoleCommand("hidecolliders")]
+        public static void HideColliders()
+        {
+            foreach (var obj in colliderRendererObjects)
+            {
+                if (obj != null) Object.Destroy(obj);
+            }
+            colliderRendererObjects.Clear();
+        }
+
         private static IEnumerator ShowCollidersCoroutine(bool hitsTriggers)
         {
-            if (stasisFieldMaterial == null)
+            if (colliderMaterial == null)
             {
                 yield return CoroutineHost.StartCoroutine(LoadStasisFieldMaterial());
             }
@@ -54,7 +79,7 @@ namespace DebugHelper.Commands
                     }
                 }
                 ErrorMessage.AddMessage(string.Format("Showing colliders within object '{0}'.", root.gameObject.name));
-                ShowColliders(root);
+                RenderCollidersInChildren(root);
             }
             else
             {
@@ -62,38 +87,64 @@ namespace DebugHelper.Commands
             }
         }
 
-        private static void ShowColliders(Transform objectRoot)
+        private static IEnumerator ShowCollidersInRangeCoroutine(float maxRange)
         {
-            foreach (var col in objectRoot.GetComponentsInChildren<Collider>())
+            if (colliderMaterial == null)
             {
-                var parent = col.transform;
-                if (col is SphereCollider sphere)
-                {
-                    var sphereTransform = RenderCollider(parent, GameObject.CreatePrimitive(PrimitiveType.Sphere), Vector3.one * sphere.radius * 2f, sphere.center);
-                    sphereTransform.transform.parent = null;
-                    sphereTransform.transform.localScale = Vector3.one * sphere.radius * 2f; // spheres are always spherical regardless of parent size!
-                    sphereTransform.transform.parent = parent;
-                }
-                if (col is BoxCollider box)
-                {
-                    RenderCollider(parent, GameObject.CreatePrimitive(PrimitiveType.Cube), box.size, box.center);
-                }
-                if (col is CapsuleCollider capsule)
-                {
-                    var capsuleTransform = RenderCollider(parent, GameObject.CreatePrimitive(PrimitiveType.Capsule), new Vector3(capsule.radius * 2f, capsule.height / 2, capsule.radius * 2f), capsule.center);
-                    capsuleTransform.localEulerAngles = AnglesFromCapsuleDirection(capsule.direction);
-                }
-                if (col is MeshCollider meshCollider)
-                {
-                    var rendererObj = new GameObject("Mesh Collider Object");
-                    rendererObj.AddComponent<MeshRenderer>();
-                    rendererObj.AddComponent<MeshFilter>().mesh = meshCollider.sharedMesh;
-                    RenderCollider(parent, rendererObj, Vector3.one, Vector3.zero);
-                }
+                yield return CoroutineHost.StartCoroutine(LoadStasisFieldMaterial());
+            }
+            var center = MainCameraControl.main.transform.position;
+            var colliders = Physics.OverlapSphere(center, maxRange);
+            foreach (var collider in colliders)
+            {
+                RenderCollider(collider);
+                yield return null;
+            }
+            ErrorMessage.AddMessage($"Showing all {colliders.Length} colliders within {(int)maxRange} meters.");
+        }
+
+        private static void RenderCollidersInChildren(Transform objectRoot)
+        {
+            foreach (var collider in objectRoot.GetComponentsInChildren<Collider>())
+            {
+                RenderCollider(collider);
             }
         }
 
-        private static Transform RenderCollider(Transform parent, GameObject shape, Vector3 localScale, Vector3 center)
+        private static void RenderCollider(Collider col)
+        {
+            var colliderType = ColliderType.Collider;
+            if (col.attachedRigidbody != null && !col.attachedRigidbody.isKinematic) colliderType = ColliderType.PhysicsCollider;
+            if (col.isTrigger) colliderType = ColliderType.Trigger;
+            var parent = col.transform;
+            if (col is SphereCollider sphere)
+            {
+                var sphereTransform = RenderCollider(parent, GameObject.CreatePrimitive(PrimitiveType.Sphere), Vector3.one * sphere.radius * 2f, sphere.center, colliderType);
+                sphereTransform.transform.parent = null;
+                sphereTransform.transform.localScale = Vector3.one * sphere.radius * 2f; // spheres are always spherical regardless of parent size!
+                sphereTransform.transform.parent = parent;
+            }
+            if (col is BoxCollider box)
+            {
+                RenderCollider(parent, GameObject.CreatePrimitive(PrimitiveType.Cube), box.size, box.center, colliderType);
+            }
+            if (col is CapsuleCollider capsule)
+            {
+                var capsuleTransform = RenderCollider(parent, GameObject.CreatePrimitive(PrimitiveType.Capsule), new Vector3(capsule.radius * 2f, capsule.height / 2, capsule.radius * 2f), capsule.center, colliderType);
+                capsuleTransform.localEulerAngles = AnglesFromCapsuleDirection(capsule.direction);
+            }
+            if (col is MeshCollider meshCollider)
+            {
+                var rendererObj = new GameObject("Mesh Collider Object");
+                rendererObj.AddComponent<MeshRenderer>();
+                var mesh = new Mesh();
+                mesh = meshCollider.sharedMesh;
+                rendererObj.AddComponent<MeshFilter>().mesh = mesh;
+                RenderCollider(parent, rendererObj, Vector3.one, Vector3.zero, colliderType);
+            }
+        }
+
+        private static Transform RenderCollider(Transform parent, GameObject shape, Vector3 localScale, Vector3 center, ColliderType colliderType)
         {
             Object.DestroyImmediate(shape.GetComponent<Collider>());
             shape.transform.parent = parent;
@@ -101,8 +152,20 @@ namespace DebugHelper.Commands
             shape.transform.localPosition = center;
             shape.transform.localEulerAngles = Vector3.zero;
             var r = shape.GetComponent<Renderer>();
-            r.material = stasisFieldMaterial;
+            r.material = GetMaterialForColliderType(colliderType);
+            colliderRendererObjects.Add(shape);
             return shape.transform;
+        }
+
+        private static Material GetMaterialForColliderType(ColliderType type)
+        {
+            switch (type)
+            {
+                default: return colliderMaterial; ;
+                case ColliderType.Trigger: return triggerMaterial;
+                case ColliderType.PhysicsCollider: return physicsColliderMaterial;
+            }
+
         }
 
         private static Vector3 AnglesFromCapsuleDirection(int capsuleDirection)
@@ -116,6 +179,13 @@ namespace DebugHelper.Commands
                 case 2: // z
                     return Vector3.right * 90f;
             }
+        }
+
+        private enum ColliderType
+        {
+            Collider,
+            PhysicsCollider,
+            Trigger
         }
 
         [ConsoleCommand("lookingat")]
