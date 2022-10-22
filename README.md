@@ -6,7 +6,7 @@
 
 ---
 
-# Other sites
+# External links
 
 ### Discord
 
@@ -17,6 +17,10 @@
 Join the Subnautica Modding Discord server to discuss mods & receive support: https://discord.gg/UpWuWwq
 
 Contact me: `32Eel#3756`
+
+### Other mod repositories
+
+[DeExtinction](https://github.com/LeeTwentyThree/DeExtinction) - [ECCLibrary](https://github.com/LeeTwentyThree/ECCLibrary) - [SeaVoyager](https://github.com/LeeTwentyThree/SeaVoyagerMod) - [WindTurbinesMod](https://github.com/LeeTwentyThree/WindTurbinesMod)
 
 ### Patreon
 
