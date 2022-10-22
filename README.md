@@ -18,7 +18,7 @@ Join the Subnautica Modding Discord server to discuss mods & receive support: ht
 
 Contact me: `32Eel#3756`
 
----
+### Patreon
 
 Thank you so much to all of my Patrons for your incredible support!
 
