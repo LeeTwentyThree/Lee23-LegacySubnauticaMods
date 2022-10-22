@@ -45,7 +45,6 @@ namespace DebugHelper.Commands
             if (prefabRequest.TryGetPrefab(out GameObject prefab))
             {
                 ErrorMessage.AddMessage($"Spawned prefab '{prefab.name}' successfully.");
-                Transform mainCameraT = MainCameraControl.main.transform;
                 Utils.CreatePrefab(prefab, 12f, false);
             }
             else
@@ -61,7 +60,7 @@ namespace DebugHelper.Commands
             if (distance >= 0f) maxDist = distance;
             foreach (PrefabIdentifier prefabIdentifier in Object.FindObjectsOfType<PrefabIdentifier>())
             {
-                var dist = Vector3.Distance(MainCameraControl.main.transform.position, prefabIdentifier.transform.position);
+                var dist = Vector3.Distance(SNCameraRoot.main.transform.position, prefabIdentifier.transform.position);
                 if (dist < maxDist)
                 {
                     var techType = CraftData.GetTechType(prefabIdentifier.gameObject);

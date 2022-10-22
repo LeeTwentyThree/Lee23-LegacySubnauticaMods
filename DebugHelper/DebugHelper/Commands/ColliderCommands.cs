@@ -66,7 +66,7 @@ namespace DebugHelper.Commands
             {
                 yield return CoroutineHost.StartCoroutine(LoadStasisFieldMaterial());
             }
-            Transform scanTransform = MainCameraControl.main.transform;
+            Transform scanTransform = SNCameraRoot.main.transform;
             if (Physics.Raycast(scanTransform.position + scanTransform.forward, scanTransform.forward, out RaycastHit hit, float.MaxValue, -1, hitsTriggers ? QueryTriggerInteraction.Collide : QueryTriggerInteraction.Ignore))
             {
                 if (hit.collider.GetComponentInParent<Player>())
@@ -103,7 +103,7 @@ namespace DebugHelper.Commands
             {
                 yield return CoroutineHost.StartCoroutine(LoadStasisFieldMaterial());
             }
-            var center = MainCameraControl.main.transform.position;
+            var center = SNCameraRoot.main.transform.position;
             var allColliders = Physics.OverlapSphere(center, maxRange); // all colliders
             var colliders = new List<Collider>(); // just colliders we want to use
             var playerRb = Player.main.rigidBody;
