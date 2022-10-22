@@ -103,6 +103,7 @@ namespace DebugHelper.Commands
             {
                 yield return CoroutineHost.StartCoroutine(LoadStasisFieldMaterial());
             }
+            HideColliders();
             var center = SNCameraRoot.main.transform.position;
             var allColliders = Physics.OverlapSphere(center, maxRange); // all colliders
             var colliders = new List<Collider>(); // just colliders we want to use
@@ -119,7 +120,7 @@ namespace DebugHelper.Commands
             {
                 RenderCollider(collider);
             }
-            ErrorMessage.AddMessage("Use the 'hidecolliders' command to revert these changes.");
+            ErrorMessage.AddMessage("Use the 'hidecolliders' command to revert these changes. Running the command again will also reset the colliders.");
         }
 
         private static void RenderCollidersInChildren(Transform objectRoot)
