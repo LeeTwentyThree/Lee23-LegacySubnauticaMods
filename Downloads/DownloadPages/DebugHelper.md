@@ -32,10 +32,15 @@ This mod adds the [DB](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/bl
 `DB.Help` - Call this in a REPL console if you forget how something is done.
 
 `Listen(MethodInfo original, bool prefix = false)` - Outputs method call information onto the screen whenever the given method is called.
+- Example: Calling `DB.Listen("UniqueIdentifier.Awake")` will alert you every time an object is loaded.
 
 `Mute(MethodInfo original)` - Stops a method from being called entirely.
+  - Example: Calling `DB.Mute("Player.OnConsoleCommand_kill")` nullifies the Kill command, and it will do nothing until the game is reloaded.
 
-`Method(string location)` - Returns a MethodInfo by its name (ex: "Peeper.Start").
+`Method(string location)` - Returns a MethodInfo by its name. Valid examples of usage:
+  - `"Peeper.Start"`
+  - `typeof(Peeper), "Start"`
+  - `"Peeper", "Start"`
 
 All of the methods in this class have various overloads which can be viewed [here](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/DebugHelper/DebugHelper/DB.cs).
 
