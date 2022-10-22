@@ -7,14 +7,12 @@ public static class DB
 {
     public static Harmony harmony;
     public static MethodInfo returnFalse;
-    public static MethodInfo returnTrue;
-    public static MethodInfo echo;
+    private static MethodInfo echo;
     
-    public static void Setup()
+    internal static void Setup()
     {
         harmony = new Harmony("Subnautica.DebugHelper");
         returnFalse = AccessTools.Method(typeof(DB), nameof(False));
-        returnTrue = AccessTools.Method(typeof(DB), nameof(True));
         echo = AccessTools.Method(typeof(DB), nameof(Echo));
     }
 
@@ -28,32 +26,49 @@ public static class DB
         return false;
     }
 
-    public static bool True() // why would you need this besides consistency?
+    #region Listen
+    public static void Listen(MethodInfo original, bool prefix = false) // whenever the method is run, shows information about it on screen
     {
-        return true;
+        if (prefix) harmony.Patch(original, new HarmonyMethod(echo));
+        else harmony.Patch(original, null, new HarmonyMethod(echo));
     }
 
-    public static void Listen(MethodInfo original) // whenever the method is run, shows information about it on screen
+    public static void Listen(string typeName, string methodName, bool prefix = false)
     {
-        harmony.Patch(original, null, new HarmonyMethod(echo));
+        if (prefix) harmony.Patch(Method(typeName, methodName), new HarmonyMethod(echo));
+        else harmony.Patch(Method(typeName, methodName), null, new HarmonyMethod(echo));
     }
 
-    public static void ListenPre(MethodInfo original) // variant of Listen using HarmonyPrefix
+    public static void Listen(System.Type type, string methodName, bool prefix = false)
     {
-        harmony.Patch(original, new HarmonyMethod(echo));
+        if (prefix) harmony.Patch(Method(type, methodName), new HarmonyMethod(echo));
+        else harmony.Patch(Method(type, methodName), null, new HarmonyMethod(echo));
     }
+    #endregion
 
+    #region Mute
     public static void Mute(MethodInfo original) // forces this method to never run
     {
         harmony.Patch(original, new HarmonyMethod(returnFalse));
     }
 
-    private static MethodInfo Method(string typeName, string methodName) // fast way to reference a method
+    public static void Mute(string typeName, string methodName)
+    {
+        harmony.Patch(Method(typeName, methodName), new HarmonyMethod(returnFalse));
+    }
+
+    public static void Mute(System.Type type, string methodName)
+    {
+        harmony.Patch(Method(type, methodName), new HarmonyMethod(returnFalse));
+    }
+    #endregion
+
+    public static MethodInfo Method(string typeName, string methodName) // fast way to reference a method
     {
         return AccessTools.Method(System.Type.GetType(typeName), methodName);
     }
 
-    private static MethodInfo Method(System.Type type, string methodName) // fast-ish way to reference a method
+    public static MethodInfo Method(System.Type type, string methodName) // fast-ish way to reference a method
     {
         return AccessTools.Method(type, methodName);
     }
