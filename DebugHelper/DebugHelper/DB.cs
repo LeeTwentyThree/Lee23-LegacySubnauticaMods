@@ -1,5 +1,7 @@
 ﻿using HarmonyLib;
+using System.Collections.Generic;
 using System.Reflection;
+using QModManager.API;
 
 /* Global namespace and short name to make it as accessible as possible
  * Class to help with the REPL console */
@@ -14,6 +16,15 @@ public static class DB
         harmony = new Harmony("Subnautica.DebugHelper");
         returnFalse = AccessTools.Method(typeof(DB), nameof(False));
         echo = AccessTools.Method(typeof(DB), nameof(Echo));
+
+        var allMods = QModServices.Main.GetAllMods();
+        foreach (var mod in allMods)
+        {
+            if (mod.IsLoaded)
+            {
+                knownAssemblyNames.Add(mod.Id);
+            }
+        }
     }
 
     public static void Echo(object[] __args, MethodBase __originalMethod)
@@ -21,7 +32,7 @@ public static class DB
         ErrorMessage.AddMessage($"Method run: {__originalMethod} with arguments: {__args}");
     }
 
-    public static bool False()
+    private static bool False()
     {
         return false;
     }
@@ -31,6 +42,12 @@ public static class DB
     {
         if (prefix) harmony.Patch(original, new HarmonyMethod(echo));
         else harmony.Patch(original, null, new HarmonyMethod(echo));
+    }
+
+    public static void Listen(string location, bool prefix = false)
+    {
+        if (prefix) harmony.Patch(Method(location), new HarmonyMethod(echo));
+        else harmony.Patch(Method(location), null, new HarmonyMethod(echo));
     }
 
     public static void Listen(string typeName, string methodName, bool prefix = false)
@@ -52,6 +69,11 @@ public static class DB
         harmony.Patch(original, new HarmonyMethod(returnFalse));
     }
 
+    public static void Mute(string location)
+    {
+        harmony.Patch(Method(location), new HarmonyMethod(returnFalse));
+    }
+
     public static void Mute(string typeName, string methodName)
     {
         harmony.Patch(Method(typeName, methodName), new HarmonyMethod(returnFalse));
@@ -63,13 +85,48 @@ public static class DB
     }
     #endregion
 
-    public static MethodInfo Method(string typeName, string methodName) // fast way to reference a method
+    public static MethodInfo Method(string location) // fastest way to reference a method ("Creature.Start")
     {
-        return AccessTools.Method(System.Type.GetType(typeName), methodName);
+        var split = location.Split('.');
+        var typeName = split[split.Length - 2];
+        var methodName = split[split.Length - 1];
+        return Method(typeName, methodName);
     }
 
-    public static MethodInfo Method(System.Type type, string methodName) // fast-ish way to reference a method
+    public static MethodInfo Method(string typeName, string methodName) // fast way to reference a method ("Creature", "Start")
+    {
+        return AccessTools.Method(TypeByName(typeName), methodName);
+    }
+
+    public static MethodInfo Method(System.Type type, string methodName) // fast-ish way to reference a method (typeof(Creature), "Start")
     {
         return AccessTools.Method(type, methodName);
+    }
+
+    public static System.Type TypeByName(string typeName)
+    {
+        foreach (var known in knownAssemblyNames)
+        {
+            var type = System.Type.GetType($"{typeName},{known}");
+            if (type != null)
+            {
+                return type;
+            }
+        }
+        return null;
+    }
+
+    private static List<string> knownAssemblyNames = new List<string>() { "Assembly-CSharp", "Assembly-CSharp-firstpass", "UnityEngine", "UnityEngine.CoreModule", "UnityEngine.PhysicsModule", "SMLHelper" };
+
+    public static string Help
+    {
+        get
+        {
+            return "Useful methods:\n" +
+                "Listen(MethodInfo original, bool prefix = false): Outputs method call information onto the screen whenever the given method is called.\n" +
+                "Mute(MethodInfo original): Stops a method from being called.\n" +
+                "Method(string location): Returns a MethodInfo by its name (ex: \"Peeper.Start\")\n" +
+                "Method(System.Type type, string methodName): Also returns a MethodInfo (ex: typeof(Peeper), \"Start\")\n";
+        }
     }
 }

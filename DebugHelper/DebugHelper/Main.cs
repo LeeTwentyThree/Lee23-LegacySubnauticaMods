@@ -13,6 +13,11 @@ namespace DebugHelper
             ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(PrefabCommands));
             ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(AudioCommands));
             ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(ColliderCommands));
+        }
+
+        [QModPostPatch()]
+        public static void PostPatch()
+        {
             DB.Setup();
         }
     }
