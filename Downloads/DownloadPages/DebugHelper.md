@@ -1,8 +1,8 @@
 # DebugHelper
 
-Added XXXXX 2022, last updated August XXXXX 2022.
+Added October 22 2022, last updated October 22 2022.
 
-### [Download Here](null)
+### [Download Here](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/DebugHelper.zip)
 
 My goal with this mod is to add as many useful commands and tools for debugging as possible to make Subnautica modding a more smooth experience. If you are a modder, feel free to contribute!
 
@@ -23,9 +23,18 @@ Requirements:
 
 `lookingat (hitTriggers = false)` - Returns the name of the hit collider, its parent, attached rigidbody, and entity root. Also useful for RuntimeEditor and similar tools.
 
-`showcolliders (hitTriggers = false)` - Renders all the colliders on the object that is being looked at.
+`showcolliders (hitTriggers = false)` - Renders all the colliders on the object that is being looked at. Colliders are color coded according to various factors:
+- Green: Solid colliders.
+- Red: Colliders attached to non-kinematic Rigidbodies.
+- Blue: Colliders attached to mesh renderers.
+- White: Triggers colliders.
 
-`entgal` - Spawns the entity gallery. Very unsafe!
+`showallcolliders [maxRange]` - Renders all the colliders within `maxRange` meters. Calling this command also removes all previously added collider renderers.
+
+`hidecolliders` - Destroys all collider renderers in the scene.
+
+`entgal` - Spawns the entity gallery, which contains all prefabs in the game. Very unsafe!
+
 ### REPL Console Tools
 This mod adds the [DB](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/DebugHelper/DebugHelper/DB.cs) class (in the global namespace) to assist with debugging and patching at Runtime. Call these methods in the REPL console (RuntimeEditor).
 
@@ -48,10 +57,10 @@ All of the methods in this class have various overloads which can be viewed [her
 
 ### Credits
 
-Programming done by Lee23.
+Programming done by Lee23. Thanks to EldritchCarMaker for testing & feedback.
 
 ### [Back to mods list](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md)
 
 ---
 
-###### [Source code for modders](null)
+###### [Source code for modders](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/tree/main/DebugHelper)
