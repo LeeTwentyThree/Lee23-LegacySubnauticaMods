@@ -181,6 +181,8 @@ Requirements:
 
 <a href="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ShrekLeviathan.md"><img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/ShrekLeviathan-Text.png" width=400px alt="Shrek Leviathan"></a>
 
+(Click the cool text)
+
 Replaces the Reaper Leviathan with Shrek. Yes, I'm serious. Why? I have no idea.
 
 ---
