@@ -22,7 +22,7 @@ Contact me: `32Eel#3756`
 
 [DeExtinction](https://github.com/LeeTwentyThree/DeExtinction) - [ECCLibrary](https://github.com/LeeTwentyThree/ECCLibrary) - [SeaVoyager](https://github.com/LeeTwentyThree/SeaVoyagerMod) - [WindTurbinesMod](https://github.com/LeeTwentyThree/WindTurbinesMod)
 
-### Other mod pages
+### Mods from other developers
 
 [MrPurple](https://github.com/MrPurple6411/MrPurple6411-Subnautica-Mods/releases) - [EldritchCarMaker](https://github.com/EldritchCarMaker/My-Subnautica-Mods/blob/main/README.md) - [Akari](https://github.com/Slothy-lol/AkarisSubnauticaMods/releases/tag/Mods) - [Chalkos](https://github.com/chalkos/Chalkos-Subnautica-Mods/blob/main/README.md) - [Field Creator Studios](http://fcstudioshub.com/subnautica) - [DesparationFighter](https://github.com/desperationfighter/Desperationfighter-SubnauticaMods/releases)
 
