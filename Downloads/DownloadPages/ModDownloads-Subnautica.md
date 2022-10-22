@@ -18,8 +18,8 @@ Challenge mods & uncategorized commissions
 - [RandomEvents](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#randomevents)
 - [ShrekLeviathan](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#shrekleviathan)
 
-Mods for developers
-- [DebugHelper](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/edit/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#debughelper)
+Mods for developers  
+- [DebugHelper](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#debughelper)
 
 [Accessibility mods](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#accessibility-mods)
 
