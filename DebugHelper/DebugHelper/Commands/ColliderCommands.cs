@@ -11,6 +11,7 @@ namespace DebugHelper.Commands
         private static Material colliderMaterial; // generic colliders
         private static Material physicsColliderMaterial; // colliders on non-kinematic rigidbodies
         private static Material triggerMaterial; // colliders with isTrigger set to true
+        private static Material meshColliderMaterial; // anything with the MeshCollider component
 
         private static List<GameObject> colliderRendererObjects = new List<GameObject>();
 
@@ -20,12 +21,15 @@ namespace DebugHelper.Commands
             yield return task;
 
             GameObject stasisRifle = task.GetResult();
-            colliderMaterial = new Material(stasisRifle.GetComponent<StasisRifle>().effectSpherePrefab.GetComponentInChildren<Renderer>().materials[1]);
+            var stasisBall = stasisRifle.GetComponent<StasisRifle>().effectSpherePrefab.GetComponentInChildren<Renderer>();
+            colliderMaterial = new Material(stasisBall.materials[1]);
             colliderMaterial.color = new Color(0.3f, 1f, 0f);
-            physicsColliderMaterial = new Material(stasisRifle.GetComponent<StasisRifle>().effectSpherePrefab.GetComponentInChildren<Renderer>().materials[1]);
+            physicsColliderMaterial = new Material(stasisBall.materials[1]);
             physicsColliderMaterial.color = new Color(1f, 0.2f, 0.2f);
-            triggerMaterial = new Material(stasisRifle.GetComponent<StasisRifle>().effectSpherePrefab.GetComponentInChildren<Renderer>().materials[1]);
+            triggerMaterial = new Material(stasisBall.materials[1]);
             triggerMaterial.color = new Color(0.5f, 0.5f, 0.5f);
+            meshColliderMaterial = new Material(stasisBall.materials[1]);
+            meshColliderMaterial.color = new Color(0.2f, 0.2f, 1f);
         }
 
         [ConsoleCommand("showcolliders")]
@@ -43,11 +47,17 @@ namespace DebugHelper.Commands
         [ConsoleCommand("hidecolliders")]
         public static void HideColliders()
         {
+            int destruido = 0;
             foreach (var obj in colliderRendererObjects)
             {
-                if (obj != null) Object.Destroy(obj);
+                if (obj != null)
+                {
+                    Object.Destroy(obj);
+                    destruido++;
+                }
             }
             colliderRendererObjects.Clear();
+            ErrorMessage.AddMessage($"Destroyed all {destruido} collider renderers.");
         }
 
         private static IEnumerator ShowCollidersCoroutine(bool hitsTriggers)
@@ -94,13 +104,22 @@ namespace DebugHelper.Commands
                 yield return CoroutineHost.StartCoroutine(LoadStasisFieldMaterial());
             }
             var center = MainCameraControl.main.transform.position;
-            var colliders = Physics.OverlapSphere(center, maxRange);
+            var allColliders = Physics.OverlapSphere(center, maxRange); // all colliders
+            var colliders = new List<Collider>(); // just colliders we want to use
+            var playerRb = Player.main.rigidBody;
+            foreach (var collider in allColliders)
+            {
+                if (collider.attachedRigidbody != playerRb) // don't show player colliders
+                {
+                    colliders.Add(collider);
+                }
+            }
+            ErrorMessage.AddMessage($"Showing all {colliders.Count} colliders within {(int)maxRange} meters.");
             foreach (var collider in colliders)
             {
                 RenderCollider(collider);
-                yield return null;
             }
-            ErrorMessage.AddMessage($"Showing all {colliders.Length} colliders within {(int)maxRange} meters.");
+            ErrorMessage.AddMessage("Use the 'hidecolliders' command to revert these changes.");
         }
 
         private static void RenderCollidersInChildren(Transform objectRoot)
@@ -116,6 +135,7 @@ namespace DebugHelper.Commands
             var colliderType = ColliderType.Collider;
             if (col.attachedRigidbody != null && !col.attachedRigidbody.isKinematic) colliderType = ColliderType.PhysicsCollider;
             if (col.isTrigger) colliderType = ColliderType.Trigger;
+            if (col is MeshCollider) colliderType = ColliderType.Mesh;
             var parent = col.transform;
             if (col is SphereCollider sphere)
             {
@@ -164,6 +184,7 @@ namespace DebugHelper.Commands
                 default: return colliderMaterial; ;
                 case ColliderType.Trigger: return triggerMaterial;
                 case ColliderType.PhysicsCollider: return physicsColliderMaterial;
+                case ColliderType.Mesh: return meshColliderMaterial;
             }
 
         }
@@ -185,7 +206,8 @@ namespace DebugHelper.Commands
         {
             Collider,
             PhysicsCollider,
-            Trigger
+            Trigger,
+            Mesh
         }
 
         [ConsoleCommand("lookingat")]
