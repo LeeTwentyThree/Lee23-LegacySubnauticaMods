@@ -27,7 +27,22 @@ public static class DB
         }
     }
 
-    public static void Echo(object[] __args, MethodBase __originalMethod)
+    public static void Echo(MethodBase __originalMethod)
+    {
+        var methodName = $"{__originalMethod.DeclaringType.FullName}.{__originalMethod.Name}";
+        var message = $"Method run: {methodName}";
+        if (__originalMethod is MethodInfo method)
+        {
+            message += $" (returns {method.ReturnType})";
+        }
+        if (__originalMethod.IsVirtual)
+        {
+            message += " (Virtual)";
+        }
+        ErrorMessage.AddMessage(message);
+    }
+
+    public static void EchoWithArgs(object[] __args, MethodBase __originalMethod)
     {
         ErrorMessage.AddMessage($"Method run: {__originalMethod} with arguments: {__args}");
     }
