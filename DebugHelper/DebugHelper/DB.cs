@@ -17,7 +17,7 @@ public static class DB
         harmony = new Harmony("Subnautica.DebugHelper");
         returnFalse = AccessTools.Method(typeof(DB), nameof(False));
         echo = AccessTools.Method(typeof(DB), nameof(Echo));
-        echoWithArgs = AccessTools.Method(typeof(DB), nameof(EchoWithArgs));
+        echoWithArgs = AccessTools.Method(typeof(DB), nameof(EchoArgs));
 
         var allMods = QModServices.Main.GetAllMods();
         foreach (var mod in allMods)
@@ -44,21 +44,11 @@ public static class DB
         ErrorMessage.AddMessage(message);
     }
 
-    public static void EchoWithArgs(MethodBase __originalMethod, object[] __args)
+    public static void EchoArgs(object[] __args)
     {
-        var methodName = $"{__originalMethod.DeclaringType.FullName}.{__originalMethod.Name}";
-        var message = $"Method run: {methodName}";
-        if (__originalMethod is MethodInfo method)
-        {
-            message += $" (returns {method.ReturnType})";
-        }
-        if (__originalMethod.IsVirtual)
-        {
-            message += " (Virtual)";
-        }
+        var message = $"Method run. Echoing arguments: ";
         if (__args != null)
         {
-            message += "(";
             for (int i = 0; i < __args.Length; i++)
             {
                 if (__args[i] == null) message += "null";
@@ -68,7 +58,6 @@ public static class DB
                     message += ", ";
                 }
             }
-            message += ")";
         }
         ErrorMessage.AddMessage(message);
     }
