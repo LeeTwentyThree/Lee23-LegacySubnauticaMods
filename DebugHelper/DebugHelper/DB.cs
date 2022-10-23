@@ -10,12 +10,14 @@ public static class DB
     public static Harmony harmony;
     public static MethodInfo returnFalse;
     private static MethodInfo echo;
+    private static MethodInfo echoWithArgs;
     
     internal static void Setup()
     {
         harmony = new Harmony("Subnautica.DebugHelper");
         returnFalse = AccessTools.Method(typeof(DB), nameof(False));
         echo = AccessTools.Method(typeof(DB), nameof(Echo));
+        echoWithArgs = AccessTools.Method(typeof(DB), nameof(EchoWithArgs));
 
         var allMods = QModServices.Main.GetAllMods();
         foreach (var mod in allMods)
@@ -42,9 +44,33 @@ public static class DB
         ErrorMessage.AddMessage(message);
     }
 
-    public static void EchoWithArgs(object[] __args, MethodBase __originalMethod)
+    public static void EchoWithArgs(MethodBase __originalMethod, object[] __args)
     {
-        ErrorMessage.AddMessage($"Method run: {__originalMethod} with arguments: {__args}");
+        var methodName = $"{__originalMethod.DeclaringType.FullName}.{__originalMethod.Name}";
+        var message = $"Method run: {methodName}";
+        if (__originalMethod is MethodInfo method)
+        {
+            message += $" (returns {method.ReturnType})";
+        }
+        if (__originalMethod.IsVirtual)
+        {
+            message += " (Virtual)";
+        }
+        if (__args != null)
+        {
+            message += "(";
+            for (int i = 0; i < __args.Length; i++)
+            {
+                if (__args[i] == null) message += "null";
+                else message += __args[i].ToString();
+                if (i < __args.Length - 1)
+                {
+                    message += ", ";
+                }
+            }
+            message += ")";
+        }
+        ErrorMessage.AddMessage(message);
     }
 
     private static bool False()
@@ -75,6 +101,32 @@ public static class DB
     {
         if (prefix) harmony.Patch(Method(type, methodName), new HarmonyMethod(echo));
         else harmony.Patch(Method(type, methodName), null, new HarmonyMethod(echo));
+    }
+    #endregion
+
+    #region Listen args
+    public static void ListenArgs(MethodInfo original, bool prefix = false) // whenever the method is run, shows information about it on screen
+    {
+        if (prefix) harmony.Patch(original, new HarmonyMethod(echoWithArgs));
+        else harmony.Patch(original, null, new HarmonyMethod(echoWithArgs));
+    }
+
+    public static void ListenArgs(string location, bool prefix = false)
+    {
+        if (prefix) harmony.Patch(Method(location), new HarmonyMethod(echoWithArgs));
+        else harmony.Patch(Method(location), null, new HarmonyMethod(echoWithArgs));
+    }
+
+    public static void ListenArgs(string typeName, string methodName, bool prefix = false)
+    {
+        if (prefix) harmony.Patch(Method(typeName, methodName), new HarmonyMethod(echoWithArgs));
+        else harmony.Patch(Method(typeName, methodName), null, new HarmonyMethod(echoWithArgs));
+    }
+
+    public static void ListenArgs(System.Type type, string methodName, bool prefix = false)
+    {
+        if (prefix) harmony.Patch(Method(type, methodName), new HarmonyMethod(echoWithArgs));
+        else harmony.Patch(Method(type, methodName), null, new HarmonyMethod(echoWithArgs));
     }
     #endregion
 
@@ -139,6 +191,7 @@ public static class DB
         {
             return "Useful methods:\n" +
                 "Listen(MethodInfo original, bool prefix = false): Outputs method call information onto the screen whenever the given method is called.\n" +
+                "ListenArgs(MethodInfo original, bool prefix = false): Outputs method call information onto the screen whenever the given method is called. Also outputs all parameters passed into the method call.\n" +
                 "Mute(MethodInfo original): Stops a method from being called.\n" +
                 "Method(string location): Returns a MethodInfo by its name (ex: \"Peeper.Start\")\n" +
                 "Method(System.Type type, string methodName): Also returns a MethodInfo (ex: typeof(Peeper), \"Start\")\n";
