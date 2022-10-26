@@ -18,6 +18,10 @@ Requirements:
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Images/Blaza.png" width=400px>
 </div>
 
+Spawn ID list:
+- `bloop`
+- `blazaleviathan`
+
 ### Credits
 
 Mod commissioned by Socksfor1, models and art created by Dinofuzz, programming done by Lee23.
