@@ -180,7 +180,7 @@ public static class DB
         {
             return "Useful methods:\n" +
                 "Listen(MethodInfo original, bool prefix = false): Outputs method call information onto the screen whenever the given method is called.\n" +
-                "ListenArgs(MethodInfo original, bool prefix = false): Outputs method call information onto the screen whenever the given method is called. Also outputs all parameters passed into the method call.\n" +
+                "[BROKEN] ListenArgs(MethodInfo original, bool prefix = false): Outputs method call information onto the screen whenever the given method is called. Also outputs all parameters passed into the method call.\n" +
                 "Mute(MethodInfo original): Stops a method from being called.\n" +
                 "Method(string location): Returns a MethodInfo by its name (ex: \"Peeper.Start\")\n" +
                 "Method(System.Type type, string methodName): Also returns a MethodInfo (ex: typeof(Peeper), \"Start\")\n";
