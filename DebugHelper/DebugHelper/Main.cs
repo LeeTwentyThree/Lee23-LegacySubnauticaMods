@@ -22,6 +22,7 @@ namespace DebugHelper
             ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(PrefabCommands));
             ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(AudioCommands));
             ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(ColliderCommands));
+            ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(LightCommands));
 
             assetBundle = Helpers.LoadAssetBundleFromAssetsFolder(Assembly.GetExecutingAssembly(), "debughelper");
             DebugIconManager.Icons.LoadIcons(assetBundle);
