@@ -177,6 +177,7 @@ Go watch [Socksfor1's video](https://youtu.be/j4lmTD8n4ls) on it!
 
 Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
+- [ECCLibrary](https://www.nexusmods.com/subnautica/mods/619)
 
 ---
 
