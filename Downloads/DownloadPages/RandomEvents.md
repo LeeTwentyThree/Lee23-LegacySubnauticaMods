@@ -16,6 +16,7 @@ Maybe set up a hardcore world, time yourself to speedrun, and see how far you ca
 
 Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
+- [ECCLibrary](https://www.nexusmods.com/subnautica/mods/619)
 - Return of the Ancients (optional)
 
 <div>
