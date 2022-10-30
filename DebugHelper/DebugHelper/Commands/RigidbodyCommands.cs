@@ -18,11 +18,11 @@ namespace DebugHelper.Commands
             var all = Object.FindObjectsOfType<Rigidbody>();
             var toRender = new List<Rigidbody>();
             var squareDistance = actualDistanceThreshold * actualDistanceThreshold;
-            foreach (var lm in all)
+            foreach (var rb in all)
             {
-                if (Vector3.SqrMagnitude(lm.transform.position - comparePosition) < squareDistance)
+                if (Vector3.SqrMagnitude(rb.transform.position - comparePosition) < squareDistance && rb.gameObject.GetComponentInParent<Player>() == null)
                 {
-                    toRender.Add(lm);
+                    toRender.Add(rb);
                 }
             }
             if (!hideMessage) ErrorMessage.AddMessage($"Showing Rigidbodies on all {toRender.Count} GameObjects within a range of {actualDistanceThreshold} meters.");
