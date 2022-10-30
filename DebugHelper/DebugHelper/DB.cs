@@ -14,7 +14,7 @@ public static class DB
     
     internal static void Setup()
     {
-        harmony = new Harmony("Subnautica.DebugHelper");
+        harmony = DebugHelper.Main.harmony;
         returnFalse = AccessTools.Method(typeof(DB), nameof(False));
         echo = AccessTools.Method(typeof(DB), nameof(Echo));
         echoWithArgs = AccessTools.Method(typeof(DB), nameof(EchoArgs));

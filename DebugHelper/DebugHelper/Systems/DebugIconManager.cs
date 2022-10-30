@@ -54,6 +54,23 @@ namespace DebugHelper.Systems
                     poolItem.UpdateUI();
                 }
             }
+            CleanupPool();
+        }
+
+        private void CleanupPool() // called every frame, just removes up to ONE per frame
+        {
+            foreach (var poolItem in pool)
+            {
+                if (poolItem.CheckIfUnused())
+                {
+                    if (poolItem.instance != null)
+                    {
+                        Destroy(poolItem.instance.gameObject);
+                    }
+                    pool.Remove(poolItem);
+                    return;
+                }
+            }
         }
 
         private void AddToPool(IDebugIcon debugIcon)
@@ -78,7 +95,7 @@ namespace DebugHelper.Systems
             {
                 if (poolItem.debugIcon == debugIcon)
                 {
-                    poolItem.Deactivate();
+                    poolItem.Remove();
                     return;
                 }
             }
@@ -90,6 +107,8 @@ namespace DebugHelper.Systems
         {
             public IDebugIcon debugIcon;
             public DebugIconInstance instance;
+            public UnityEngine.Object componentForInterface;
+            public bool removed;
 
             public PoolItem()
             {
@@ -97,6 +116,7 @@ namespace DebugHelper.Systems
 
             public void AssignInterface(IDebugIcon debugIcon)
             {
+                removed = false;
                 this.debugIcon = debugIcon;
                 if (instance == null)
                 {
@@ -104,6 +124,10 @@ namespace DebugHelper.Systems
                 }
                 debugIcon.OnCreation(instance);
                 instance.gameObject.SetActive(true);
+                if (debugIcon is UnityEngine.Object component)
+                {
+                    componentForInterface = component;
+                }
             }
 
             public void UpdateUI()
@@ -113,7 +137,18 @@ namespace DebugHelper.Systems
 
             public bool CheckIfUnused()
             {
-                return instance == null || !instance.gameObject.activeSelf || debugIcon == null || (debugIcon as UnityEngine.Object == null);
+                if (removed || instance == null || !instance.gameObject.activeSelf || debugIcon == null)
+                {
+                    return true;
+                }
+                if (debugIcon is UnityEngine.Object component)
+                {
+                    if (component == null)
+                    {
+                        return true;
+                    }
+                }
+                return false;
             }
 
             private void CreateUIObject(IDebugIcon debugIcon)
@@ -123,15 +158,19 @@ namespace DebugHelper.Systems
                 instance.UpdateAppearance(debugIcon);
             }
 
-            public void Deactivate()
+            public void Remove()
             {
                 debugIcon = null;
-                instance.gameObject.SetActive(false);
+                componentForInterface = null;
+                if (instance) instance.gameObject.SetActive(false);
+                removed = true;
             }
         }
 
         public static class Icons
         {
+            public static Sprite Audio { get; private set; }
+            public static Sprite AudioLooping { get; private set; }
             public static Sprite CheckSymbol { get; private set; }
             public static Sprite Circle { get; private set; }
             public static Sprite CubeHollow { get; private set; }
@@ -141,6 +180,7 @@ namespace DebugHelper.Systems
             public static Sprite GearHolllow { get; private set; }
             public static Sprite GearSolid { get; private set; }
             public static Sprite Globe { get; private set; }
+            public static Sprite Health { get; private set; }
             public static Sprite Light { get; private set; }
             public static Sprite Lightning { get; private set; }
             public static Sprite Peeper { get; private set; }
@@ -153,6 +193,8 @@ namespace DebugHelper.Systems
 
             internal static void LoadIcons(AssetBundle assets)
             {
+                Audio = assets.LoadAsset<Sprite>("Icon-Audio");
+                AudioLooping = assets.LoadAsset<Sprite>("Icon-Audio-Looping");
                 CheckSymbol = assets.LoadAsset<Sprite>("Icon-Check");
                 Circle = assets.LoadAsset<Sprite>("Icon-Circle");
                 CubeHollow = assets.LoadAsset<Sprite>("Icon-Cube-Hollow");
@@ -162,6 +204,7 @@ namespace DebugHelper.Systems
                 GearHolllow = assets.LoadAsset<Sprite>("Icon-Gear-Hollow");
                 GearSolid = assets.LoadAsset<Sprite>("Icon-Gear-Solid");
                 Globe = assets.LoadAsset<Sprite>("Icon-Globe");
+                Health = assets.LoadAsset<Sprite>("Icon-Health");
                 Light = assets.LoadAsset<Sprite>("Icon-Light");
                 Lightning = assets.LoadAsset<Sprite>("Icon-Lightning");
                 Peeper = assets.LoadAsset<Sprite>("Icon-Peeper");

@@ -11,7 +11,7 @@ namespace DebugHelper.Commands
         private static List<RenderedLight> renderedLights = new List<RenderedLight>();
 
         [ConsoleCommand("showlights")]
-        public static void ShowLights(float inRange)
+        public static void ShowLights(float inRange, bool hideMessage = false)
         {
             HideLights();
             var comparePosition = SNCameraRoot.main.transform.position;
@@ -25,7 +25,7 @@ namespace DebugHelper.Commands
                     lightsToRender.Add(l);
                 }
             }
-            ErrorMessage.AddMessage($"Showing all {lightsToRender.Count} lights within a range of {actualDistanceThreshold} meters.");
+            if (!hideMessage) ErrorMessage.AddMessage($"Showing all {lightsToRender.Count} lights within a range of {actualDistanceThreshold} meters.");
             foreach (var light in lightsToRender)
             {
                 var component = light.gameObject.EnsureComponent<RenderedLight>();
@@ -47,28 +47,13 @@ namespace DebugHelper.Commands
             renderedLights.Clear();
         }
 
-        private class RenderedLight : MonoBehaviour, IDebugIcon
+        private class RenderedLight : BasicDebugIcon, IDebugIcon
         {
-            private void OnEnable()
-            {
-                DebugIconManager.Main.Register(this);
-            }
-
-            private void OnDisable()
-            {
-                DebugIconManager.Main.Unregister(this);
-            }
-
-            public void OnCreation(DebugIconInstance instance)
-            {
-                
-            }
-
             public Light attachedLight;
 
             private Color invalidColor = new Color(1f, 0f, 0f, DebugIconManager.kInactiveComponentAlpha);
 
-            public string Label
+            public override string Label
             {
                 get
                 {
@@ -77,7 +62,7 @@ namespace DebugHelper.Commands
                 }
             }
 
-            public Sprite Icon
+            public override Sprite Icon
             {
                 get
                 {
@@ -96,11 +81,11 @@ namespace DebugHelper.Commands
                 }
             }
 
-            public Vector3 Position => transform.position;
+            public override Vector3 Position => transform.position;
 
-            public float Scale => 1f;
+            public override float Scale => 1f;
 
-            public Color Color
+            public override Color Color
             {
                 get
                 {

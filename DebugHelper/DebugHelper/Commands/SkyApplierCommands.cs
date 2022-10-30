@@ -11,7 +11,7 @@ namespace DebugHelper.Commands
         private static List<RenderedSkyApplier> renderedSkyAppliers = new List<RenderedSkyApplier>();
 
         [ConsoleCommand("showskyappliers")]
-        public static void ShowSkyAppliers(float inRange)
+        public static void ShowSkyAppliers(float inRange, bool hideMessage = false)
         {
             HideSkyAppliers();
             var comparePosition = SNCameraRoot.main.transform.position;
@@ -25,7 +25,7 @@ namespace DebugHelper.Commands
                     toRender.Add(s);
                 }
             }
-            ErrorMessage.AddMessage($"Showing all {toRender.Count} SkyAppliers within a range of {actualDistanceThreshold} meters.");
+            if (!hideMessage) ErrorMessage.AddMessage($"Showing all {toRender.Count} SkyAppliers within a range of {actualDistanceThreshold} meters.");
             foreach (var skyApplier in toRender)
             {
                 var component = skyApplier.gameObject.EnsureComponent<RenderedSkyApplier>();
@@ -47,37 +47,26 @@ namespace DebugHelper.Commands
             renderedSkyAppliers.Clear();
         }
 
-        private class RenderedSkyApplier : MonoBehaviour, IDebugIcon
+        private class RenderedSkyApplier : BasicDebugIcon
         {
-            private void OnEnable()
-            {
-                DebugIconManager.Main.Register(this);
-            }
-
-            private void OnDisable()
-            {
-                DebugIconManager.Main.Unregister(this);
-            }
-
-            public void OnCreation(DebugIconInstance instance)
-            {
-                
-            }
-
             public SkyApplier attachedSkyApplier;
 
             private Color invalidColor = new Color(1f, 0f, 0f, DebugIconManager.kInactiveComponentAlpha);
 
-            public string Label
+            public override string Label
             {
                 get
                 {
                     if (attachedSkyApplier == null) return "Null";
+                    if (attachedSkyApplier.applySky != null)
+                    {
+                        return attachedSkyApplier.applySky.name;
+                    }
                     return gameObject.name;
                 }
             }
 
-            public Sprite Icon
+            public override Sprite Icon
             {
                 get
                 {
@@ -89,11 +78,11 @@ namespace DebugHelper.Commands
                 }
             }
 
-            public Vector3 Position => transform.position;
+            public override Vector3 Position => transform.position;
 
-            public float Scale => 1f;
+            public override float Scale => 1f;
 
-            public Color Color
+            public override Color Color
             {
                 get
                 {
@@ -104,7 +93,7 @@ namespace DebugHelper.Commands
                     var sky = attachedSkyApplier.applySky;
                     if (sky == null)
                     {
-                        return Color.white;
+                        return Color.black;
                     }
                     if (sky.Outdoors)
                     {

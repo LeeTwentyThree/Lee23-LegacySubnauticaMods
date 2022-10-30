@@ -39,13 +39,13 @@ namespace DebugHelper.Commands
         }
 
         [ConsoleCommand("showallcolliders")]
-        public static void ShowCollidersInRange(float maxRange)
+        public static void ShowCollidersInRange(float maxRange, bool hideMessages = false)
         {
-            CoroutineHost.StartCoroutine(ShowCollidersInRangeCoroutine(maxRange));
+            CoroutineHost.StartCoroutine(ShowCollidersInRangeCoroutine(maxRange, hideMessages));
         }
 
         [ConsoleCommand("hidecolliders")]
-        public static void HideColliders()
+        public static void HideColliders(bool hideMessages = false)
         {
             int destruido = 0;
             foreach (var obj in colliderRendererObjects)
@@ -57,7 +57,7 @@ namespace DebugHelper.Commands
                 }
             }
             colliderRendererObjects.Clear();
-            ErrorMessage.AddMessage($"Destroyed all {destruido} collider renderers.");
+            if (!hideMessages) ErrorMessage.AddMessage($"Destroyed all {destruido} collider renderers.");
         }
 
         private static IEnumerator ShowCollidersCoroutine(bool hitsTriggers)
@@ -97,13 +97,13 @@ namespace DebugHelper.Commands
             }
         }
 
-        private static IEnumerator ShowCollidersInRangeCoroutine(float maxRange)
+        private static IEnumerator ShowCollidersInRangeCoroutine(float maxRange, bool hideMessages = false)
         {
             if (colliderMaterial == null)
             {
                 yield return CoroutineHost.StartCoroutine(LoadStasisFieldMaterial());
             }
-            HideColliders();
+            HideColliders(hideMessages);
             var center = SNCameraRoot.main.transform.position;
             var allColliders = Physics.OverlapSphere(center, maxRange); // all colliders
             var colliders = new List<Collider>(); // just colliders we want to use
@@ -115,12 +115,12 @@ namespace DebugHelper.Commands
                     colliders.Add(collider);
                 }
             }
-            ErrorMessage.AddMessage($"Showing all {colliders.Count} colliders within {(int)maxRange} meters.");
+            if (!hideMessages) ErrorMessage.AddMessage($"Showing all {colliders.Count} colliders within {(int)maxRange} meters.");
             foreach (var collider in colliders)
             {
                 RenderCollider(collider);
             }
-            ErrorMessage.AddMessage("Use the 'hidecolliders' command to revert these changes. Running the command again will also reset the colliders.");
+            if (!hideMessages) ErrorMessage.AddMessage("Use the 'hidecolliders' command to revert these changes. Running the command again will also reset the colliders.");
         }
 
         private static void RenderCollidersInChildren(Transform objectRoot)

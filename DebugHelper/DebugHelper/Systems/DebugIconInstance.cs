@@ -28,11 +28,16 @@ namespace DebugHelper.Systems
             var color = reference.Color;
             color = color.ToAlpha(color.a * GetDistanceAlphaBlend(screenPoint.z));
 
+            var sprite = reference.Icon;
+            var label = reference.Label;
+
             UpdatePosition(screenPoint, reference.Scale, distanceToCamera);
             image.color = color;
+            image.enabled = sprite != null;
             text.color = color;
-            text.text = reference.Label;
-            image.sprite = reference.Icon;
+            text.text = label;
+            text.enabled = !string.IsNullOrEmpty(label);
+            image.sprite = sprite;
         }
 
         private void UpdatePosition(Vector3 screenPoint, float scale, float distance)

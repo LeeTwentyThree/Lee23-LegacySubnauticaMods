@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using UnityEngine;
+
+namespace DebugHelper.Systems
+{
+    public abstract class BasicDebugIcon : MonoBehaviour, IDebugIcon
+    {
+        private void OnEnable()
+        {
+            DebugIconManager.Main.Register(this);
+        }
+
+        private void OnDisable()
+        {
+            DebugIconManager.Main.Unregister(this);
+        }
+
+        public abstract string Label { get; }
+
+        public abstract Sprite Icon { get; }
+        public abstract Vector3 Position { get; }
+        public abstract float Scale { get; }
+        public abstract Color Color { get; }
+
+        public virtual void OnCreation(DebugIconInstance instance)
+        {
+
+        }
+    }
+}

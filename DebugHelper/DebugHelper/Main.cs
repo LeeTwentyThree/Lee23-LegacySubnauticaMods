@@ -4,6 +4,7 @@ using DebugHelper.Commands;
 using DebugHelper.Systems;
 using UnityEngine;
 using System.Reflection;
+using HarmonyLib;
 
 namespace DebugHelper
 {
@@ -11,6 +12,8 @@ namespace DebugHelper
     public static class Main
     {
         public static Config config;
+        public static Assembly assembly = Assembly.GetExecutingAssembly();
+        public static Harmony harmony;
 
         internal static AssetBundle assetBundle;
 
@@ -24,9 +27,13 @@ namespace DebugHelper
             ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(ColliderCommands));
             ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(LightCommands));
             ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(SkyApplierCommands));
+            ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(GenericCommands));
 
-            assetBundle = Helpers.LoadAssetBundleFromAssetsFolder(Assembly.GetExecutingAssembly(), "debughelper");
+            assetBundle = Helpers.LoadAssetBundleFromAssetsFolder(assembly, "debughelper");
             DebugIconManager.Icons.LoadIcons(assetBundle);
+
+            harmony = new Harmony("Subnautica.DebugHelper");
+            harmony.PatchAll(assembly);
         }
 
         [QModPostPatch()]

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using SMLHelper.V2.Commands;
-using System.Collections;
-using UWE;
+using System.Collections.Generic;
+using DebugHelper.Systems;
 
 namespace DebugHelper.Commands
 {
@@ -101,6 +101,125 @@ namespace DebugHelper.Commands
                 }
             }
             return valid;
+        }
+
+        private static List<SoundEmitterRenderer> renderedSoundEmmiters = new List<SoundEmitterRenderer>();
+
+        [ConsoleCommand("showemitters")]
+        public static void ShowEmitters(float inRange, bool hideMessage = false)
+        {
+            HideEmitters();
+            var comparePosition = SNCameraRoot.main.transform.position;
+            var actualDistanceThreshold = inRange < 0f ? float.MaxValue : inRange;
+            var all = Object.FindObjectsOfType<FMOD_CustomEmitter>();
+            var toRender = new List<FMOD_CustomEmitter>();
+            foreach (var e in all)
+            {
+                if (Vector3.Distance(e.transform.position, comparePosition) < actualDistanceThreshold)
+                {
+                    toRender.Add(e);
+                }
+            }
+            if (!hideMessage) ErrorMessage.AddMessage($"Showing all {toRender.Count} FMOD emitters within a range of {actualDistanceThreshold} meters.");
+            foreach (var emitter in toRender)
+            {
+                var component = emitter.gameObject.EnsureComponent<SoundEmitterRenderer>();
+                component.emitter = emitter;
+                renderedSoundEmmiters.Add(component);
+            }
+        }
+
+        [ConsoleCommand("hideemitters")]
+        public static void HideEmitters()
+        {
+            foreach (var emitter in renderedSoundEmmiters)
+            {
+                if (emitter != null)
+                {
+                    Object.DestroyImmediate(emitter);
+                }
+            }
+            renderedSoundEmmiters.Clear();
+        }
+
+        public class SoundEmitterRenderer : BasicDebugIcon
+        {
+            public FMOD_CustomEmitter emitter;
+
+            private Color invalidColor = new Color(1f, 0f, 0f, DebugIconManager.kInactiveComponentAlpha);
+
+            private Color orange = new Color(252f / 255, 194f / 255, 0f);
+
+            private bool isLooping;
+
+            private void Start()
+            {
+                if (emitter != null)
+                {
+                    if (emitter is FMOD_CustomLoopingEmitter || emitter is FMOD_CustomLoopingEmitterWithCallback)
+                    {
+                        isLooping = true;
+                    }
+                }
+            }
+
+            private bool Invalid
+            {
+                get
+                {
+                    return emitter == null;
+                }
+            }
+
+            public override string Label
+            {
+                get
+                {
+                    if (Invalid) return "Removed";
+                    if (emitter.asset == null) return "No asset";
+                    return emitter.asset.path;
+                }
+            }
+
+            public override Sprite Icon
+            {
+                get
+                {
+                    if (Invalid)
+                    {
+                        return DebugIconManager.Icons.Question;
+                    }
+                    if (isLooping)
+                    {
+                        return DebugIconManager.Icons.AudioLooping;
+                    }
+                    return DebugIconManager.Icons.Audio;
+                }
+            }
+
+            public override Vector3 Position => transform.position;
+
+            public override float Scale
+            {
+                get
+                {
+                    if (Invalid || !emitter.playing)
+                    {
+                        return 1f;
+                    }
+                    return 1.2f;
+                }
+            }
+
+            public override Color Color
+            {
+                get
+                {
+                    if (Invalid) return invalidColor;
+                    if (emitter.followParent) return orange;
+                    return Color.white;
+                }
+            }
         }
     }
 }
