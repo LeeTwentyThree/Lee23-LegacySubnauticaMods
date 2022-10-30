@@ -99,7 +99,7 @@ namespace DebugHelper.Commands
                 {
                     return "useGravity should be disabled!";
                 }
-                return "Good WorldForces";
+                return "WorldForces OK";
             }
 
             public override Sprite Icon => DebugIconManager.Icons.CubeSolid;
