@@ -8,18 +8,41 @@ namespace DebugHelper.Systems
         private bool automatedLights;
         private bool automatedSkyAppliers;
         private bool automatedEmitters;
-        private bool automatedColliders;
+        private bool automatedCreatureActions;
+        private bool automatedHealth;
+
+        private bool lightsLastFrame;
+        private bool skyAppliersLastFrame;
+        private bool emittersLastFrame;
+        private bool creatureActionsLastFrame;
+        private bool healthLastFrame;
 
         private float timeLastUpdated;
-        private float updateRate = 1f;
 
         private void Update()
         {
-            if (Time.time > timeLastUpdated + updateRate)
+            if (Time.time > timeLastUpdated + Main.config.DebugUpdateInterval || UpdateNeeded())
             {
                 timeLastUpdated = Time.time;
                 LazyUpdate();
             }
+        }
+
+        private bool UpdateNeeded()
+        {
+            bool necessary = false;
+            var config = Main.config;
+            if (lightsLastFrame != config.ShowLights) necessary = true;
+            if (skyAppliersLastFrame != config.ShowSkyAppliers) necessary = true;
+            if (emittersLastFrame != config.ShowEmitters) necessary = true;
+            if (creatureActionsLastFrame != config.ShowCreatureActions) necessary = true;
+            if (healthLastFrame != config.ShowHealth) necessary = true;
+            lightsLastFrame = config.ShowLights;
+            skyAppliersLastFrame = config.ShowSkyAppliers;
+            emittersLastFrame = config.ShowEmitters;
+            creatureActionsLastFrame = config.ShowCreatureActions;
+            healthLastFrame = config.ShowHealth;
+            return necessary;
         }
 
         private void LazyUpdate()
@@ -29,18 +52,27 @@ namespace DebugHelper.Systems
             if (automatedLights && !config.ShowLights)
             {
                 LightCommands.HideLights();
+                automatedLights = false;
             }
             if (automatedSkyAppliers && !config.ShowSkyAppliers)
             {
                 SkyApplierCommands.HideSkyAppliers();
+                automatedSkyAppliers = false;
             }
             if (automatedEmitters && !config.ShowEmitters)
             {
                 AudioCommands.HideEmitters();
+                automatedEmitters = false;
             }
-            if (automatedColliders && !config.ShowColliders)
+            if (automatedCreatureActions && !config.ShowCreatureActions)
             {
-                ColliderCommands.HideColliders(true);
+                CreatureCommands.HideCreatureActions();
+                automatedCreatureActions = false;
+            }
+            if (automatedHealth && !config.ShowHealth)
+            {
+                LiveMixinCommands.HideHealth();
+                automatedHealth = false;
             }
 
             // show things that need to be shown
@@ -60,10 +92,15 @@ namespace DebugHelper.Systems
                 AudioCommands.ShowEmitters(range, true);
                 automatedEmitters = true;
             }
-            if (config.ShowColliders)
+            if (config.ShowCreatureActions)
             {
-                ColliderCommands.ShowCollidersInRange(range, true);
-                automatedColliders = true;
+                CreatureCommands.ShowCreatureActions(range, true);
+                automatedCreatureActions = true;
+            }
+            if (config.ShowHealth)
+            {
+                LiveMixinCommands.ShowHealth(range, true);
+                automatedHealth = true;
             }
         }
     }

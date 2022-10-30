@@ -18,9 +18,10 @@ namespace DebugHelper.Commands
             var actualDistanceThreshold = inRange < 0f ? float.MaxValue : inRange;
             var all = Object.FindObjectsOfType<SkyApplier>();
             var toRender = new List<SkyApplier>();
+            var squareDistance = actualDistanceThreshold * actualDistanceThreshold;
             foreach (var s in all)
             {
-                if (Vector3.Distance(s.transform.position, comparePosition) < actualDistanceThreshold)
+                if (Vector3.SqrMagnitude(s.transform.position - comparePosition) < squareDistance)
                 {
                     toRender.Add(s);
                 }
@@ -50,8 +51,6 @@ namespace DebugHelper.Commands
         private class RenderedSkyApplier : BasicDebugIcon
         {
             public SkyApplier attachedSkyApplier;
-
-            private Color invalidColor = new Color(1f, 0f, 0f, DebugIconManager.kInactiveComponentAlpha);
 
             public override string Label
             {

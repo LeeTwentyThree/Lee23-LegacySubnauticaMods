@@ -11,16 +11,20 @@ namespace DebugHelper
         [Toggle("3D Debug Icons")]
         public bool DebugIconsAre3D = true;
 
-        [Slider("Debug range", DefaultValue = 35f, Min = -1f, Max = 150f, Tooltip = "Values less than 0 count as infinity.")]
+        [Slider("Debug range", DefaultValue = 35f, Min = -1f, Max = 150f, Tooltip = "Values less than 0 count as infinity. High values can be VERY slow.")]
         public float DebugRange = 35f;
-        [Toggle("Debug lights")]
+        [Slider("Debug update interval", DefaultValue = 1f, Min = 1f, Max = 10f, Tooltip = "The number of seconds between debug renderers being automatically regenerated.\nIncrease this value if the debug systems are affecting framerate.")]
+        public float DebugUpdateInterval = 1f;
+        [Toggle("Debug lights", Tooltip = "Automatically runs the 'showlights' command.")]
         public bool ShowLights = false;
-        [Toggle("Debug sky appliers")]
+        [Toggle("Debug sky appliers", Tooltip = "Automatically runs the 'showskyappliers' command. When enabled, this option can be EXTREMELY slow.")]
         public bool ShowSkyAppliers = false;
-        [Toggle("Debug FMOD emitters")]
+        [Toggle("Debug FMOD emitters", Tooltip = "Automatically runs the 'showemitters' command.")]
         public bool ShowEmitters = false;
-        [Toggle("Debug colliders")]
-        public bool ShowColliders = false;
+        [Toggle("Debug CreatureActions", Tooltip = "Automatically runs the 'creatureactions' command.")]
+        public bool ShowCreatureActions = false;
+        [Toggle("Debug LiveMixin health", Tooltip = "Automatically runs the 'showhealth' command.")]
+        public bool ShowHealth = false;
 
         public float DebugIconScale
         {

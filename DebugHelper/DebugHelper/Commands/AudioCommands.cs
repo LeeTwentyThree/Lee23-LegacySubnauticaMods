@@ -113,9 +113,10 @@ namespace DebugHelper.Commands
             var actualDistanceThreshold = inRange < 0f ? float.MaxValue : inRange;
             var all = Object.FindObjectsOfType<FMOD_CustomEmitter>();
             var toRender = new List<FMOD_CustomEmitter>();
+            var squareDistance = actualDistanceThreshold * actualDistanceThreshold;
             foreach (var e in all)
             {
-                if (Vector3.Distance(e.transform.position, comparePosition) < actualDistanceThreshold)
+                if (Vector3.SqrMagnitude(e.transform.position - comparePosition) < squareDistance)
                 {
                     toRender.Add(e);
                 }
@@ -145,8 +146,6 @@ namespace DebugHelper.Commands
         public class SoundEmitterRenderer : BasicDebugIcon
         {
             public FMOD_CustomEmitter emitter;
-
-            private Color invalidColor = new Color(1f, 0f, 0f, DebugIconManager.kInactiveComponentAlpha);
 
             private Color orange = new Color(252f / 255, 194f / 255, 0f);
 

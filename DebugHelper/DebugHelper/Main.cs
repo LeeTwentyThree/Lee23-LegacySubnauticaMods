@@ -28,6 +28,8 @@ namespace DebugHelper
             ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(LightCommands));
             ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(SkyApplierCommands));
             ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(GenericCommands));
+            ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(CreatureCommands));
+            ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(LiveMixinCommands));
 
             assetBundle = Helpers.LoadAssetBundleFromAssetsFolder(assembly, "debughelper");
             DebugIconManager.Icons.LoadIcons(assetBundle);

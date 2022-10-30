@@ -9,6 +9,8 @@ namespace DebugHelper.Systems
 {
     public abstract class BasicDebugIcon : MonoBehaviour, IDebugIcon
     {
+        public Color invalidColor = new Color(1f, 0f, 0f, DebugIconManager.kInactiveComponentAlpha);
+
         private void OnEnable()
         {
             DebugIconManager.Main.Register(this);
