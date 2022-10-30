@@ -10,12 +10,14 @@ namespace DebugHelper.Systems
         private bool automatedEmitters;
         private bool automatedCreatureActions;
         private bool automatedHealth;
+        private bool automatedRigidbody;
 
         private bool lightsLastFrame;
         private bool skyAppliersLastFrame;
         private bool emittersLastFrame;
         private bool creatureActionsLastFrame;
         private bool healthLastFrame;
+        private bool rigidbodyLastFrame;
 
         private float timeLastUpdated;
 
@@ -37,11 +39,13 @@ namespace DebugHelper.Systems
             if (emittersLastFrame != config.ShowEmitters) necessary = true;
             if (creatureActionsLastFrame != config.ShowCreatureActions) necessary = true;
             if (healthLastFrame != config.ShowHealth) necessary = true;
+            if (rigidbodyLastFrame != config.ShowRigidbodies) necessary = true;
             lightsLastFrame = config.ShowLights;
             skyAppliersLastFrame = config.ShowSkyAppliers;
             emittersLastFrame = config.ShowEmitters;
             creatureActionsLastFrame = config.ShowCreatureActions;
             healthLastFrame = config.ShowHealth;
+            rigidbodyLastFrame = config.ShowRigidbodies;
             return necessary;
         }
 
@@ -74,6 +78,11 @@ namespace DebugHelper.Systems
                 LiveMixinCommands.HideHealth();
                 automatedHealth = false;
             }
+            if (automatedRigidbody && !config.ShowRigidbodies)
+            {
+                RigidbodyCommands.HideRigidbodies();
+                automatedRigidbody = false;
+            }
 
             // show things that need to be shown
             var range = config.DebugRange;
@@ -101,6 +110,11 @@ namespace DebugHelper.Systems
             {
                 LiveMixinCommands.ShowHealth(range, true);
                 automatedHealth = true;
+            }
+            if (config.ShowRigidbodies)
+            {
+                RigidbodyCommands.ShowRigidbodies(range, true);
+                automatedRigidbody = true;
             }
         }
     }

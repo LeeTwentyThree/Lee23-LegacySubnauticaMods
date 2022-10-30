@@ -25,6 +25,8 @@ namespace DebugHelper
         public bool ShowCreatureActions = false;
         [Toggle("Debug LiveMixin health", Tooltip = "Automatically runs the 'showhealth' command.")]
         public bool ShowHealth = false;
+        [Toggle("Debug Rigidbodies", Tooltip = "Automatically runs the 'showrigidbodies' command.")]
+        public bool ShowRigidbodies = false;
 
         public float DebugIconScale
         {

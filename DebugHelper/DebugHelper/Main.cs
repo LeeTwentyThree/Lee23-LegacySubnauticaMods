@@ -30,6 +30,7 @@ namespace DebugHelper
             ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(GenericCommands));
             ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(CreatureCommands));
             ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(LiveMixinCommands));
+            ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(RigidbodyCommands));
 
             assetBundle = Helpers.LoadAssetBundleFromAssetsFolder(assembly, "debughelper");
             DebugIconManager.Icons.LoadIcons(assetBundle);

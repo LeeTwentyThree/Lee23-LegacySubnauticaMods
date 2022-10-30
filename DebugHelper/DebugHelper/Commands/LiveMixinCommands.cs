@@ -67,15 +67,15 @@ namespace DebugHelper.Commands
                 {
                     if (Invalid) return "Unknown";
                     if (liveMixin.maxHealth == 0f) return "Invalid!";
-                    return Mathf.RoundToInt(liveMixin.health) + " / " + Mathf.RoundToInt(liveMixin.maxHealth) + " HP\n" + Mathf.RoundToInt(100f * (liveMixin.health / liveMixin.maxHealth));
+                    return Mathf.RoundToInt(liveMixin.health) + " / " + Mathf.RoundToInt(liveMixin.maxHealth) + " HP\n(" + Mathf.RoundToInt(100f * (liveMixin.health / liveMixin.maxHealth)) + "%)";
                 }
             }
 
-            public override Sprite Icon => null;
+            public override Sprite Icon => DebugIconManager.Icons.Health;
 
-            public override Vector3 Position => transform.position + transform.up * 0.5f;
+            public override Vector3 Position => transform.position + Vector3.up;
 
-            public override float Scale => 2f;
+            public override float Scale => 0.8f;
 
             public override Color Color
             {

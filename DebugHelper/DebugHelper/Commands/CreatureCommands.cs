@@ -65,14 +65,14 @@ namespace DebugHelper.Commands
                 {
                     if (Invalid) return "None";
                     var bestAction = creature.GetBestAction();
-                    if (bestAction == null) return "Unknown\n(" + creature.GetType().Name + ")";
-                    return bestAction.GetType().Name + "\n(" + creature.GetType().Name + ")"; ;
+                    if (bestAction == null) return "Unknown\n(" + gameObject.name + ")";
+                    return bestAction.GetType().Name + "\n(" + gameObject.name + ")"; ;
                 }
             }
 
             public override Sprite Icon => null;
 
-            public override Vector3 Position => transform.position + transform.forward;
+            public override Vector3 Position => transform.position + transform.forward + Vector3.up;
 
             public override float Scale => 2f;
 
