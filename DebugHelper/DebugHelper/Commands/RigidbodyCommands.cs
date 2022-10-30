@@ -89,7 +89,7 @@ namespace DebugHelper.Commands
             {
                 if (wf == null)
                 {
-                    return "Missing WorldForces";
+                    return "No WorldForces";
                 }
                 if (wf.useRigidbody != rb)
                 {
@@ -102,9 +102,9 @@ namespace DebugHelper.Commands
                 return "WorldForces OK";
             }
 
-            public override Sprite Icon => DebugIconManager.Icons.CubeSolid;
+            public override Sprite Icon => null;
 
-            public override Vector3 Position => transform.position + Vector3.down;
+            public override Vector3 Position => transform.position + Vector3.down * 0.5f;
 
             public override float Scale => 0.8f;
 
