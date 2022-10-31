@@ -17,22 +17,19 @@ namespace DebugHelper.Commands
             var comparePosition = SNCameraRoot.main.transform.position;
             var actualDistanceThreshold = inRange < 0f ? float.MaxValue : inRange;
             var all = Object.FindObjectsOfType<Light>();
-            var lightsToRender = new List<Light>();
             var squareDistance = actualDistanceThreshold * actualDistanceThreshold;
-            foreach (var l in all)
+            int count = 0;
+            foreach (var light in all)
             {
-                if (Vector3.SqrMagnitude(l.transform.position - comparePosition) < squareDistance)
+                if (Vector3.SqrMagnitude(light.transform.position - comparePosition) < squareDistance)
                 {
-                    lightsToRender.Add(l);
+                    var component = light.gameObject.EnsureComponent<RenderedLight>();
+                    component.attachedLight = light;
+                    renderedLights.Add(component);
+                    count++;
                 }
             }
-            if (!hideMessage) ErrorMessage.AddMessage($"Showing all {lightsToRender.Count} lights within a range of {actualDistanceThreshold} meters.");
-            foreach (var light in lightsToRender)
-            {
-                var component = light.gameObject.EnsureComponent<RenderedLight>();
-                component.attachedLight = light;
-                renderedLights.Add(component);
-            }
+            if (!hideMessage) ErrorMessage.AddMessage($"Showing all {count} lights within a range of {actualDistanceThreshold} meters.");
         }
 
         [ConsoleCommand("hidelights")]

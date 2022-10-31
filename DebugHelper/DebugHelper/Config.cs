@@ -1,5 +1,6 @@
 ﻿using SMLHelper.V2.Json;
 using SMLHelper.V2.Options.Attributes;
+using UnityEngine;
 
 namespace DebugHelper
 {
@@ -25,8 +26,21 @@ namespace DebugHelper
         public bool ShowCreatureActions = false;
         [Toggle("Debug LiveMixin health", Tooltip = "Automatically runs the 'showhealth' command.")]
         public bool ShowHealth = false;
-        [Toggle("Debug Rigidbodies", Tooltip = "Automatically runs the 'showrigidbodies' command.")]
+        [Toggle("Debug rigidbodies", Tooltip = "Automatically runs the 'showrigidbodies' command.")]
         public bool ShowRigidbodies = false;
+        [Toggle("Show damage numbers", Tooltip = "If enabled, shows information whenever a LiveMixin takes damage.")]
+        public bool ShowDamageInfo = false;
+        [Toggle("Hide small damage numbers", Tooltip = "If enabled, damage numbers of less than 0.1 will be hidden.")]
+        public bool HideSmallDamageNumbers = true;
+        [Toggle("Show ClassIDs", Tooltip = "Automatically runs the 'showclassids' command.")]
+        public bool ShowClassIDs = false;
+        [Toggle("Generate SpawnInfo", Tooltip = "Automatically runs the 'showspawninfo' command.")]
+        public bool ShowSpawnInfo = false;
+
+        [Keybind("Interact with Debug Icons (1)", Tooltip = "Both of these binds must be activated at once to interact.")]
+        public KeyCode InteractWithDebugIconKey1 = KeyCode.Mouse0;
+        [Keybind("Interact with Debug Icons (2)", Tooltip = "Both of these binds must be activated at once to interact.")]
+        public KeyCode InteractWithDebugIconKey2 = KeyCode.LeftShift;
 
         public float DebugIconScale
         {

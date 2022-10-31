@@ -17,22 +17,19 @@ namespace DebugHelper.Commands
             var comparePosition = SNCameraRoot.main.transform.position;
             var actualDistanceThreshold = inRange < 0f ? float.MaxValue : inRange;
             var all = Object.FindObjectsOfType<SkyApplier>();
-            var toRender = new List<SkyApplier>();
             var squareDistance = actualDistanceThreshold * actualDistanceThreshold;
-            foreach (var s in all)
+            int count = 0;
+            foreach (var skyApplier in all)
             {
-                if (Vector3.SqrMagnitude(s.transform.position - comparePosition) < squareDistance)
+                if (Vector3.SqrMagnitude(skyApplier.transform.position - comparePosition) < squareDistance)
                 {
-                    toRender.Add(s);
+                    var component = skyApplier.gameObject.EnsureComponent<RenderedSkyApplier>();
+                    component.attachedSkyApplier = skyApplier;
+                    renderedSkyAppliers.Add(component);
+                    count++;
                 }
             }
-            if (!hideMessage) ErrorMessage.AddMessage($"Showing all {toRender.Count} SkyAppliers within a range of {actualDistanceThreshold} meters.");
-            foreach (var skyApplier in toRender)
-            {
-                var component = skyApplier.gameObject.EnsureComponent<RenderedSkyApplier>();
-                component.attachedSkyApplier = skyApplier;
-                renderedSkyAppliers.Add(component);
-            }
+            if (!hideMessage) ErrorMessage.AddMessage($"Showing all {count} SkyAppliers within a range of {actualDistanceThreshold} meters.");
         }
 
         [ConsoleCommand("hideskyappliers")]

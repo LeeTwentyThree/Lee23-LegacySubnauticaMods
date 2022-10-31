@@ -16,22 +16,19 @@ namespace DebugHelper.Commands
             var comparePosition = SNCameraRoot.main.transform.position;
             var actualDistanceThreshold = inRange < 0f ? float.MaxValue : inRange;
             var all = Object.FindObjectsOfType<Rigidbody>();
-            var toRender = new List<Rigidbody>();
             var squareDistance = actualDistanceThreshold * actualDistanceThreshold;
+            int count = 0;
             foreach (var rb in all)
             {
                 if (Vector3.SqrMagnitude(rb.transform.position - comparePosition) < squareDistance && rb.gameObject.GetComponentInParent<Player>() == null)
                 {
-                    toRender.Add(rb);
+                    var component = rb.gameObject.EnsureComponent<RendereredRigidbody>();
+                    component.rb = rb;
+                    rendered.Add(component);
+                    count++;
                 }
             }
-            if (!hideMessage) ErrorMessage.AddMessage($"Showing Rigidbodies on all {toRender.Count} GameObjects within a range of {actualDistanceThreshold} meters.");
-            foreach (var rigidbody in toRender)
-            {
-                var component = rigidbody.gameObject.EnsureComponent<RendereredRigidbody>();
-                component.rb = rigidbody;
-                rendered.Add(component);
-            }
+            if (!hideMessage) ErrorMessage.AddMessage($"Showing Rigidbodies on all {count} GameObjects within a range of {actualDistanceThreshold} meters.");
         }
 
         [ConsoleCommand("hiderigidbodies")]

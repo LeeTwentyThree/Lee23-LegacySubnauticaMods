@@ -16,22 +16,19 @@ namespace DebugHelper.Commands
             var comparePosition = SNCameraRoot.main.transform.position;
             var actualDistanceThreshold = inRange < 0f ? float.MaxValue : inRange;
             var all = Object.FindObjectsOfType<Creature>();
-            var toRender = new List<Creature>();
             var squareDistance = actualDistanceThreshold * actualDistanceThreshold;
-            foreach (var c in all)
+            int count = 0;
+            foreach (var creature in all)
             {
-                if (Vector3.SqrMagnitude(c.transform.position - comparePosition) < squareDistance)
+                if (Vector3.SqrMagnitude(creature.transform.position - comparePosition) < squareDistance)
                 {
-                    toRender.Add(c);
+                    var component = creature.gameObject.EnsureComponent<RenderedCreatureAction>();
+                    component.creature = creature;
+                    rendered.Add(component);
+                    count++;
                 }
             }
-            if (!hideMessage) ErrorMessage.AddMessage($"Showing CreatureActions on all {toRender.Count} Creatures within a range of {actualDistanceThreshold} meters.");
-            foreach (var creature in toRender)
-            {
-                var component = creature.gameObject.EnsureComponent<RenderedCreatureAction>();
-                component.creature = creature;
-                rendered.Add(component);
-            }
+            if (!hideMessage) ErrorMessage.AddMessage($"Showing CreatureActions on all {count} Creatures within a range of {actualDistanceThreshold} meters.");
         }
 
         [ConsoleCommand("hidecreatureactions")]

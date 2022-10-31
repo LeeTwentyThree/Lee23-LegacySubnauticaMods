@@ -112,22 +112,19 @@ namespace DebugHelper.Commands
             var comparePosition = SNCameraRoot.main.transform.position;
             var actualDistanceThreshold = inRange < 0f ? float.MaxValue : inRange;
             var all = Object.FindObjectsOfType<FMOD_CustomEmitter>();
-            var toRender = new List<FMOD_CustomEmitter>();
             var squareDistance = actualDistanceThreshold * actualDistanceThreshold;
-            foreach (var e in all)
+            int count = 0;
+            foreach (var emitter in all)
             {
-                if (Vector3.SqrMagnitude(e.transform.position - comparePosition) < squareDistance)
+                if (Vector3.SqrMagnitude(emitter.transform.position - comparePosition) < squareDistance)
                 {
-                    toRender.Add(e);
+                    var component = emitter.gameObject.EnsureComponent<SoundEmitterRenderer>();
+                    component.emitter = emitter;
+                    renderedSoundEmmiters.Add(component);
+                    count++;
                 }
             }
-            if (!hideMessage) ErrorMessage.AddMessage($"Showing all {toRender.Count} FMOD emitters within a range of {actualDistanceThreshold} meters.");
-            foreach (var emitter in toRender)
-            {
-                var component = emitter.gameObject.EnsureComponent<SoundEmitterRenderer>();
-                component.emitter = emitter;
-                renderedSoundEmmiters.Add(component);
-            }
+            if (!hideMessage) ErrorMessage.AddMessage($"Showing all {count} FMOD emitters within a range of {actualDistanceThreshold} meters.");
         }
 
         [ConsoleCommand("hideemitters")]

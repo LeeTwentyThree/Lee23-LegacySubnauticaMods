@@ -11,6 +11,8 @@ namespace DebugHelper.Systems
         private bool automatedCreatureActions;
         private bool automatedHealth;
         private bool automatedRigidbody;
+        private bool automatedClassIDs;
+        private bool automatedSpawnInfo;
 
         private bool lightsLastFrame;
         private bool skyAppliersLastFrame;
@@ -18,6 +20,8 @@ namespace DebugHelper.Systems
         private bool creatureActionsLastFrame;
         private bool healthLastFrame;
         private bool rigidbodyLastFrame;
+        private bool classIDsLastFrame;
+        private bool spawnInfoLastFrame;
 
         private float timeLastUpdated;
 
@@ -40,12 +44,16 @@ namespace DebugHelper.Systems
             if (creatureActionsLastFrame != config.ShowCreatureActions) necessary = true;
             if (healthLastFrame != config.ShowHealth) necessary = true;
             if (rigidbodyLastFrame != config.ShowRigidbodies) necessary = true;
+            if (classIDsLastFrame != config.ShowClassIDs) necessary = true;
+            if (spawnInfoLastFrame != config.ShowSpawnInfo) necessary = true;
             lightsLastFrame = config.ShowLights;
             skyAppliersLastFrame = config.ShowSkyAppliers;
             emittersLastFrame = config.ShowEmitters;
             creatureActionsLastFrame = config.ShowCreatureActions;
             healthLastFrame = config.ShowHealth;
             rigidbodyLastFrame = config.ShowRigidbodies;
+            classIDsLastFrame = config.ShowClassIDs;
+            spawnInfoLastFrame = config.ShowSpawnInfo;
             return necessary;
         }
 
@@ -83,6 +91,16 @@ namespace DebugHelper.Systems
                 RigidbodyCommands.HideRigidbodies();
                 automatedRigidbody = false;
             }
+            if (automatedClassIDs && !config.ShowClassIDs)
+            {
+                PrefabCommands.HideClassIDs();
+                automatedClassIDs = false;
+            }
+            if (automatedSpawnInfo && !config.ShowSpawnInfo)
+            {
+                PrefabCommands.HideSpawnInfo();
+                automatedSpawnInfo = false;
+            }
 
             // show things that need to be shown
             var range = config.DebugRange;
@@ -115,6 +133,16 @@ namespace DebugHelper.Systems
             {
                 RigidbodyCommands.ShowRigidbodies(range, true);
                 automatedRigidbody = true;
+            }
+            if (config.ShowClassIDs)
+            {
+                PrefabCommands.ShowClassIDs(range, true);
+                automatedClassIDs = true;
+            }
+            if (config.ShowSpawnInfo)
+            {
+                PrefabCommands.ShowSpawnInfo(range, true);
+                automatedSpawnInfo = true;
             }
         }
     }

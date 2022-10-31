@@ -7,7 +7,7 @@ namespace DebugHelper.Commands
 {
     public static class LiveMixinCommands
     {
-        private static List<RenderedLiveMixin> rendered = new List<RenderedLiveMixin>();
+        private static List<RenderedLiveMixin> renderedLiveMixins = new List<RenderedLiveMixin>();
 
         [ConsoleCommand("showhealth")]
         public static void ShowHealth(float inRange, bool hideMessage = false)
@@ -16,35 +16,32 @@ namespace DebugHelper.Commands
             var comparePosition = SNCameraRoot.main.transform.position;
             var actualDistanceThreshold = inRange < 0f ? float.MaxValue : inRange;
             var all = Object.FindObjectsOfType<LiveMixin>();
-            var toRender = new List<LiveMixin>();
             var squareDistance = actualDistanceThreshold * actualDistanceThreshold;
+            int count = 0;
             foreach (var lm in all)
             {
                 if (Vector3.SqrMagnitude(lm.transform.position - comparePosition) < squareDistance)
                 {
-                    toRender.Add(lm);
+                    var component = lm.gameObject.EnsureComponent<RenderedLiveMixin>();
+                    component.liveMixin = lm;
+                    renderedLiveMixins.Add(component);
+                    count++;
                 }
             }
-            if (!hideMessage) ErrorMessage.AddMessage($"Showing CreatureActions on all {toRender.Count} Creatures within a range of {actualDistanceThreshold} meters.");
-            foreach (var liveMixin in toRender)
-            {
-                var component = liveMixin.gameObject.EnsureComponent<RenderedLiveMixin>();
-                component.liveMixin = liveMixin;
-                rendered.Add(component);
-            }
+            if (!hideMessage) ErrorMessage.AddMessage($"Showing CreatureActions on all {count} Creatures within a range of {actualDistanceThreshold} meters.");
         }
 
         [ConsoleCommand("hidehealth")]
         public static void HideHealth()
         {
-            foreach (var rendered in rendered)
+            foreach (var rendered in renderedLiveMixins)
             {
                 if (rendered != null)
                 {
                     Object.DestroyImmediate(rendered);
                 }
             }
-            rendered.Clear();
+            renderedLiveMixins.Clear();
         }
 
         private class RenderedLiveMixin : BasicDebugIcon

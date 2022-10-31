@@ -9,6 +9,6 @@ namespace DebugHelper.Systems
         Vector3 Position { get; }
         float Scale { get; }
         Color Color { get; }
-        void OnCreation(DebugIconInstance instance);
+        void OnCreation(DebugIconInstance instance); // called every time the interface is assigned, can be called multiple times for the same DebugIconInstance
     }
 }

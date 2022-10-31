@@ -173,6 +173,7 @@ namespace DebugHelper.Systems
             public static Sprite AudioLooping { get; private set; }
             public static Sprite CheckSymbol { get; private set; }
             public static Sprite Circle { get; private set; }
+            public static Sprite Clipboard { get; private set; }
             public static Sprite CubeHollow { get; private set; }
             public static Sprite CubeSolid { get; private set; }
             public static Sprite CubeWireframe { get; private set; }
@@ -197,6 +198,7 @@ namespace DebugHelper.Systems
                 AudioLooping = assets.LoadAsset<Sprite>("Icon-Audio-Looping");
                 CheckSymbol = assets.LoadAsset<Sprite>("Icon-Check");
                 Circle = assets.LoadAsset<Sprite>("Icon-Circle");
+                Clipboard = assets.LoadAsset<Sprite>("Icon-Clipboard");
                 CubeHollow = assets.LoadAsset<Sprite>("Icon-Cube-Hollow");
                 CubeSolid = assets.LoadAsset<Sprite>("Icon-Cube-Solid");
                 CubeWireframe = assets.LoadAsset<Sprite>("Icon-Cube-Wireframe");
