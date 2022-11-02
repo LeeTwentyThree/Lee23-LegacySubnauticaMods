@@ -7,15 +7,15 @@ namespace DebugHelper
     [Menu("DebugHelper")]
     public class Config : ConfigFile
     {
-        [Slider("Debug icons scale", DefaultValue = 50f, Min = 0f, Max = 100f)]
-        public float DebugIconScalePercent = 50f;
-        [Toggle("3D debug icons")]
-        public bool DebugIconsAre3D = true;
         [Toggle("Show debug wire overlay")]
         public bool DebugOverlayEnabled = true;
         [Slider("Debug wire overlay resolution scale", DefaultValue = 50, Min = 10, Max = 100)]
         public float DebugOverlayResolutionPercent = 50;
 
+        [Slider("Debug icons scale", DefaultValue = 50f, Min = 0f, Max = 100f)]
+        public float DebugIconScalePercent = 50f;
+        [Toggle("3D debug icons")]
+        public bool DebugIconsAre3D = true;
         [Slider("Debug range", DefaultValue = 35f, Min = -1f, Max = 150f, Tooltip = "Values less than 0 count as infinity. High values can be VERY slow.")]
         public float DebugRange = 35f;
         [Slider("Debug update interval", DefaultValue = 1f, Min = 1f, Max = 10f, Tooltip = "The number of seconds between debug renderers being automatically regenerated.\nIncrease this value if the debug systems are affecting framerate.")]
