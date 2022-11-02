@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace DebugHelper.Commands
 {
-    public static class GenericCommands
+    public static class GeneralCommands
     {
         [ConsoleCommand("createreferencepoint")]
         public static void CreateReferencePoint()
@@ -31,6 +31,12 @@ namespace DebugHelper.Commands
             public override float Scale => 1f;
 
             public override Color Color => Color.green;
+        }
+        
+        [ConsoleCommand("drawstar")]
+        public static void DrawStar(float duration, float radius = 1f)
+        {
+            Utils.DebugDrawStar(Player.main.transform.position, radius, Color.cyan, duration);
         }
     }
 }
