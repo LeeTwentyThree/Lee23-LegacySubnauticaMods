@@ -11,6 +11,7 @@ namespace DebugHelper.Patches
         public static void PlayerStartPostfix(Player __instance)
         {
             __instance.gameObject.EnsureComponent<DebugAutomation>();
+            DebugOverlay.CreateInstance();
         }
     }
 }

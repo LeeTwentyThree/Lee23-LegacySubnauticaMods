@@ -9,8 +9,12 @@ namespace DebugHelper
     {
         [Slider("Debug icons scale", DefaultValue = 50f, Min = 0f, Max = 100f)]
         public float DebugIconScalePercent = 50f;
-        [Toggle("3D Debug Icons")]
+        [Toggle("3D debug icons")]
         public bool DebugIconsAre3D = true;
+        [Toggle("Show debug wire overlay")]
+        public bool DebugOverlayEnabled = true;
+        [Slider("Debug wire overlay resolution scale", DefaultValue = 50, Min = 10, Max = 100)]
+        public float DebugOverlayResolutionPercent = 50;
 
         [Slider("Debug range", DefaultValue = 35f, Min = -1f, Max = 150f, Tooltip = "Values less than 0 count as infinity. High values can be VERY slow.")]
         public float DebugRange = 35f;
@@ -47,6 +51,14 @@ namespace DebugHelper
             get
             {
                 return DebugIconScalePercent / 100f;
+            }
+        }
+
+        public float DebugOverlayResolutionDivisor
+        {
+            get
+            {
+                return 1f / (DebugOverlayResolutionPercent / 100f);
             }
         }
     }
