@@ -41,6 +41,7 @@ namespace DebugHelper.Systems
 
         private void Update()
         {
+            if (!Main.config.DebugOverlayEnabled) return;
             var textureSize = CalculateTextureSize();
             if (lastSavedWidth != textureSize.x || lastSavedHeight != textureSize.y)
             {
@@ -57,6 +58,12 @@ namespace DebugHelper.Systems
             }
             rawImage.enabled = renderer.Rendered;
             renderer.RenderToTexture(texture, true);
+        }
+
+        private void Release()
+        {
+            renderer.Release();
+            texture = null;
         }
 
         private Vector2Int CalculateTextureSize()

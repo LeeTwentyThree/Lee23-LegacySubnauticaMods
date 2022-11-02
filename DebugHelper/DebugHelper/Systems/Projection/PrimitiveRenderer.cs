@@ -24,6 +24,7 @@ namespace DebugHelper.Systems.Projection
         private int minY = 0;
         private int maxX = 0;
         private int maxY = 0;
+        private int maxPixelsPerLine;
 
         public bool Rendered { get; private set; }
 
@@ -91,6 +92,7 @@ namespace DebugHelper.Systems.Projection
                 alphaFill[i] = new Color32(0, 0, 0, 0);
             }
             lastSize = size;
+            maxPixelsPerLine = (int)Mathf.Sqrt(maxX * maxX + maxY * maxY);
             Rendered = false;
         }
 
@@ -135,6 +137,8 @@ namespace DebugHelper.Systems.Projection
             int D = (2 * dy) - dx;
             int y = y0;
 
+            int pixels = 0;
+
             for (int x = x0; x <= x1; x++)
             {
                 var zApprox = ApproximateZ(x0, x1, x, z0, z1);
@@ -143,6 +147,8 @@ namespace DebugHelper.Systems.Projection
                     currentTexture.SetPixel(x, y, color);
                     empty = false;
                 }
+                pixels++;
+                if (pixels > maxPixelsPerLine) return;
                 if (D > 0)
                 {
                     y += yi;
@@ -168,6 +174,8 @@ namespace DebugHelper.Systems.Projection
             int D = (2 * dx) - dy;
             int x = x0;
 
+            int pixels = 0;
+
             for (int y = y0; y <= y1; y++)
             {
                 var zApprox = ApproximateZ(y0, y1, y, z0, z1);
@@ -176,6 +184,8 @@ namespace DebugHelper.Systems.Projection
                     currentTexture.SetPixel(x, y, color);
                     empty = false;
                 }
+                pixels++;
+                if (pixels > maxPixelsPerLine) return;
                 if (D > 0)
                 {
                     x += xi;
@@ -186,6 +196,12 @@ namespace DebugHelper.Systems.Projection
                     D += 2 * dx;
                 }
             }
+        }
+
+        public void Release()
+        {
+            lines = new List<Line>();
+            alphaFill = null;
         }
     }
 }
