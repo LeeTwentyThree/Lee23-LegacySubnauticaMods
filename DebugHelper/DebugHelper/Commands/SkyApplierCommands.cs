@@ -78,6 +78,8 @@ namespace DebugHelper.Commands
 
             public override float Scale => 1f;
 
+            private static Color notAffectedByDayNightCycleColor = new Color(0f, 184f / 255, 52f / 255);
+
             public override Color Color
             {
                 get
@@ -93,6 +95,8 @@ namespace DebugHelper.Commands
                     }
                     if (sky.Outdoors)
                     {
+                        if (!sky.AffectedByDayNightCycle)
+                            return notAffectedByDayNightCycleColor;
                         return Color.blue;
                     }
                     else
