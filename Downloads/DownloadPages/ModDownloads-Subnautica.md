@@ -26,6 +26,9 @@ Mods for developers
 [Accessibility mods](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#accessibility-mods)
 
 ---
+# Recently updated!
+- 11/2/22: [DebugHelper](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/DebugHelper.md) - First public release! Added plenty of commands and options for testing.
+---
 
 # Normal mods
 
