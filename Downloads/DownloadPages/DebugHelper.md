@@ -11,29 +11,90 @@ Requirements:
 
 ## Comprehensive list of features
 ### Commands
-`spawnc [classId]` - Spawns a prefab by its ClassID. These are 36 character GUID strings, found in [this file](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Resources/SN1-PrefabPaths.json).
+#### Prefab commands
+- `spawnc [classId]` - Spawns a prefab by its ClassID. These are 36 character GUID strings, found in [this file](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Resources/SN1-PrefabPaths.json).
 
-`spawnp [path]` - Spawns a prefab by its path in resources folder. These can be found on the right side of each entry in [this file](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Resources/SN1-PrefabPaths.json). May become obsolete with Modpocalypse.
+- `spawnp [path]` - Spawns a prefab by its path in resources folder. These can be found on the right side of each entry in [this file](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Resources/SN1-PrefabPaths.json). May become obsolete with Modpocalypse.
 
-`playsound [path] (maxDuration = 10)` - Plays an FMOD event by its path. [Here](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Resources/SN1-FMODEvents.txt) is a comprehensive list of all sound events in the game.
+- `search [distance]` - Searches for all PrefabIdentifiers within `distance` meters (based around pivot). Outputs name and TechType. This is especially useful for finding objects with RuntimeEditor.
 
-`loopsound [path] [lifetime]` - Plays a looping FMOD event by its path. The `lifetime` parameter must be set to avoid unwarranted noise pollution.
+- `entgal` - Spawns the entity gallery, which contains every prefab in the game. Very unsafe!
 
-`search [distance]` - Searches for all PrefabIdentifiers within `distance` meters (based around pivot). Outputs name and TechType. This is especially useful for finding objects with RuntimeEditor.
+- `showclassids [inRange]` - Displays every ClassID on every prefab in range, through the Debug Icons system. These can be interacted with to copy the ClassID to your clipboard (See mod options menu).
 
-`lookingat (hitTriggers = false)` - Returns the name of the hit collider, its parent, attached rigidbody, and entity root. Also useful for RuntimeEditor and similar tools.
+- `hideclassids` - Hides all ClassID Debug Icons.
 
-`showcolliders (hitTriggers = false)` - Renders all the colliders on the object that is being looked at. Colliders are color coded according to various factors:
-- Green: Solid colliders.
-- Red: Colliders attached to non-kinematic Rigidbodies.
-- Blue: Colliders attached to mesh renderers.
-- White: Triggers colliders.
+- `showspawninfo [inRange]` - Displays the name of all prefabs in range. When one is interacted with (See mod options menu), a constructor for a CoordinatedSpawn at the prefab's position is copied to the clipboard. 
 
-`showallcolliders [maxRange]` - Renders all the colliders within `maxRange` meters. Calling this command also removes all previously added collider renderers.
+- `hidespawninfo` - Hides all SpawnInfo Debug Icons.
 
-`hidecolliders` - Destroys all collider renderers in the scene.
+#### Audio commands
+- `playsound [path] (maxDuration = 10)` - Plays an FMOD event by its path. [Here](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Resources/SN1-FMODEvents.txt) is a comprehensive list of all sound events in the game.
 
-`entgal` - Spawns the entity gallery, which contains all prefabs in the game. Very unsafe!
+- `ps [path] (maxDuration = 10)` - Shorthand for `playsound`.
+
+- `loopsound [path] [lifetime]` - Plays a looping FMOD event by its path. The `lifetime` parameter must be set to avoid unwarranted noise pollution.
+
+- `showemitters [inRange]` - Shows all FMOD emitters in range through the Debug Icons system.
+
+- `hideemitters` - Hides FMOD emitter Debug Icons.
+
+#### Creature commands
+- `creatureactions [inRange]` - Shows the current CreatureAction on every Creature in range, through the Debug Icons system.
+
+- `hidecreatureactions` - Hides CreatureAction Debug Icons.
+
+#### Light commands
+- `showlights [inRange]` - Displays Light components on every GameObject in range, through the Debug Icons system.
+
+- `hidelights` - Hides Light Debug Icons.
+
+#### LiveMixin commands
+- `showhealth [inRange]` - Shows the current health on all LiveMixins in range, through the Debug Icons system.
+
+- `hidehealth` - Hides LiveMixin Debug Icons.
+
+### Rigidbody commands
+- `showrigidbodies [inRange]` - Displays information about every Rigidbody on every prefab in range, through the Debug Icons system.
+
+- `hiderigidbodies` - Hides all Rigidbody Debug Icons.
+
+### SkyApplier commands
+- `showskyappliers [inRange]` - Displays every SkyApplier on every prefab in range, through the Debug Icons system. Yellow sky appliers should be found in interior locations, while blue sky appliers are generally in exterior locations.
+
+- `hideskyappliers` - Hides all SkyApplier Debug Icons.
+
+#### Targeting commands
+- `lookingat (hitTriggers = false)` - Returns the name of the hit collider, its parent, attached rigidbody, and entity root. Also useful for RuntimeEditor and similar tools.
+
+#### Collider commands
+- `showallcolliders [maxRange]` - Renders all the colliders within `maxRange` meters. Calling this command also removes all previously added collider renderers.
+
+- `showcolliders (hitTriggers = false)` - Renders all the colliders on the object that is being looked at. Colliders are color coded according to various factors:
+  - Green: Solid colliders.
+  - Red: Colliders attached to non-kinematic Rigidbodies.
+  - Blue: Colliders attached to mesh renderers.
+  - White: Triggers colliders.
+
+- `hidecolliders` - Destroys all collider renderers in the scene.
+
+#### Player commands
+- `forcewalkmode` - Calls `Player.main.SetPrecursorOutOfWater(true)`, forcing them to walk.
+
+- `swimmode` - Calls `Player.main.SetPrecursorOutOfWater(false)`, removing them from walking mode if they had used the `forcewalkmode` command.
+
+- `playeranimtrigger [parameter: string]` - Triggers trigger `parameter` on the player's animator.
+
+- `playeranimbool [parameter: string] [value: true/false]` - Sets the `parameter` boolean field on the player's animator to `value`.
+
+- `playeranimfloat [parameter: string] [value: float]` - Sets the `parameter` float field on the player's animator to `value`.
+
+#### Miscellaneous commands
+- `copyposition` - Copies a constructor for the player's current position vector to clipboard.
+
+- `createreferencepoint` - Creates a new basic Debug Icon at the player camera position, showing its coordinates and distance to player. Useful for testing the Debug Icons system.
+
+- `drawstar [duration] (radius = 1)` - Draws a star shape with Debug.DrawLine at the player's camera. Useful for testing the Debug Overlay system.
 
 ### REPL Console Tools
 This mod adds the [DB](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/DebugHelper/DebugHelper/DB.cs) class (in the global namespace) to assist with debugging and patching at Runtime. Call these methods in the REPL console (RuntimeEditor).
