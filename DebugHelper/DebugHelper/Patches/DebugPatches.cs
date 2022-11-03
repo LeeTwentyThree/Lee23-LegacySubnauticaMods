@@ -27,7 +27,7 @@ namespace DebugHelper.Patches
 
         public static void DrawLineInternal(Vector3 start, Vector3 end, Color color, float duration, bool depthTest)
         {
-            if (DebugOverlay.main != null)
+            if (Main.config.DebugOverlayEnabled && DebugOverlay.main != null)
             {
                 DebugOverlay.main.AddLineThisFrame(new Line(color, start, end, duration, Time.time, Time.frameCount));
             }
