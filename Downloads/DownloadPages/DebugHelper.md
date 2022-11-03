@@ -54,13 +54,13 @@ Requirements:
 
 - `hidehealth` - Hides LiveMixin Debug Icons.
 
-### Rigidbody commands
+#### Rigidbody commands
 - `showrigidbodies [inRange]` - Displays information about every Rigidbody on every prefab in range, through the Debug Icons system.
 
 - `hiderigidbodies` - Hides all Rigidbody Debug Icons.
 
-### SkyApplier commands
-- `showskyappliers [inRange]` - Displays every SkyApplier on every prefab in range, through the Debug Icons system. Yellow sky appliers should be found in interior locations, while blue sky appliers are generally in exterior locations.
+#### SkyApplier commands
+- `showskyappliers [inRange]` - Displays every SkyApplier on every prefab in range, through the Debug Icons system. Yellow sky appliers should be found in interior locations, while blue sky appliers are generally in exterior locations. "Outside" sky appliers that are not affected by the day/night cycle should appear dark green.
 
 - `hideskyappliers` - Hides all SkyApplier Debug Icons.
 
