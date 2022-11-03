@@ -7,30 +7,30 @@ namespace DebugHelper
     [Menu("DebugHelper")]
     public class Config : ConfigFile
     {
-        [Toggle("Show debug wire overlay")]
-        public bool DebugOverlayEnabled = true;
-        [Slider("Debug wire overlay resolution scale", DefaultValue = 50, Min = 10, Max = 100)]
+        [Toggle("Debug Wire Overlay (Enable?)", Tooltip = "If checked, the output of Debug.DrawLine and Debug.DrawRay will be displayed on the screen.")]
+        public bool DebugOverlayEnabled = false;
+        [Slider("Debug Wire Overlay (Resolution)", DefaultValue = 50, Min = 10, Max = 100, Tooltip = "Percent of resolution of the Debug Wire Overlay.")]
         public float DebugOverlayResolutionPercent = 50;
 
-        [Slider("Debug icons scale", DefaultValue = 50f, Min = 0f, Max = 100f)]
+        [Slider("Debug Icons (Scale)", DefaultValue = 50f, Min = 0f, Max = 100f)]
         public float DebugIconScalePercent = 50f;
-        [Toggle("3D debug icons")]
+        [Toggle("Debug Icons (3D?)")]
         public bool DebugIconsAre3D = true;
-        [Slider("Debug range", DefaultValue = 35f, Min = -1f, Max = 150f, Tooltip = "Values less than 0 count as infinity. High values can be VERY slow.")]
+        [Slider("Debug Icons (Search range)", DefaultValue = 35f, Min = -1f, Max = 150f, Tooltip = "Values less than 0 count as infinity. High values can be VERY slow.")]
         public float DebugRange = 35f;
-        [Slider("Debug update interval", DefaultValue = 1f, Min = 1f, Max = 10f, Tooltip = "The number of seconds between debug renderers being automatically regenerated.\nIncrease this value if the debug systems are affecting framerate.")]
+        [Slider("Debug Icons (Update interval)", DefaultValue = 1f, Min = 1f, Max = 10f, Tooltip = "The number of seconds between debug renderers being automatically regenerated.\nIncrease this value if the debug systems are affecting framerate.")]
         public float DebugUpdateInterval = 1f;
-        [Toggle("Debug lights", Tooltip = "Automatically runs the 'showlights' command.")]
+        [Toggle("Debug Light component", Tooltip = "Automatically runs the 'showlights' command.")]
         public bool ShowLights = false;
-        [Toggle("Debug sky appliers", Tooltip = "Automatically runs the 'showskyappliers' command. When enabled, this option can be EXTREMELY slow.")]
+        [Toggle("Debug SkyApplier component", Tooltip = "Automatically runs the 'showskyappliers' command. When enabled, this option can be EXTREMELY slow.")]
         public bool ShowSkyAppliers = false;
         [Toggle("Debug FMOD emitters", Tooltip = "Automatically runs the 'showemitters' command.")]
         public bool ShowEmitters = false;
-        [Toggle("Debug CreatureActions", Tooltip = "Automatically runs the 'creatureactions' command.")]
+        [Toggle("Debug creature actions", Tooltip = "Automatically runs the 'creatureactions' command.")]
         public bool ShowCreatureActions = false;
-        [Toggle("Debug LiveMixin health", Tooltip = "Automatically runs the 'showhealth' command.")]
+        [Toggle("Debug LiveMixin component", Tooltip = "Automatically runs the 'showhealth' command.")]
         public bool ShowHealth = false;
-        [Toggle("Debug rigidbodies", Tooltip = "Automatically runs the 'showrigidbodies' command.")]
+        [Toggle("Debug Rigidbody component", Tooltip = "Automatically runs the 'showrigidbodies' command.")]
         public bool ShowRigidbodies = false;
         [Toggle("Show damage numbers", Tooltip = "If enabled, shows information whenever a LiveMixin takes damage.")]
         public bool ShowDamageInfo = false;
