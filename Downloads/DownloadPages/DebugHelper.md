@@ -10,6 +10,8 @@ Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
 
 ## Comprehensive list of features
+### Mod options
+There are several options added into the Mod Options menu to help modders, playtesters, and even the average player to discover things about the Subnautica world that were once hidden behind obscure code. Several options related to visualization of once abstract concepts are available. Most of them activate commands that are explained in the list below.
 ### Commands
 #### Prefab commands
 - `spawnc [classId]` - Spawns a prefab by its ClassID. These are 36 character GUID strings, found in [this file](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Resources/SN1-PrefabPaths.json).
