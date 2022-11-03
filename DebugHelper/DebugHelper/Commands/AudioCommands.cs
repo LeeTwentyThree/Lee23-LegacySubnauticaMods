@@ -47,6 +47,12 @@ namespace DebugHelper.Commands
             }
         }
 
+        [ConsoleCommand("ps")]
+        public static void PlaySoundShorthand(string eventPath, float maxDuration = 0f)
+        {
+            PlaySound(eventPath, maxDuration);
+        }
+
         [ConsoleCommand("loopsound")]
         public static void PlayLoopingSound(string eventPath, float lifetime)
         {
