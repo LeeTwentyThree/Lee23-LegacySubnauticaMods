@@ -17,5 +17,15 @@ namespace DebugHelper
             asset.path = audioPath;
             return asset;
         }
+
+        public static string FormatVector3Constructor(Vector3 vector, int decimalPoints)
+        {
+            return $"new Vector3({FormatFloat(vector.x, decimalPoints)}, {FormatFloat(vector.y, decimalPoints)}, {FormatFloat(vector.z, decimalPoints)})";
+        }
+
+        public static string FormatFloat(float num, int decimalPoints)
+        {
+            return num.ToString($"F{decimalPoints}") + "f";
+        }
     }
 }
