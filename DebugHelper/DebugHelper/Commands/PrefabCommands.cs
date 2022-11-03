@@ -294,7 +294,7 @@ namespace DebugHelper.Commands
                     Object.DestroyImmediate(rendered);
                 }
             }
-            classIDButtons.Clear();
+            coordinatedSpawnButtons.Clear();
         }
 
         private class SpawnInfoButton : CopyToClipboardDebugIcon
