@@ -20,11 +20,11 @@ Requirements:
 
 - `entgal` - Spawns the entity gallery, which contains every prefab in the game. Very unsafe!
 
-- `showclassids [inRange]` - Displays every ClassID on every prefab in range, through the Debug Icons system. These can be interacted with to copy the ClassID to your clipboard (See mod options menu).
+- `showclassids [inRange]` 📋 - Displays every ClassID on every prefab in range, through the Debug Icons system. These can be interacted with to **copy the ClassID to your clipboard** (See mod options menu).
 
 - `hideclassids` - Hides all ClassID Debug Icons.
 
-- `showspawninfo [inRange]` - Displays the name of all prefabs in range. When one is interacted with (See mod options menu), a constructor for a CoordinatedSpawn at the prefab's position is copied to the clipboard. 
+- `showspawninfo [inRange]` 📋 - Displays the name of all prefabs in range. When one is interacted with (See mod options menu), a constructor for a CoordinatedSpawn at the prefab's position is **copied to the clipboard**. 
 
 - `hidespawninfo` - Hides all SpawnInfo Debug Icons.
 
@@ -90,7 +90,9 @@ Requirements:
 - `playeranimfloat [parameter: string] [value: float]` - Sets the `parameter` float field on the player's animator to `value`.
 
 #### Miscellaneous commands
-- `copyposition` - Copies a constructor for the player's current position vector to clipboard.
+- `copyposition` 📋 - Copies a constructor for the player's current position vector to **clipboard**.
+
+- `copyrayposition` 📋 - Copies a constructor for the position of a raycast hit (starting at the crosshair) to **clipboard**.
 
 - `createreferencepoint` - Creates a new basic Debug Icon at the player camera position, showing its coordinates and distance to player. Useful for testing the Debug Icons system.
 
