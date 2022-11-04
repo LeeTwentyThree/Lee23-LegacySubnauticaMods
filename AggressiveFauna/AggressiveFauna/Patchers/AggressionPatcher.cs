@@ -1,13 +1,9 @@
-﻿/**
- * DeathRun mod - Cattlesquat "but standing on the shoulders of giants"
- * 
- * This patch ups the aggression level of creatures, based on difficulty level setting.
- */
-namespace AggressiveFauna.Patchers
+﻿namespace AggressiveFauna.Patchers
 {
     using HarmonyLib;
     using UnityEngine;
     using System;
+    using System.Collections.Generic;
     using UWE;
 
     [HarmonyPatch(typeof(AggressiveWhenSeeTarget))]
@@ -44,6 +40,28 @@ namespace AggressiveFauna.Patchers
         }
     }
 
+    [HarmonyPatch(typeof(Player), nameof(Player.CanBeAttacked))]
+    internal class Player_CanBeAttacked_Patch
+    {
+        [HarmonyPrefix]
+        public static bool Prefix(ref bool __result)
+        {
+            if (AggressionSettings.CanSeeInsideBases)
+            {
+                if (Player.main.justSpawned)
+                {
+                    __result = false;
+                }
+                else
+                {
+                    __result = !GameModeUtils.IsInvisible();
+                }
+                return false;
+            }
+            return true;
+        }
+    }
+
 
     [HarmonyPatch(typeof(AggressiveWhenSeeTarget), "IsTargetValid", new Type[] { typeof(GameObject) })]
     internal class Aggression_IsTargetValid_Patch
@@ -62,7 +80,7 @@ namespace AggressiveFauna.Patchers
                 __result = false;
                 return;
             }
-            if (target == __instance.creature.friend)
+            if (AggressionSettings.AllowFriends && target == __instance.creature.friend)
             {
                 __result = false;
                 return;
@@ -158,9 +176,8 @@ namespace AggressiveFauna.Patchers
         [HarmonyPostfix]
         public static void PostFix(EcoRegion __instance, EcoTargetType type, Vector3 wsPos, EcoRegion.TargetFilter isTargetValid, ref float bestDist, ref IEcoTarget best)
         {
-            ProfilingUtils.BeginSample("EcoRegion.FindNearestTarget");
             __instance.timeStamp = Time.time;
-            System.Collections.Generic.HashSet<IEcoTarget> hashSet;
+            HashSet<IEcoTarget> hashSet;
             if (!__instance.ecoTargets.TryGetValue((int)type, out hashSet))
             {
                 ProfilingUtils.EndSample(null);
@@ -171,13 +188,14 @@ namespace AggressiveFauna.Patchers
             {
                 if (ecoTarget != null && !ecoTarget.Equals(null)) // make sure it exists still
                 {
-                    float sqrMagnitude = (wsPos - ecoTarget.GetPosition()).sqrMagnitude; // get distance for 
+                    float sqrMagnitude = (wsPos - ecoTarget.GetPosition()).sqrMagnitude;
 
+                    // if we're looking at the player
                     if (((ecoTarget.GetGameObject() == Player.main.gameObject) && !Player.main.IsInside() && Player.main.IsUnderwater() && !Player.main.precursorOutOfWater) || 
                         (ecoTarget.GetGameObject().GetComponent<Vehicle>() && (ecoTarget.GetGameObject().GetComponent<Vehicle>() == Player.main.currentMountedVehicle)) && !Player.main.currentMountedVehicle.precursorOutOfWater)
                     {
                         bool feeding = false;
-                        if (ecoTarget.GetGameObject() == Player.main.gameObject)
+                        if (AggressionSettings.CanFeed && ecoTarget.GetGameObject() == Player.main.gameObject)
                         {
                             Pickupable held = Inventory.main.GetHeld();
                             if (held != null && (held.GetTechType() == TechType.Peeper))
@@ -187,34 +205,9 @@ namespace AggressiveFauna.Patchers
                         }
 
                         float depth = Ocean.main.GetDepthOf(ecoTarget.GetGameObject());
-                        if ((depth > 5) && !feeding)
+                        if ((depth > 5) && !feeding) // force the player to be targeted ny making him the closest target always
                         {
-                            if (Config.DEATHRUN.Equals(DeathRun.config.creatureAggression) || Config.EXORBITANT.Equals(DeathRun.config.creatureAggression))
-                            {
-                                if (DayNightCycle.main.timePassedAsFloat >= DeathRun.FULL_AGGRESSION)
-                                {
-                                    sqrMagnitude = 1; //BR// Player appears very close! (i.e. attractive target)
-                                }
-                                else if (DayNightCycle.main.timePassedAsFloat >= DeathRun.MORE_AGGRESSION)
-                                {
-                                    sqrMagnitude /= 4;
-                                }
-                                else
-                                {
-                                    sqrMagnitude /= 2;
-                                }
-                            }
-                            else if (Config.HARD.Equals(DeathRun.config.creatureAggression))
-                            {
-                                if (DayNightCycle.main.timePassedAsFloat >= DeathRun.FULL_AGGRESSION)
-                                {
-                                    sqrMagnitude /= 3; //BR// Player appears closer! (i.e. attractive target)
-                                }
-                                else if (DayNightCycle.main.timePassedAsFloat >= DeathRun.MORE_AGGRESSION)
-                                {
-                                    sqrMagnitude /= 2;
-                                }
-                            }
+                            sqrMagnitude /= AggressionSettings.PlayerPrioritizationMultiplier;
                         }
                     }
 
@@ -229,16 +222,10 @@ namespace AggressiveFauna.Patchers
             {
                 bestDist = Mathf.Sqrt(num);
             }
-            ProfilingUtils.EndSample(null);
         }
     }
 
-    /**
-     * Okay this runs ALMOST the same code as the original, but searches a much wider radius and doubles the aggression level
-     * 
-     * DeathRun.aggressionMultiplier -- how much more aggressive than baseline creatures should be
-     * DeathRun.aggressionRadius     -- how much wider a target area than baseline creatures should search for targets
-     */
+    // Increases aggression and search radius when attacking
     [HarmonyPatch(typeof(MoveTowardsTarget))]
     [HarmonyPatch("UpdateCurrentTarget")]
     internal class MoveTowardsTarget_UpdateCurrentTarget_Patch
@@ -246,9 +233,6 @@ namespace AggressiveFauna.Patchers
         [HarmonyPrefix]
         public static bool Prefix(MoveTowardsTarget __instance)
         {
-            float aggressionMultiplier;
-            int aggressionRadius;
-
             if (CraftData.GetTechType(__instance.gameObject) == TechType.Crash)
             {
                 return true; // Explody ambush fish just runs normal method
@@ -265,35 +249,9 @@ namespace AggressiveFauna.Patchers
                 if (veh.precursorOutOfWater) return true;                
             }
 
-            //BR// Adjust aggression levels            
-            if (Config.DEATHRUN.Equals(DeathRun.config.creatureAggression) || Config.EXORBITANT.Equals(DeathRun.config.creatureAggression))
-            {
-                if (DayNightCycle.main.timePassedAsFloat > DeathRun.FULL_AGGRESSION)
-                {
-                    aggressionMultiplier = 4;
-                    aggressionRadius = 6;
-                }
-                else if (DayNightCycle.main.timePassedAsFloat > DeathRun.MORE_AGGRESSION)
-                {
-                    aggressionMultiplier = 2;
-                    aggressionRadius = 3;
-                } 
-                else
-                {
-                    return true;
-                }
-            }
-            else if (Config.HARD.Equals(DeathRun.config.creatureAggression) && (DayNightCycle.main.timePassedAsFloat > DeathRun.MORE_AGGRESSION))
-            {
-                aggressionMultiplier = 2;
-                aggressionRadius = 3;
-            }
-            else
-            {
-                return true; // Just run normal method
-            }
+            float aggressionMultiplier = AggressionSettings.AggressionMultiplier;
+            int aggressionRadius = AggressionSettings.SearchRingScale;
 
-            ProfilingUtils.BeginSample("UpdateCurrentTarget");
             if (EcoRegionManager.main != null && (Mathf.Approximately(__instance.requiredAggression, 0f) || __instance.creature.Aggression.Value * aggressionMultiplier >= __instance.requiredAggression))
             {
                 IEcoTarget ecoTarget = EcoRegionManager.main.FindNearestTarget(__instance.targetType, __instance.transform.position, __instance.isTargetValidFilter, aggressionRadius);
@@ -307,23 +265,9 @@ namespace AggressiveFauna.Patchers
                     __instance.currentTarget = null;
                 }
             }
-            ProfilingUtils.EndSample(null);
             return false;
         }
     }
-
-
-    //[HarmonyPatch(typeof(OutOfBoundsWarp))]
-    //[HarmonyPatch("Warp")]
-    //internal class OutOfBoundsWarp_Warp_Patch
-    //{
-    //    [HarmonyPrefix]
-    //    public static bool Prefix(OutOfBoundsWarp __instance)
-    //    {
-    //        CattleLogger.Message("***** Object out of bounds: " + __instance.gameObject + "  " + __instance.gameObject.name);
-    //        return true;
-    //    }
-    //}
 
 }
 

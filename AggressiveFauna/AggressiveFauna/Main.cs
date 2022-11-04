@@ -7,14 +7,19 @@ using System.Reflection;
  * Credit to Cattlesquat for original code
  * Modified by Lee23
  * Not compatible with DeathRun */
-[QModCore]
-public static class Main
+namespace AggressiveFauna
 {
-    [QModPatch]
-    public static void Entry()
+    [QModCore]
+    public static class Main
     {
+        internal static Config config = new Config();
 
-        var harmony = new Harmony("Lee23.AggressiveFauna");
-        harmony.PatchAll(Assembly.GetExecutingAssembly());
+        [QModPatch]
+        public static void Entry()
+        {
+
+            var harmony = new Harmony("Lee23.AggressiveFauna");
+            harmony.PatchAll(Assembly.GetExecutingAssembly());
+        }
     }
 }
