@@ -62,6 +62,36 @@
         }
     }
 
+    [HarmonyPatch(typeof(AttackLastTarget), nameof(AttackLastTarget.Evaluate))]
+    internal class AttackLastTarget_AttackLastTarget_Patch
+    {
+        [HarmonyPrefix]
+        public static bool Prefix(AttackLastTarget __instance, Creature creature, ref float __result)
+        {
+            if (creature.Aggression.Value * AggressionSettings.AggressionMultiplier > __instance.aggressionThreshold)
+            {
+                if (AggressionSettings.RemoveAttackDelay || (Time.time < __instance.timeStartAttack + __instance.minAttackDuration & Time.time > __instance.timeStopAttack + __instance.pauseInterval))
+                {
+                    if (__instance.lastTarget.target != null && Time.time <= __instance.lastTarget.targetTime + __instance.rememberTargetTime && !__instance.lastTarget.targetLocked)
+                    {
+                        __instance.currentTarget = __instance.lastTarget.target;
+                    }
+                    if (!__instance.CanAttackTarget(__instance.currentTarget))
+                    {
+                        __instance.currentTarget = null;
+                    }
+                    if (__instance.currentTarget != null)
+                    {
+                        __result = __instance.GetEvaluatePriority();
+                    }
+                    return false;
+                }
+            }
+            __result = 0f;
+            return false;
+        }
+    }
+
 
     [HarmonyPatch(typeof(AggressiveWhenSeeTarget), "IsTargetValid", new Type[] { typeof(GameObject) })]
     internal class Aggression_IsTargetValid_Patch
@@ -108,13 +138,14 @@
             float dist = Vector3.Distance(target.transform.position, __instance.transform.position);
             if (dist > __instance.maxRangeScalar)
             {
-                if (((target != Player.main.gameObject) && !target.GetComponent<Vehicle>()) || (dist > __instance.maxRangeScalar * 4))
+                if (((target != Player.main.gameObject) && !target.GetComponent<Vehicle>()) // if not the player
+                    || (dist > __instance.maxRangeScalar * 4)) // or if you ARE the player and are not in the scaled range, fail
                 {
                     __result = false;
                     return;
                 }
 
-                if (target == Player.main.gameObject)
+                if (target == Player.main.gameObject) // if it's the player, don't detect him while he's in a precursor base
                 {
                     if (Player.main.precursorOutOfWater || PrecursorMoonPoolTrigger.inMoonpool)
                     {
@@ -124,8 +155,8 @@
                 }
 
                 if (target.GetComponent<Vehicle>() != null)
-                {
-                    if ((target.GetComponent<Vehicle>() != Player.main.currentMountedVehicle) || target.GetComponent<Vehicle>().precursorOutOfWater || PrecursorMoonPoolTrigger.inMoonpool)
+                { // don't attack abandoned vehicles, that's just annoying
+                    if (((target.GetComponent<Vehicle>() != Player.main.currentMountedVehicle) && !AggressionSettings.AttackEmptyVehicles) || target.GetComponent<Vehicle>().precursorOutOfWater || PrecursorMoonPoolTrigger.inMoonpool)
                     {
                         __result = false;
                         return;

@@ -1,29 +1,87 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
 
 namespace AggressiveFauna
 {
     public static class AggressionSettings
     {
-        public static int SearchRingScale { get { return 3; } }
+        public static bool ApplyConfigDuringDayTime { get { return Config.Instance.AffectDaytime; } }
 
-        public static bool CanSeeThroughTerrain { get { return true; } }
+        public static bool ApplyConfigDuringNightTime { get { return Config.Instance.AffectNighttime; } }
 
-        public static bool DisableFleeing { get { return true; } }
+        public static int SearchRingScale { get { return CalculateSearchRingScale(); } }
 
-        public static bool DisableElectricityFlee { get { return true; } }
+        public static float MaxDistanceScale { get { return ScaleFloatWithTimeOfDay(1f, Config.Instance.DetectionRadiusMultiplier); } }
 
-        public static bool CanFeed { get { return false; } }
+        public static bool CanSeeThroughTerrain { get { return ScaleBoolWithTimeOfDay(false, Config.Instance.CanSeeThroughTerrain); } }
 
-        public static float PlayerPrioritizationMultiplier { get { return 3f; } }
+        public static bool DisableFleeing { get { return ScaleBoolWithTimeOfDay(false, Config.Instance.DisableFleeing); } }
 
-        public static float AggressionMultiplier { get { return 3f; } }
+        public static bool DisableElectricityFlee { get { return ScaleBoolWithTimeOfDay(false, Config.Instance.DisableFleeingFromElectricity); } }
 
-        public static bool AllowFriends { get { return true; } }
+        public static bool CanFeed { get { return ScaleBoolWithTimeOfDay(false, !Config.Instance.DisableFeeding); } }
 
-        public static bool CanSeeInsideBases { get { return true; } }
+        public static float PlayerPrioritizationMultiplier { get { return ScaleFloatWithTimeOfDay(1f, Config.Instance.PlayerPrioritization); } }
+
+        public static float AggressionMultiplier { get { return ScaleFloatWithTimeOfDay(1f, Config.Instance.AggressionMultiplier); } }
+
+        public static bool AllowFriends { get { return ScaleBoolWithTimeOfDay(true, !Config.Instance.DisableFeeding); } }
+
+        public static bool CanSeeInsideBases { get { return ScaleBoolWithTimeOfDay(false, Config.Instance.CanSeeThroughBases); } }
+
+        public static bool AttackEmptyVehicles { get { return ScaleBoolWithTimeOfDay(false, Config.Instance.AttackUnoccupiedVehicles); } }
+
+        public static bool RemoveAttackDelay { get { return ScaleBoolWithTimeOfDay(false, Config.Instance.DisableAttackDelay); } }
+
+        // constants
+
+        private const float kDayLightScalar = 0.5f;
+        private const int kSearchRingScaleLimit = 3;
+
+        // logic
+
+        private static bool ScaleBoolWithTimeOfDay(bool unmoddedValue, bool configValue)
+        {
+            bool isDay = GetIsDayTime();
+            if (isDay)
+            {
+                if (ApplyConfigDuringDayTime) return configValue;
+                else return unmoddedValue;
+            }
+            else
+            {
+                if (ApplyConfigDuringNightTime) return configValue;
+                else return unmoddedValue;
+            }
+        }
+
+        private static bool GetIsDayTime()
+        {
+            var dayNightCycle = DayNightCycle.main;
+            if (dayNightCycle == null) return true;
+            return dayNightCycle.GetDayScalar() > kDayLightScalar;
+        }
+
+        // no interpolation O_O
+        private static float ScaleFloatWithTimeOfDay(float unmoddedValue, float configValue)
+        {
+            bool isDay = GetIsDayTime();
+            if (isDay)
+            {
+                if (ApplyConfigDuringDayTime) return configValue;
+                else return unmoddedValue;
+            }
+            else
+            {
+                if (ApplyConfigDuringNightTime) return configValue;
+                else return unmoddedValue;
+            }
+        }
+
+        private static int CalculateSearchRingScale()
+        {
+            var scaled = ScaleFloatWithTimeOfDay(1f, Config.Instance.DetectionRadiusMultiplier);
+            return Mathf.Clamp(Mathf.RoundToInt(scaled), 0, kSearchRingScaleLimit);
+        }
     }
 }
