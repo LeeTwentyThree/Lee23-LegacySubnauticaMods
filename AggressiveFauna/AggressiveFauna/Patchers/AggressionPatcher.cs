@@ -178,6 +178,18 @@
         }
     }
 
+    [HarmonyPatch(typeof(ReaperMeleeAttack), nameof(ReaperMeleeAttack.OnTouch))]
+    internal class ReaperMeleeAttack_OnTouch_Patch
+    {
+        [HarmonyPrefix]
+        public static void Prefix(ReaperMeleeAttack __instance)
+        {
+            if (__instance.creature.Aggression.Value * AggressionSettings.AggressionMultiplier >= 0.5f)
+            {
+                __instance.creature.Aggression.Value = 1f; // hacky way to scale up the reaper's aggression so he will always be able to bite
+            }
+        }
+    }
 
     [HarmonyPatch(typeof(AggressiveWhenSeeTarget), "IsTargetValid", new Type[] { typeof(GameObject) })]
     internal class Aggression_IsTargetValid_Patch
