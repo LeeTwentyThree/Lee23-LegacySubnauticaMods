@@ -159,6 +159,23 @@
         }
     }
 
+    [HarmonyPatch(typeof(AttackLastTarget), nameof(AttackLastTarget.CanAttackTarget))]
+    internal class AttackLastTarget_CanAttackTarget_Patch
+    {
+        [HarmonyPrefix]
+        public static bool Prefix(AttackLastTarget __instance, GameObject target, ref bool __result)
+        {
+            if (target == null)
+            {
+                __result = false;
+                return false;
+            }
+            LiveMixin lm = target.GetComponent<LiveMixin>();
+            __result = lm && lm.IsAlive() && (!(target == Player.main.gameObject) || AggressionUtils.PlayerCanBeTargeted(Player.main));
+            return false;
+        }
+    }
+
     [HarmonyPatch(typeof(ReaperMeleeAttack), nameof(ReaperMeleeAttack.OnTouch))]
     internal class ReaperMeleeAttack_OnTouch_Patch
     {
@@ -167,7 +184,7 @@
         {
             if (__instance.creature.Aggression.Value * AggressionSettings.AggressionMultiplier >= 0.5f)
             {
-                __instance.creature.Aggression.Value = 1f; // hacky way to scale up the reaper's aggression so he will always be able to bite
+                __instance.creature.Aggression.Value = 0.5f; // hacky way to scale up the reaper's aggression so he will always be able to bite
             }
         }
     }
@@ -179,14 +196,6 @@
         public static bool Prefix(GameObject target, AggressiveWhenSeeTarget __instance)
         {
             return false;
-        }
-
-        private static bool PlayerCanBeTargeted(Player player)
-        {
-            if (GameModeUtils.IsInvisible()) return false;
-            if (player.justSpawned) return false;
-            if (!AggressionSettings.CanSeeInsideBases && Player.main.IsInsideWalkable()) return false;
-            return true;
         }
 
         [HarmonyPostfix]
@@ -204,7 +213,7 @@
             }
             if (target == Player.main.gameObject)
             {
-                if (!PlayerCanBeTargeted(Player.main))
+                if (!AggressionUtils.PlayerCanBeTargeted(Player.main))
                 {
                     __result = false;
                     return;
@@ -229,7 +238,7 @@
             if (dist > __instance.maxRangeScalar)
             {
                 if (((target != Player.main.gameObject) && !target.GetComponent<Vehicle>()) // if not the player
-                    || (dist > __instance.maxRangeScalar * 4)) // or if you ARE the player and are not in the scaled range, fail
+                    || (dist > __instance.maxRangeScalar * AggressionSettings.MaxDistanceScale)) // or if you ARE the player and are not in the scaled range, fail
                 {
                     __result = false;
                     return;
@@ -264,7 +273,7 @@
                 }
             }
 
-            if ((((target != Player.main.gameObject) || Player.main.IsInside() || Player.main.precursorOutOfWater || PrecursorMoonPoolTrigger.inMoonpool) && (!target.GetComponent<Vehicle>() || (target.GetComponent<Vehicle>() != Player.main.currentMountedVehicle) || target.GetComponent<Vehicle>().precursorOutOfWater)) ||  // Must be player or vehicle
+            if ((((target != Player.main.gameObject) || (!AggressionSettings.CanSeeInsideBases && Player.main.IsInside()) || Player.main.precursorOutOfWater || PrecursorMoonPoolTrigger.inMoonpool) && (!target.GetComponent<Vehicle>() || (target.GetComponent<Vehicle>() != Player.main.currentMountedVehicle) || target.GetComponent<Vehicle>().precursorOutOfWater)) ||  // Must be player or vehicle
                 (Ocean.main.GetDepthOf(target) <= 5))                                    // Keeps reapers from eating us up on land
             {
                 __result = __instance.creature.GetCanSeeObject(target);
