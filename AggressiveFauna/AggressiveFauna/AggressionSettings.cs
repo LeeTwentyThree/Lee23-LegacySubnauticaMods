@@ -35,6 +35,10 @@ namespace AggressiveFauna
 
         public static bool RemoveAttackDelay { get { return ScaleBoolWithTimeOfDay(false, Config.Instance.DisableAttackDelay); } }
 
+        public static bool AlwaysAttackVehicles { get { return ScaleBoolWithTimeOfDay(false, Config.Instance.AlwaysBiteVehicles); } }
+
+        public static bool AlwaysBiteCyclops { get { return ScaleBoolWithTimeOfDay(false, Config.Instance.AlwaysBiteCyclops); } }
+
         // constants
 
         private const float kDayLightScalar = 0.5f;
