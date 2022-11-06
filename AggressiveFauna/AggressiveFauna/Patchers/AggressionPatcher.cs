@@ -40,28 +40,6 @@
         }
     }
 
-    [HarmonyPatch(typeof(Player), nameof(Player.CanBeAttacked))]
-    internal class Player_CanBeAttacked_Patch
-    {
-        [HarmonyPrefix]
-        public static bool Prefix(ref bool __result)
-        {
-            if (AggressionSettings.CanSeeInsideBases)
-            {
-                if (Player.main.justSpawned)
-                {
-                    __result = false;
-                }
-                else
-                {
-                    __result = !GameModeUtils.IsInvisible();
-                }
-                return false;
-            }
-            return true;
-        }
-    }
-
     [HarmonyPatch(typeof(Creature), nameof(Creature.IsInFieldOfView))]
     internal class Creature_IsInFieldOfView_Patch
     {
@@ -203,6 +181,14 @@
             return false;
         }
 
+        private static bool PlayerCanBeTargeted(Player player)
+        {
+            if (GameModeUtils.IsInvisible()) return false;
+            if (player.justSpawned) return false;
+            if (!AggressionSettings.CanSeeInsideBases && Player.main.IsInsideWalkable()) return false;
+            return true;
+        }
+
         [HarmonyPostfix]
         public static void Postfix(GameObject target, AggressiveWhenSeeTarget __instance, ref bool __result)
         {
@@ -216,10 +202,13 @@
                 __result = false;
                 return;
             }
-            if (target == Player.main.gameObject && !Player.main.CanBeAttacked())
+            if (target == Player.main.gameObject)
             {
-                __result = false;
-                return;
+                if (!PlayerCanBeTargeted(Player.main))
+                {
+                    __result = false;
+                    return;
+                }
             }
             if (__instance.ignoreSameKind && CraftData.GetTechType(target) == __instance.myTechType)
             {
