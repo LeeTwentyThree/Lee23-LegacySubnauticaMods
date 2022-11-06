@@ -62,6 +62,92 @@
         }
     }
 
+    [HarmonyPatch(typeof(Creature), nameof(Creature.IsInFieldOfView))]
+    internal class Creature_IsInFieldOfView_Patch
+    {
+        [HarmonyPrefix]
+        public static bool Prefix(Creature __instance, GameObject go, out float distance, ref bool __result)
+        {
+            __result = false;
+            distance = 0f;
+            if (go != null)
+            {
+                Vector3 a = go.transform.position - __instance.transform.position;
+                distance = a.magnitude;
+                Vector3 rhs = __instance.eyesOnTop ? __instance.transform.up : __instance.transform.forward;
+                Vector3 lhs = a / distance;
+                var dot = Vector3.Dot(lhs, rhs);
+                var fovMult = AggressionSettings.FOVMultiplier;
+                if (dot >= 0f) dot *= fovMult;
+                else if (fovMult > 0f) dot /= fovMult;
+                if (Mathf.Approximately(__instance.eyeFOV, -1f) || dot  >= __instance.eyeFOV)
+                {
+                    if (AggressionSettings.CanSeeThroughTerrain || !Physics.Linecast(__instance.transform.position, go.transform.position, Voxeland.GetTerrainLayerMask()))
+                    {
+                        __result = true;
+                    }
+                }
+            }
+            return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(MeleeAttack), nameof(MeleeAttack.CanBite))]
+    internal class MeleeAttack_CanBite_Patch
+    {
+        [HarmonyPrefix]
+        public static bool Prefix(MeleeAttack __instance, GameObject target, ref bool __result)
+        {
+            Player player = target.GetComponent<Player>();
+            if (__instance.frozen)
+            {
+                __result = false;
+                return false;
+            }
+            if (player != null && !player.CanBeAttacked())
+            {
+                __result = false;
+                return false;
+            }
+            if (__instance.creature.Aggression.Value * AggressionSettings.AggressionMultiplier < __instance.biteAggressionThreshold)
+            {
+                __result = false;
+                return false;
+            }
+            if (!AggressionSettings.RemoveAttackDelay && Time.time < __instance.timeLastBite + __instance.biteInterval)
+            {
+                __result = false;
+                return false;
+            }
+            bool flag = target.GetComponent<SubControl>() != null;
+            if (flag && target != __instance.lastTarget.target)
+            {
+                __result = false;
+                return false;
+            }
+            if ((!__instance.canBitePlayer || player == null) && (!__instance.canBiteCreature || target.GetComponent<Creature>() == null) && (!__instance.canBiteVehicle || target.GetComponent<Vehicle>() == null) && (!__instance.canBiteCyclops || (!flag && target.GetComponent<CyclopsDecoy>() == null)))
+            {
+                __result = false;
+                return false;
+            }
+            Vector3 direction = target.transform.position - __instance.transform.position;
+            float magnitude = direction.magnitude;
+            int num = UWE.Utils.RaycastIntoSharedBuffer(__instance.transform.position, direction, magnitude, -5, QueryTriggerInteraction.Ignore);
+            for (int i = 0; i < num; i++)
+            {
+                Collider collider = UWE.Utils.sharedHitBuffer[i].collider;
+                GameObject gameObject = (collider.attachedRigidbody != null) ? collider.attachedRigidbody.gameObject : collider.gameObject;
+                if (!(gameObject == target) && !(gameObject == __instance.gameObject) && !(gameObject.GetComponent<Creature>() != null))
+                {
+                    __result = false;
+                    return false;
+                }
+            }
+            __result = true;
+            return false;
+        }
+    }
+
     [HarmonyPatch(typeof(AttackLastTarget), nameof(AttackLastTarget.Evaluate))]
     internal class AttackLastTarget_AttackLastTarget_Patch
     {

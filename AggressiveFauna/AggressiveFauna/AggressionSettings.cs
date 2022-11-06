@@ -25,6 +25,8 @@ namespace AggressiveFauna
 
         public static float AggressionMultiplier { get { return ScaleFloatWithTimeOfDay(1f, Config.Instance.AggressionMultiplier); } }
 
+        public static float FOVMultiplier { get { return ScaleFloatWithTimeOfDay(1f, Config.Instance.FOVScale); } }
+
         public static bool AllowFriends { get { return ScaleBoolWithTimeOfDay(true, !Config.Instance.DisableFeeding); } }
 
         public static bool CanSeeInsideBases { get { return ScaleBoolWithTimeOfDay(false, Config.Instance.CanSeeThroughBases); } }
