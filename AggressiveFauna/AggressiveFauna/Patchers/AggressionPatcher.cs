@@ -119,13 +119,16 @@
                 __result = false;
                 return false;
             }
-            bool flag = target.GetComponent<SubControl>() != null;
-            if (flag && target != __instance.lastTarget.target)
+            bool isCyclops = target.GetComponent<SubControl>() != null;
+            if (isCyclops && target != __instance.lastTarget.target)
             {
                 __result = false;
                 return false;
             }
-            if ((!__instance.canBitePlayer || player == null) && (!__instance.canBiteCreature || target.GetComponent<Creature>() == null) && (!__instance.canBiteVehicle || target.GetComponent<Vehicle>() == null) && (!__instance.canBiteCyclops || (!flag && target.GetComponent<CyclopsDecoy>() == null)))
+            if ((!__instance.canBitePlayer || player == null) &&
+                (!__instance.canBiteCreature || target.GetComponent<Creature>() == null) &&
+                ((!AggressionSettings.AlwaysBiteVehicles && !__instance.canBiteVehicle) || target.GetComponent<Vehicle>() == null) &&
+                ((!AggressionSettings.AlwaysBiteCyclops && !__instance.canBiteCyclops) || (!isCyclops && target.GetComponent<CyclopsDecoy>() == null)))
             {
                 __result = false;
                 return false;
