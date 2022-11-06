@@ -61,7 +61,7 @@ namespace AggressiveFauna
             }
         }
 
-        private static bool GetIsDayTime()
+        public static bool GetIsDayTime()
         {
             var dayNightCycle = DayNightCycle.main;
             if (dayNightCycle == null) return true;
