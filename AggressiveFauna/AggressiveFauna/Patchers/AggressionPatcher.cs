@@ -20,7 +20,7 @@
         public static void Postfix(AggressiveWhenSeeTarget __instance, ref GameObject __result)
         {
             int maxSearchRings = __instance.maxSearchRings;
-            
+
             maxSearchRings *= AggressionSettings.SearchRingScale;
 
             /*if (Ocean.main.GetDepthOf(Player.main.gameObject) <= 5)
@@ -58,7 +58,7 @@
                 var fovMult = AggressionSettings.FOVMultiplier;
                 if (dot >= 0f) dot *= fovMult;
                 else if (fovMult > 0f) dot /= fovMult;
-                if (Mathf.Approximately(__instance.eyeFOV, -1f) || dot  >= __instance.eyeFOV)
+                if (Mathf.Approximately(__instance.eyeFOV, -1f) || dot >= __instance.eyeFOV)
                 {
                     if (AggressionSettings.CanSeeThroughTerrain || !Physics.Linecast(__instance.transform.position, go.transform.position, Voxeland.GetTerrainLayerMask()))
                     {
@@ -92,7 +92,7 @@
                 __result = false;
                 return false;
             }
-            if (!AggressionSettings.RemoveAttackDelay && Time.time < __instance.timeLastBite + __instance.biteInterval)
+            if (Time.time < __instance.timeLastBite + __instance.biteInterval * AggressionSettings.BiteCooldownScale)
             {
                 __result = false;
                 return false;
@@ -135,24 +135,22 @@
         [HarmonyPrefix]
         public static bool Prefix(AttackLastTarget __instance, Creature creature, ref float __result)
         {
-            if (creature.Aggression.Value * AggressionSettings.AggressionMultiplier > __instance.aggressionThreshold)
+            if ((creature.Aggression.Value * AggressionSettings.AggressionMultiplier > __instance.aggressionThreshold || Time.time < __instance.timeStartAttack + __instance.minAttackDuration * AggressionSettings.AttackDurationScale)
+                && Time.time > __instance.timeStopAttack + __instance.pauseInterval * AggressionSettings.AttackCooldownScale)
             {
-                if (AggressionSettings.RemoveAttackDelay || (Time.time < __instance.timeStartAttack + __instance.minAttackDuration & Time.time > __instance.timeStopAttack + __instance.pauseInterval))
+                if (__instance.lastTarget.target != null && Time.time <= __instance.lastTarget.targetTime + __instance.rememberTargetTime * AggressionSettings.RememberTargetTimeScale && !__instance.lastTarget.targetLocked)
                 {
-                    if (__instance.lastTarget.target != null && Time.time <= __instance.lastTarget.targetTime + __instance.rememberTargetTime && !__instance.lastTarget.targetLocked)
-                    {
-                        __instance.currentTarget = __instance.lastTarget.target;
-                    }
-                    if (!__instance.CanAttackTarget(__instance.currentTarget))
-                    {
-                        __instance.currentTarget = null;
-                    }
-                    if (__instance.currentTarget != null)
-                    {
-                        __result = __instance.GetEvaluatePriority();
-                    }
-                    return false;
+                    __instance.currentTarget = __instance.lastTarget.target;
                 }
+                if (!__instance.CanAttackTarget(__instance.currentTarget))
+                {
+                    __instance.currentTarget = null;
+                }
+                if (__instance.currentTarget != null)
+                {
+                    __result = __instance.GetEvaluatePriority();
+                }
+                return false;
             }
             __result = 0f;
             return false;
@@ -321,7 +319,7 @@
                     float sqrMagnitude = (wsPos - ecoTarget.GetPosition()).sqrMagnitude;
 
                     // if we're looking at the player
-                    if (((ecoTarget.GetGameObject() == Player.main.gameObject) && !Player.main.IsInside() && Player.main.IsUnderwater() && !Player.main.precursorOutOfWater) || 
+                    if (((ecoTarget.GetGameObject() == Player.main.gameObject) && !Player.main.IsInside() && Player.main.IsUnderwater() && !Player.main.precursorOutOfWater) ||
                         (ecoTarget.GetGameObject().GetComponent<Vehicle>() && (ecoTarget.GetGameObject().GetComponent<Vehicle>() == Player.main.currentMountedVehicle)) && !Player.main.currentMountedVehicle.precursorOutOfWater)
                     {
                         bool feeding = false;
@@ -376,7 +374,7 @@
             Vehicle veh = Player.main.currentMountedVehicle;
             if (veh != null)
             {
-                if (veh.precursorOutOfWater) return true;                
+                if (veh.precursorOutOfWater) return true;
             }
 
             float aggressionMultiplier = AggressionSettings.AggressionMultiplier;
