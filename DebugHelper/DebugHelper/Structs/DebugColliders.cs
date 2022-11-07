@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DebugHelper.Basis;
+using System;
 using UnityEngine;
 
 namespace DebugHelper.Structs
@@ -22,15 +23,13 @@ namespace DebugHelper.Structs
         // https://docs.unity3d.com/560/Documentation/Manual/CollidersOverview.html
 
         #region Fields
-        private Collider m_collider;
-        private ColliderType m_type;
-        private ColliderShape m_shape;
+        private readonly Collider m_collider;
         protected GameObject m_visualObject;
         protected Renderer m_renderer;
         #endregion
         #region Getters
         #region Properties
-        public bool wasDrawn
+        public bool WasDrawn
         {
             get
             {
@@ -41,12 +40,12 @@ namespace DebugHelper.Structs
         /// <summary>
         /// Returns one of these collider type: Static, Rigidbody, KinematicRigidbody
         /// </summary>
-        public ColliderType type { get => GetColliderType(); }
+        public ColliderType Type { get => GetColliderType(); }
         /// <summary>
         /// Returns one of these shape type: Box, Sphere, Capsule, Mesh
         /// </summary>
-        public ColliderShape shape { get => GetColliderShape(); }
-        public bool isTrigger { get => IsTrigger(); }
+        public ColliderShape Shape { get => GetColliderShape(); }
+        public bool IsTrigger { get => m_collider.isTrigger; }
         #endregion
         #region Methods
         /// <summary>
@@ -86,25 +85,24 @@ namespace DebugHelper.Structs
             }
             return ColliderShape.Mesh;
         }
-        public bool IsTrigger() => m_collider.isTrigger;
         #endregion
         #endregion
         #region Visual
         public void SetColor(Color color)
         {
-            if (!wasDrawn) return;
+            if (!WasDrawn) return;
             m_renderer.material.color = color;
         }
         public void SetMaterial(Material material)
         {
-            if (!wasDrawn) return;
+            if (!WasDrawn) return;
             m_renderer.material = material;
         }
         public virtual void CreateVisual()
         {
-            if (wasDrawn) return;
+            if (WasDrawn) return;
             PrimitiveType pt = PrimitiveType.Cube;
-            switch (shape)
+            switch (Shape)
             {
                 case ColliderShape.Box: 
                     break;
@@ -126,7 +124,7 @@ namespace DebugHelper.Structs
         }
         public void DestroyVisual()
         {
-            if (!wasDrawn) return;
+            if (!WasDrawn) return;
             UnityEngine.GameObject.DestroyImmediate(m_visualObject);
         }
         #endregion
@@ -144,8 +142,8 @@ namespace DebugHelper.Structs
     }
     public sealed class DebugBoxCollider : BaseDebugCollider<BoxCollider>
     {
-        public Vector3 center { get => this.GetCenter(); }
-        public Vector3 size { get => this.GetSize(); }
+        public Vector3 Center { get => this.GetCenter(); }
+        public Vector3 Size { get => this.GetSize(); }
 
         public Vector3 GetCenter() => base.Get().center;
         public Vector3 GetSize() => base.Get().size;
@@ -153,16 +151,16 @@ namespace DebugHelper.Structs
         public override void CreateVisual()
         {
             base.CreateVisual();
-            m_visualObject.transform.localPosition = center;
-            m_visualObject.transform.localScale = size;
+            m_visualObject.transform.localPosition = Center;
+            m_visualObject.transform.localScale = Size;
         }
 
         internal DebugBoxCollider(BoxCollider collider) : base(collider) { }
     }
     public sealed class DebugSphereCollider : BaseDebugCollider<SphereCollider>
     {
-        public Vector3 center { get => this.GetCenter(); }
-        public float radius { get => this.GetRadius(); }
+        public Vector3 Center { get => this.GetCenter(); }
+        public float Radius { get => this.GetRadius(); }
 
         public Vector3 GetCenter() => base.Get().center;
         public float GetRadius() => base.Get().radius;
@@ -170,7 +168,7 @@ namespace DebugHelper.Structs
         public override void CreateVisual()
         {
             base.CreateVisual();
-            m_visualObject.transform.localPosition = center;
+            m_visualObject.transform.localPosition = Center;
             m_visualObject.transform.localScale = Vector3.one * GetRadius() * 2f;
         }
 
@@ -178,10 +176,10 @@ namespace DebugHelper.Structs
     }
     public sealed class DebugCapsuleCollider : BaseDebugCollider<CapsuleCollider>
     {
-        public Vector3 center { get => this.GetCenter(); }
-        public float radius { get => this.GetRadius(); }
-        public float height { get => this.GetHeight(); }
-        public int direction { get => this.GetDirection(); }
+        public Vector3 Center { get => this.GetCenter(); }
+        public float Radius { get => this.GetRadius(); }
+        public float Height { get => this.GetHeight(); }
+        public int Direction { get => this.GetDirection(); }
 
         public Vector3 GetCenter() => base.Get().center;
         public float GetRadius() => base.Get().radius;
@@ -192,10 +190,10 @@ namespace DebugHelper.Structs
         {
             base.CreateVisual();
             Transform transform = m_visualObject.transform;
-            Vector3 angle = 90 * (direction != 1 ? (direction == 0 ? Vector3.forward : Vector3.right) : Vector3.zero);
-            transform.localPosition = center;
+            Vector3 angle = 90 * (Direction != 1 ? (Direction == 0 ? Vector3.forward : Vector3.right) : Vector3.zero);
+            transform.localPosition = Center;
             transform.localEulerAngles = angle;
-            transform.localScale = new Vector3(radius * 2f, height / 2, radius * 2f);
+            transform.localScale = new Vector3(Radius * 2f, Height / 2, Radius * 2f);
         }
 
         internal DebugCapsuleCollider(CapsuleCollider collider) : base(collider) { }
@@ -203,15 +201,15 @@ namespace DebugHelper.Structs
     public sealed class DebugMeshCollider : BaseDebugCollider<MeshCollider>
     {
         private MeshFilter m_filter;
-        public Mesh mesh { get => this.GetMesh(); }
-        public bool convex { get => this.IsConvex(); }
+        public Mesh Mesh { get => this.GetMesh(); }
+        public bool Convex { get => this.IsConvex(); }
 
         public Mesh GetMesh() => base.Get().sharedMesh;
         public bool IsConvex() => base.Get().convex;
 
         public override void CreateVisual()
         {
-            if (wasDrawn) return;
+            if (WasDrawn) return;
 
             m_visualObject = new GameObject("DebugMeshCollider");
             m_renderer = m_visualObject.AddComponent<MeshRenderer>();

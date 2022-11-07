@@ -1,17 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using DebugHelper.Basis;
+using DebugHelper.Structs;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-namespace DebugHelper.Structs
+namespace DebugHelper.Pools
 {
-    public class ColliderPool
+    public sealed class ColliderPool : BasePool<BaseDebugCollider>
     {
-        /// <exception>
-        /// Do not modify it!
-        /// </exception>
-        public HashSet<BaseDebugCollider> list = new HashSet<BaseDebugCollider>();
-
-        public BaseDebugCollider Register(Collider collider)
+        public override BaseDebugCollider Register(object target)
         {
+            Collider collider = target as Collider;
             BaseDebugCollider pc = null;
             switch (collider.GetType().Name)
             {
@@ -31,26 +30,32 @@ namespace DebugHelper.Structs
                     Debug.Log(collider.GetType().Name + " is not supported!");
                     return null;
             }
-            list.Add(pc);
+            m_list.Add(pc);
             return pc;
         }
-        public void Unregister(BaseDebugCollider collider)
+        public override void Unregister(BaseDebugCollider collider)
         {
-            if (!list.Contains(collider)) return;
+            if (!m_list.Contains(collider)) return;
             collider.DestroyVisual();
-            list.Remove(collider);
+            m_list.Remove(collider);
         }
-        public int Clear()
+        public void Unregister(Collider collider) => m_list.RemoveWhere(x => x.Get().GetInstanceID() == collider.GetInstanceID());
+        public override int Clear()
         {
             int destroyed = 0;
-            foreach (var obj in list)
+            foreach (var obj in m_list)
             {
                 obj.DestroyVisual();
             }
-            list.Clear();
+            m_list.Clear();
             return destroyed;
         }
 
-        public void Unregister(Collider collider) => list.RemoveWhere(x => x.Get().GetInstanceID() == collider.GetInstanceID());
+        public override bool Contains(object target)
+        {
+            Collider c = target as Collider;
+            if (c == null) return false;
+            return m_list.Where(x => x.Get()).Count() > 0;
+        }
     }
 }

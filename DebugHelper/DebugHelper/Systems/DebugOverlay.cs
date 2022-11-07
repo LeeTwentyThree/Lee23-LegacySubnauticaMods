@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using DebugHelper.Systems.Projection;
 using System.Collections.Generic;
+using DebugHelper.Managers;
 
 namespace DebugHelper.Systems
 {
@@ -19,6 +20,7 @@ namespace DebugHelper.Systems
         {
             var gameObject = Instantiate(Main.assetBundle.LoadAsset<GameObject>("DebugOverlayCanvas"));
             var component = gameObject.AddComponent<DebugOverlay>();
+            gameObject.AddComponent<DebugCollidersManager>();
             component.rawImage = gameObject.GetComponentInChildren<RawImage>();
         }
 
