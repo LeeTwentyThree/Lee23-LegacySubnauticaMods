@@ -11,7 +11,6 @@ namespace DebugHelper.Basis
     {
         protected HashSet<T> m_list = new HashSet<T>();
 
-
         public abstract T Register(object target);
         public abstract void Unregister(T target);
         public virtual bool Contains(T target) => m_list.Contains(target);

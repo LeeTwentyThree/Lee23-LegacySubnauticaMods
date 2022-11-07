@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace DebugHelper.Structs
+namespace DebugHelper.Basis
 {
     public abstract class BaseManager : MonoBehaviour
     {
@@ -24,6 +24,7 @@ namespace DebugHelper.Structs
         }
         private float m_updateRepeatRate = 1f;
         public bool isTicking { get; private set; }
+
         #region Ticking
         public virtual void StartTicking(float startDelay = 0f)
         {

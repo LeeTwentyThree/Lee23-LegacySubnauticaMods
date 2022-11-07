@@ -1,6 +1,6 @@
 ﻿using DebugHelper.Basis;
 using DebugHelper.Pools;
-using DebugHelper.Structs;
+using DebugHelper.Objects;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,9 +27,20 @@ namespace DebugHelper.Managers
 
         private Transform m_camTransform 
         {
-            get => SNCameraRoot.main.transform;
+            get
+            {
+                Transform root = SNCameraRoot.main.transform;
+                if (root != null) return root;
+                return Camera.main.transform;
+            }
         }
-        
+
+        public static void CreateInstance()
+        {
+            GameObject go = new GameObject("DebugCollidersManager");
+            go.AddComponent<DebugCollidersManager>();
+            DontDestroyOnLoad(go);
+        }
         private void OnEnable()
         {
             main = this;
@@ -37,7 +48,7 @@ namespace DebugHelper.Managers
             targetRange = 10f;
             pool = new ColliderPool();
             CoroutineHost.StartCoroutine(f_setupMaterials());
-            StartTicking();
+            StartTicking(0);
         }
         private void OnDisable()
         {
@@ -97,13 +108,13 @@ namespace DebugHelper.Managers
             GameObject stasisRifle = task.GetResult();
             var stasisBall = stasisRifle.GetComponent<StasisRifle>().effectSpherePrefab.GetComponentInChildren<Renderer>();
             m_colliderMaterial = new Material(stasisBall.materials[1]);
-            m_colliderMaterial.color = new Color(0.3f, 1f, 0f);
+            m_colliderMaterial.color = new Color(0.3f, 1f, 0f, 0.25f);
             m_physicsColliderMaterial = new Material(stasisBall.materials[1]);
-            m_physicsColliderMaterial.color = new Color(1f, 0.2f, 0.2f);
+            m_physicsColliderMaterial.color = new Color(1f, 0.2f, 0.2f, 0.25f);
             m_triggerMaterial = new Material(stasisBall.materials[1]);
-            m_triggerMaterial.color = new Color(0.5f, 0.5f, 0.5f);
+            m_triggerMaterial.color = new Color(0.5f, 0.5f, 0.5f, 0.25f);
             m_meshColliderMaterial = new Material(stasisBall.materials[1]);
-            m_meshColliderMaterial.color = new Color(0.2f, 0.2f, 1f);
+            m_meshColliderMaterial.color = new Color(0.2f, 0.2f, 1f, 0.25f);
         }
         #endregion
         #region helpers
@@ -117,6 +128,11 @@ namespace DebugHelper.Managers
         private Collider[] m_getCollidersRay(Ray ray, float range) => throw new NotImplementedException();
         private Material f_colliderMaterial(BaseDebugCollider collider)
         {
+            switch (collider.IsTrigger)
+            {
+                case true:
+                    break;
+            }
             if (collider.IsTrigger) return m_triggerMaterial;
             if (collider.Type == ColliderType.Rigidbody) return m_physicsColliderMaterial;
             if (collider.Shape == ColliderShape.Mesh) return m_meshColliderMaterial;

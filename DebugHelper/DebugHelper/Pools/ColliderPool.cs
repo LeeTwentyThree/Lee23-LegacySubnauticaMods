@@ -1,5 +1,5 @@
 ﻿using DebugHelper.Basis;
-using DebugHelper.Structs;
+using DebugHelper.Objects;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;

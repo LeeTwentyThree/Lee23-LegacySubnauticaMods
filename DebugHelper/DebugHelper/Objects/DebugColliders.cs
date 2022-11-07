@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace DebugHelper.Structs
+namespace DebugHelper.Objects
 {
     public enum ColliderType
     {
