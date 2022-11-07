@@ -12,6 +12,10 @@ namespace AggressiveFauna
         public bool AffectDaytime = true;
         [Toggle("Changes apply during night", Tooltip = "If disabled, the settings below will not have an effect during nighttime.")]
         public bool AffectNighttime = true;
+        [Toggle("Aggression warnings", Tooltip = "If enabled, you will get a warning when creatures begin to become more aggressive than usual.")]
+        public bool ShowAggressionWarnings = true;
+        [Toggle("Aggression music", Tooltip = "If enabled, a music track will play when creatures begin to become more aggressive than usual.")]
+        public bool PlayAggressionMusic = false;
         [Slider("Detection radius multiplier", DefaultValue = 1f, Min = 1f, Max = 5f, Step = 0.1f, Tooltip = "The scale factor of the detection range of aggressive creatures.\nUnmodded value: 1x")]
         public float DetectionRadiusMultiplier = 5f;
         [Toggle("Detection through terrain", Tooltip = "If enabled, creatures will be able to detect you through walls.\nUnmodded value: False")]
