@@ -37,8 +37,13 @@ namespace AggressiveFauna
         {
             get
             {
-                return UWE.FreezeTime.freezers.Count == 0;
+                return UWE.FreezeTime.freezers.Count != 0;
             }
+        }
+
+        private void Start()
+        {
+            Utils.PlayFMODAsset(music, Player.main.transform.position);
         }
 
         private void Update()
