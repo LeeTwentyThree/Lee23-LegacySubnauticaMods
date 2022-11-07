@@ -27,13 +27,19 @@ namespace AggressiveFauna
 
         public static float FOVMultiplier { get { return ScaleFloatWithTimeOfDay(1f, Config.Instance.FOVScale); } }
 
+        public static float AttackDurationScale { get { return ScaleFloatWithTimeOfDay(1f, Config.Instance.AttackDurationScale); } }
+
+        public static float RememberTargetTimeScale { get { return ScaleFloatWithTimeOfDay(1f, Config.Instance.RememberTargetTimeScale); } }
+
+        public static float AttackCooldownScale { get { return ScaleFloatWithTimeOfDay(1f, Config.Instance.AttackCooldownPercentageNormalized); } }
+
+        public static float BiteCooldownScale { get { return ScaleFloatWithTimeOfDay(1f, Config.Instance.BiteCooldownPercentageNormalized); } }
+
         public static bool AllowFriends { get { return ScaleBoolWithTimeOfDay(true, !Config.Instance.DisableFeeding); } }
 
         public static bool CanSeeInsideBases { get { return ScaleBoolWithTimeOfDay(false, Config.Instance.CanSeeThroughBases); } }
 
         public static bool AttackEmptyVehicles { get { return ScaleBoolWithTimeOfDay(false, Config.Instance.AttackUnoccupiedVehicles); } }
-
-        public static bool RemoveAttackDelay { get { return ScaleBoolWithTimeOfDay(false, Config.Instance.DisableAttackDelay); } }
 
         public static bool AlwaysBiteVehicles { get { return ScaleBoolWithTimeOfDay(false, Config.Instance.AlwaysBiteVehicles); } }
 
