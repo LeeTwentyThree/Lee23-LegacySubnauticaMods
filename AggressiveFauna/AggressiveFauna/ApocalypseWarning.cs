@@ -51,7 +51,7 @@ namespace AggressiveFauna
             }
             else if (ShouldWarnForNighttime && justBecameNight)
             {
-                if (aggressionWarnings) ErrorMessage.AddMessage("The smell of blood fills the air as the sun falls beyond the horizon...");
+                if (aggressionWarnings) ErrorMessage.AddMessage("The smell of blood fills the water as the sun falls beyond the horizon...");
                 change = true;
             }
             if (change && Config.Instance.PlayAggressionMusic) ApocalypseMusic.Play();
