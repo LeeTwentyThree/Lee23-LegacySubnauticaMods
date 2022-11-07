@@ -41,7 +41,8 @@ namespace AggressiveFauna
 
         // constants
 
-        private const float kDayLightScalar = 0.5f;
+        private const float kMinDayLightScalar = 0.1f;
+        private const float kMaxDayLightScalar = 0.88f;
         private const int kSearchRingScaleLimit = 3;
 
         // logic
@@ -65,7 +66,8 @@ namespace AggressiveFauna
         {
             var dayNightCycle = DayNightCycle.main;
             if (dayNightCycle == null) return true;
-            return dayNightCycle.GetDayScalar() > kDayLightScalar;
+            var dayScalar = dayNightCycle.GetDayScalar();
+            return dayScalar > kMinDayLightScalar && dayScalar < kMaxDayLightScalar;
         }
 
         // no interpolation O_O
