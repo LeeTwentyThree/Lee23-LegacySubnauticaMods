@@ -48,7 +48,7 @@ namespace AggressiveFauna
         // constants
 
         private const float kMinDayLightScalar = 0.1f;
-        private const float kMaxDayLightScalar = 0.88f;
+        private const float kMaxDayLightScalar = 0.85f;
         private const int kSearchRingScaleLimit = 3;
 
         // logic
