@@ -17,10 +17,12 @@ namespace DebugHelper.Managers
         public static DebugCollidersManager main;
         public ColliderPool pool { get; private set; }
 
-        private Material m_colliderMaterial; // generic colliders
-        private Material m_physicsColliderMaterial; // colliders on non-kinematic rigidbodies
-        private Material m_triggerMaterial; // colliders with isTrigger set to true
-        private Material m_meshColliderMaterial; // anything with the MeshCollider component
+        private Material m_vsMaterial;
+
+        private Color m_GnClColor; // generic colliders
+        private Color m_PhClColor; // colliders on non-kinematic rigidbodies
+        private Color m_TgClColor; // colliders with isTrigger set to true
+        private Color m_MhClColor; // anything with the MeshCollider component
 
         public bool enabledShowInRange { get; private set; }
         public float targetRange { get; private set; }
@@ -107,36 +109,31 @@ namespace DebugHelper.Managers
 
             GameObject stasisRifle = task.GetResult();
             var stasisBall = stasisRifle.GetComponent<StasisRifle>().effectSpherePrefab.GetComponentInChildren<Renderer>();
-            m_colliderMaterial = new Material(stasisBall.materials[1]);
-            m_colliderMaterial.color = new Color(0.3f, 1f, 0f, 0.25f);
-            m_physicsColliderMaterial = new Material(stasisBall.materials[1]);
-            m_physicsColliderMaterial.color = new Color(1f, 0.2f, 0.2f, 0.25f);
-            m_triggerMaterial = new Material(stasisBall.materials[1]);
-            m_triggerMaterial.color = new Color(0.5f, 0.5f, 0.5f, 0.25f);
-            m_meshColliderMaterial = new Material(stasisBall.materials[1]);
-            m_meshColliderMaterial.color = new Color(0.2f, 0.2f, 1f, 0.25f);
+
+            m_vsMaterial = new Material(stasisBall.materials[1]);
+            m_vsMaterial.color = new Color(1f, 0.7f, 0.8f);
+
+            m_GnClColor = new Color(1f, 1f, 0f);
+            m_PhClColor = new Color(1f, 0.2f, 0.2f);
+            m_TgClColor = new Color(0.5f, 0.5f, 0.5f);
+            m_MhClColor = new Color(0.2f, 0.2f, 1f);
         }
         #endregion
         #region helpers
         private void f_renderCollider(BaseDebugCollider collider)
         {
-            Material m = f_colliderMaterial(collider);
             collider.CreateVisual();
-            collider.SetMaterial(m);
+            collider.SetMaterial(m_vsMaterial);
+            collider.SetColor(f_colliderColor(collider));
         }
         private Collider[] m_getCollidersRange(Vector3 position, float range) => Physics.OverlapSphere(position, range);
         private Collider[] m_getCollidersRay(Ray ray, float range) => throw new NotImplementedException();
-        private Material f_colliderMaterial(BaseDebugCollider collider)
+        private Color f_colliderColor(BaseDebugCollider collider)
         {
-            switch (collider.IsTrigger)
-            {
-                case true:
-                    break;
-            }
-            if (collider.IsTrigger) return m_triggerMaterial;
-            if (collider.Type == ColliderType.Rigidbody) return m_physicsColliderMaterial;
-            if (collider.Shape == ColliderShape.Mesh) return m_meshColliderMaterial;
-            return m_colliderMaterial;
+            if (collider.IsTrigger) return m_TgClColor;
+            if (collider.Type == ColliderType.Rigidbody) return m_PhClColor;
+            if (collider.Shape == ColliderShape.Mesh) return m_MhClColor;
+            return m_GnClColor;
         }
         #endregion
     }
