@@ -15,7 +15,7 @@ namespace AggressiveFauna
         [Toggle("Aggression warnings", Tooltip = "If enabled, you will get a warning when creatures begin to become more aggressive than usual.")]
         public bool ShowAggressionWarnings = true;
         [Toggle("Aggression music", Tooltip = "If enabled, a music track will play when creatures begin to become more aggressive than usual.")]
-        public bool PlayAggressionMusic = false;
+        public bool PlayAggressionMusic = true;
         [Slider("Detection radius multiplier", DefaultValue = 1f, Min = 1f, Max = 5f, Step = 0.1f, Tooltip = "The scale factor of the detection range of aggressive creatures.\nUnmodded value: 1x")]
         public float DetectionRadiusMultiplier = 5f;
         [Toggle("Detection through terrain", Tooltip = "If enabled, creatures will be able to detect you through walls.\nUnmodded value: False")]
@@ -26,9 +26,9 @@ namespace AggressiveFauna
         public float PlayerPrioritization = 5f;
         [Slider("Aggression multiplier", DefaultValue = 1f, Min = 1f, Max = 10f, Step = 0.1f, Tooltip = "General aggression multiplier. Scales the minimum aggression required for attacking.\nUnmodded value: 1x")]
         public float AggressionMultiplier = 10f;
-        [Slider("Attack duration scale", DefaultValue = 1f, Min = 1f, Max = 5f, Step = 0.1f, Tooltip = "Multiplier for how long a creature will pursue you for.\nUnmodded value: 1x")]
+        [Slider("Attack duration scale", DefaultValue = 1f, Min = 1f, Max = 20f, Step = 0.1f, Tooltip = "Multiplier for how long a creature will pursue you for.\nUnmodded value: 1x")]
         public float AttackDurationScale = 3f;
-        [Slider("Remember target time scale", DefaultValue = 1f, Min = 1f, Max = 5f, Step = 0.1f, Tooltip = "Multiplier for how long a creature will remember you for.\nUnmodded value: 1x")]
+        [Slider("Remember target time scale", DefaultValue = 1f, Min = 1f, Max = 20f, Step = 0.1f, Tooltip = "Multiplier for how long a creature will remember you for.\nUnmodded value: 1x")]
         public float RememberTargetTimeScale = 3f;
         [Slider("Attack cooldown percentage", DefaultValue = 100f, Min = 0f, Max = 100f, Step = 1f, Tooltip = "Multiplier for how long of a break a creature will take after attacking.\nUnmodded value: 100%")]
         public float AttackCooldownPercentage = 30f;
