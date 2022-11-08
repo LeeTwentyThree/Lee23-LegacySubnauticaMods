@@ -38,5 +38,35 @@ namespace DebugHelper.Commands
         {
             Utils.DebugDrawStar(Player.main.transform.position, radius, Color.cyan, duration);
         }
+
+        [ConsoleCommand("lookingat")]
+        public static void LookingAt(bool hitTriggers = false)
+        {
+            Transform scanTransform = MainCameraControl.main.transform;
+            if (Physics.Raycast(scanTransform.position + scanTransform.forward, scanTransform.forward, out RaycastHit hit, float.MaxValue, -1, hitTriggers ? QueryTriggerInteraction.Collide : QueryTriggerInteraction.Ignore))
+            {
+                var hitGameObject = hit.collider.gameObject;
+                var parent = hitGameObject.transform.parent;
+                var attachedRb = hit.collider.attachedRigidbody;
+                var root = UWE.Utils.GetEntityRoot(hitGameObject);
+                ErrorMessage.AddMessage($"Raycast hit collider of name '{hitGameObject.name}'");
+                if (parent != null)
+                {
+                    ErrorMessage.AddMessage($"Collider is direct child of '{parent.name}'");
+                }
+                if (attachedRb != null)
+                {
+                    ErrorMessage.AddMessage($"Collider is attached to the Rigidbody '{attachedRb.gameObject.name}'");
+                }
+                if (root != null)
+                {
+                    ErrorMessage.AddMessage($"Entity root of this collider is '{root.name}'");
+                }
+            }
+            else
+            {
+                ErrorMessage.AddMessage("Raycast failed.");
+            }
+        }
     }
 }
