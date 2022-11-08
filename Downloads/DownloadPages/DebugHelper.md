@@ -1,6 +1,6 @@
 # DebugHelper v1.1.0
 
-Added October 22 2022, last updated November 2 2022.
+Added October 22 2022, last updated November 7 2022.
 
 ### [Download Here](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/DebugHelper.zip)
 
