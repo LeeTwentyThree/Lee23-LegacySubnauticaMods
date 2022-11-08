@@ -49,4 +49,4 @@ Thank you so much to all of my Patrons for your incredible support!
 
 ### Other
 
-You can leave feedback or report an issue on the [Issues tab](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/issues) or [here](https://forms.gle/MAa7Kovx6CRodsd77) if you don't have an account.
+You can leave feedback or report an issue on the [Issues tab](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/issues) or on [this form](https://forms.gle/MAa7Kovx6CRodsd77) if you don't have an account.
