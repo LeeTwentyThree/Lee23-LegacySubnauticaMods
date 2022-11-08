@@ -41,8 +41,8 @@ namespace DebugHelper.Managers
         {
             GameObject go = new GameObject("DebugCollidersManager");
             go.AddComponent<DebugCollidersManager>();
-            DontDestroyOnLoad(go);
         }
+
         private void OnEnable()
         {
             main = this;
