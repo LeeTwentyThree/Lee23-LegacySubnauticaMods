@@ -1,0 +1,12 @@
+{
+  "Id": "DebugHelper",
+  "DisplayName": "DebugHelper",
+  "Author": "Lee23",
+  "Version": "1.1.0",
+  "VersionDependencies": {
+    "SMLHelper": "2.9"
+  },
+  "Enable": true,
+  "Game": "Subnautica",
+  "AssemblyName": "DebugHelper.dll"
+}
