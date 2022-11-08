@@ -20,7 +20,7 @@
         public static void Postfix(AggressiveWhenSeeTarget __instance, ref GameObject __result)
         {
             int maxSearchRings = __instance.maxSearchRings;
-            
+
             maxSearchRings *= AggressionSettings.SearchRingScale;
 
             /*if (Ocean.main.GetDepthOf(Player.main.gameObject) <= 5)
@@ -37,28 +37,6 @@
             {
                 __result = ecoTarget.GetGameObject();
             }
-        }
-    }
-
-    [HarmonyPatch(typeof(Player), nameof(Player.CanBeAttacked))]
-    internal class Player_CanBeAttacked_Patch
-    {
-        [HarmonyPrefix]
-        public static bool Prefix(ref bool __result)
-        {
-            if (AggressionSettings.CanSeeInsideBases)
-            {
-                if (Player.main.justSpawned)
-                {
-                    __result = false;
-                }
-                else
-                {
-                    __result = !GameModeUtils.IsInvisible();
-                }
-                return false;
-            }
-            return true;
         }
     }
 
@@ -80,7 +58,7 @@
                 var fovMult = AggressionSettings.FOVMultiplier;
                 if (dot >= 0f) dot *= fovMult;
                 else if (fovMult > 0f) dot /= fovMult;
-                if (Mathf.Approximately(__instance.eyeFOV, -1f) || dot  >= __instance.eyeFOV)
+                if (Mathf.Approximately(__instance.eyeFOV, -1f) || dot >= __instance.eyeFOV)
                 {
                     if (AggressionSettings.CanSeeThroughTerrain || !Physics.Linecast(__instance.transform.position, go.transform.position, Voxeland.GetTerrainLayerMask()))
                     {
@@ -114,18 +92,21 @@
                 __result = false;
                 return false;
             }
-            if (!AggressionSettings.RemoveAttackDelay && Time.time < __instance.timeLastBite + __instance.biteInterval)
+            if (Time.time < __instance.timeLastBite + __instance.biteInterval * AggressionSettings.BiteCooldownScale)
             {
                 __result = false;
                 return false;
             }
-            bool flag = target.GetComponent<SubControl>() != null;
-            if (flag && target != __instance.lastTarget.target)
+            bool isCyclops = target.GetComponent<SubControl>() != null;
+            if (isCyclops && target != __instance.lastTarget.target)
             {
                 __result = false;
                 return false;
             }
-            if ((!__instance.canBitePlayer || player == null) && (!__instance.canBiteCreature || target.GetComponent<Creature>() == null) && (!__instance.canBiteVehicle || target.GetComponent<Vehicle>() == null) && (!__instance.canBiteCyclops || (!flag && target.GetComponent<CyclopsDecoy>() == null)))
+            if ((!__instance.canBitePlayer || player == null) &&
+                (!__instance.canBiteCreature || target.GetComponent<Creature>() == null) &&
+                ((!AggressionSettings.AlwaysBiteVehicles && !__instance.canBiteVehicle) || target.GetComponent<Vehicle>() == null) &&
+                ((!AggressionSettings.AlwaysBiteCyclops && !__instance.canBiteCyclops) || (!isCyclops && target.GetComponent<CyclopsDecoy>() == null)))
             {
                 __result = false;
                 return false;
@@ -154,30 +135,57 @@
         [HarmonyPrefix]
         public static bool Prefix(AttackLastTarget __instance, Creature creature, ref float __result)
         {
-            if (creature.Aggression.Value * AggressionSettings.AggressionMultiplier > __instance.aggressionThreshold)
+            if ((creature.Aggression.Value * AggressionSettings.AggressionMultiplier > __instance.aggressionThreshold || Time.time < __instance.timeStartAttack + __instance.minAttackDuration * AggressionSettings.AttackDurationScale)
+                && Time.time > __instance.timeStopAttack + __instance.pauseInterval * AggressionSettings.AttackCooldownScale)
             {
-                if (AggressionSettings.RemoveAttackDelay || (Time.time < __instance.timeStartAttack + __instance.minAttackDuration & Time.time > __instance.timeStopAttack + __instance.pauseInterval))
+                if (__instance.lastTarget.target != null && Time.time <= __instance.lastTarget.targetTime + __instance.rememberTargetTime * AggressionSettings.RememberTargetTimeScale && !__instance.lastTarget.targetLocked)
                 {
-                    if (__instance.lastTarget.target != null && Time.time <= __instance.lastTarget.targetTime + __instance.rememberTargetTime && !__instance.lastTarget.targetLocked)
-                    {
-                        __instance.currentTarget = __instance.lastTarget.target;
-                    }
-                    if (!__instance.CanAttackTarget(__instance.currentTarget))
-                    {
-                        __instance.currentTarget = null;
-                    }
-                    if (__instance.currentTarget != null)
-                    {
-                        __result = __instance.GetEvaluatePriority();
-                    }
-                    return false;
+                    __instance.currentTarget = __instance.lastTarget.target;
                 }
+                if (!__instance.CanAttackTarget(__instance.currentTarget))
+                {
+                    __instance.currentTarget = null;
+                }
+                if (__instance.currentTarget != null)
+                {
+                    __result = __instance.GetEvaluatePriority();
+                }
+                return false;
             }
             __result = 0f;
             return false;
         }
     }
 
+    [HarmonyPatch(typeof(AttackLastTarget), nameof(AttackLastTarget.CanAttackTarget))]
+    internal class AttackLastTarget_CanAttackTarget_Patch
+    {
+        [HarmonyPrefix]
+        public static bool Prefix(AttackLastTarget __instance, GameObject target, ref bool __result)
+        {
+            if (target == null)
+            {
+                __result = false;
+                return false;
+            }
+            LiveMixin lm = target.GetComponent<LiveMixin>();
+            __result = lm && lm.IsAlive() && (!(target == Player.main.gameObject) || AggressionUtils.PlayerCanBeTargeted(Player.main));
+            return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(ReaperMeleeAttack), nameof(ReaperMeleeAttack.OnTouch))]
+    internal class ReaperMeleeAttack_OnTouch_Patch
+    {
+        [HarmonyPrefix]
+        public static void Prefix(ReaperMeleeAttack __instance)
+        {
+            if (__instance.creature.Aggression.Value * AggressionSettings.AggressionMultiplier >= 0.5f)
+            {
+                __instance.creature.Aggression.Value = 0.5f; // hacky way to scale up the reaper's aggression so he will always be able to bite
+            }
+        }
+    }
 
     [HarmonyPatch(typeof(AggressiveWhenSeeTarget), "IsTargetValid", new Type[] { typeof(GameObject) })]
     internal class Aggression_IsTargetValid_Patch
@@ -201,10 +209,13 @@
                 __result = false;
                 return;
             }
-            if (target == Player.main.gameObject && !Player.main.CanBeAttacked())
+            if (target == Player.main.gameObject)
             {
-                __result = false;
-                return;
+                if (!AggressionUtils.PlayerCanBeTargeted(Player.main))
+                {
+                    __result = false;
+                    return;
+                }
             }
             if (__instance.ignoreSameKind && CraftData.GetTechType(target) == __instance.myTechType)
             {
@@ -225,7 +236,7 @@
             if (dist > __instance.maxRangeScalar)
             {
                 if (((target != Player.main.gameObject) && !target.GetComponent<Vehicle>()) // if not the player
-                    || (dist > __instance.maxRangeScalar * 4)) // or if you ARE the player and are not in the scaled range, fail
+                    || (dist > __instance.maxRangeScalar * AggressionSettings.MaxDistanceScale)) // or if you ARE the player and are not in the scaled range, fail
                 {
                     __result = false;
                     return;
@@ -260,7 +271,7 @@
                 }
             }
 
-            if ((((target != Player.main.gameObject) || Player.main.IsInside() || Player.main.precursorOutOfWater || PrecursorMoonPoolTrigger.inMoonpool) && (!target.GetComponent<Vehicle>() || (target.GetComponent<Vehicle>() != Player.main.currentMountedVehicle) || target.GetComponent<Vehicle>().precursorOutOfWater)) ||  // Must be player or vehicle
+            if ((((target != Player.main.gameObject) || (!AggressionSettings.CanSeeInsideBases && Player.main.IsInside()) || Player.main.precursorOutOfWater || PrecursorMoonPoolTrigger.inMoonpool) && (!target.GetComponent<Vehicle>() || (target.GetComponent<Vehicle>() != Player.main.currentMountedVehicle) || target.GetComponent<Vehicle>().precursorOutOfWater)) ||  // Must be player or vehicle
                 (Ocean.main.GetDepthOf(target) <= 5))                                    // Keeps reapers from eating us up on land
             {
                 __result = __instance.creature.GetCanSeeObject(target);
@@ -308,7 +319,7 @@
                     float sqrMagnitude = (wsPos - ecoTarget.GetPosition()).sqrMagnitude;
 
                     // if we're looking at the player
-                    if (((ecoTarget.GetGameObject() == Player.main.gameObject) && !Player.main.IsInside() && Player.main.IsUnderwater() && !Player.main.precursorOutOfWater) || 
+                    if (((ecoTarget.GetGameObject() == Player.main.gameObject) && !Player.main.IsInside() && Player.main.IsUnderwater() && !Player.main.precursorOutOfWater) ||
                         (ecoTarget.GetGameObject().GetComponent<Vehicle>() && (ecoTarget.GetGameObject().GetComponent<Vehicle>() == Player.main.currentMountedVehicle)) && !Player.main.currentMountedVehicle.precursorOutOfWater)
                     {
                         bool feeding = false;
@@ -363,7 +374,7 @@
             Vehicle veh = Player.main.currentMountedVehicle;
             if (veh != null)
             {
-                if (veh.precursorOutOfWater) return true;                
+                if (veh.precursorOutOfWater) return true;
             }
 
             float aggressionMultiplier = AggressionSettings.AggressionMultiplier;

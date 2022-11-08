@@ -1,0 +1,12 @@
+{
+  "Id": "AggressiveFauna",
+  "DisplayName": "AggressiveFauna",
+  "Author": "Lee23 (credit to Cattlesquat and Shiruba)",
+  "Version": "1.0.0",
+  "Dependencies": [
+    "SMLHelper"
+  ],
+  "Game": "Subnautica",
+  "AssemblyName": "AggressiveFauna.dll",
+  "Enable": true
+}
