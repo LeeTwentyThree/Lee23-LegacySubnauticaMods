@@ -34,9 +34,11 @@ For even more great mods, go visit the #mod-downloads-mirror channel of the Subn
 
 Thank you so much to all of my Patrons for your incredible support!
 
-- SteveKong
-- Brad Giles
+- Andrea
+- Brad
 - Dylan
+- SpeedyMouse
+- SteveKong
 - The Last Bacon
 
 <div>
