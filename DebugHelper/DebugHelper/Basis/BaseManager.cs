@@ -9,7 +9,7 @@ namespace DebugHelper.Basis
 {
     public abstract class BaseManager : MonoBehaviour
     {
-        public float updateRepeatRate
+        public float UpdateRepeatRate
         {
             get => m_updateRepeatRate;
             set
@@ -29,7 +29,7 @@ namespace DebugHelper.Basis
         public virtual void StartTicking(float startDelay = 0f)
         {
             isTicking = true;
-            InvokeRepeating(nameof(Tick), startDelay, updateRepeatRate);
+            InvokeRepeating(nameof(Tick), startDelay, UpdateRepeatRate);
         }
         public abstract void Tick();
         public virtual void StopTicking()

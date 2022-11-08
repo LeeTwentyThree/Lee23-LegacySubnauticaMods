@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DebugHelper.Interfaces;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace DebugHelper.Systems

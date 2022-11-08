@@ -1,5 +1,4 @@
 ﻿using DebugHelper.Basis;
-using System;
 using UnityEngine;
 
 namespace DebugHelper.Objects
@@ -112,11 +111,11 @@ namespace DebugHelper.Objects
                 case ColliderShape.Capsule:
                     pt = PrimitiveType.Capsule;
                     break;
-                default: throw new ArgumentException();
+                default: throw new System.ArgumentException();
             }
             m_visualObject = GameObject.CreatePrimitive(pt);
             m_renderer = m_visualObject.GetComponent<Renderer>();
-            UnityEngine.Object.DestroyImmediate(m_visualObject.GetComponent<Collider>());
+            Object.DestroyImmediate(m_visualObject.GetComponent<Collider>());
             m_visualObject.SetActive(true);
             Transform transform = m_visualObject.transform;
             transform.SetParent(m_collider.transform);
@@ -125,7 +124,7 @@ namespace DebugHelper.Objects
         public void DestroyVisual()
         {
             if (!WasDrawn) return;
-            UnityEngine.GameObject.DestroyImmediate(m_visualObject);
+            Object.DestroyImmediate(m_visualObject);
         }
         #endregion
         BaseDebugCollider() { }
@@ -136,17 +135,17 @@ namespace DebugHelper.Objects
         /// <summary>
         /// Returns collider
         /// </summary>
-        public T Get() => (T)base.Get();
+        new public T Get() => (T)base.Get();
 
         public BaseDebugCollider(T collider) : base(collider) { }
     }
     public sealed class DebugBoxCollider : BaseDebugCollider<BoxCollider>
     {
-        public Vector3 Center { get => this.GetCenter(); }
-        public Vector3 Size { get => this.GetSize(); }
+        public Vector3 Center { get => GetCenter(); }
+        public Vector3 Size { get => GetSize(); }
 
-        public Vector3 GetCenter() => base.Get().center;
-        public Vector3 GetSize() => base.Get().size;
+        public Vector3 GetCenter() => Get().center;
+        public Vector3 GetSize() => Get().size;
 
         public override void CreateVisual()
         {
@@ -159,11 +158,11 @@ namespace DebugHelper.Objects
     }
     public sealed class DebugSphereCollider : BaseDebugCollider<SphereCollider>
     {
-        public Vector3 Center { get => this.GetCenter(); }
-        public float Radius { get => this.GetRadius(); }
+        public Vector3 Center { get => GetCenter(); }
+        public float Radius { get => GetRadius(); }
 
-        public Vector3 GetCenter() => base.Get().center;
-        public float GetRadius() => base.Get().radius;
+        public Vector3 GetCenter() => Get().center;
+        public float GetRadius() => Get().radius;
 
         public override void CreateVisual()
         {
@@ -176,15 +175,15 @@ namespace DebugHelper.Objects
     }
     public sealed class DebugCapsuleCollider : BaseDebugCollider<CapsuleCollider>
     {
-        public Vector3 Center { get => this.GetCenter(); }
-        public float Radius { get => this.GetRadius(); }
-        public float Height { get => this.GetHeight(); }
-        public int Direction { get => this.GetDirection(); }
+        public Vector3 Center { get => GetCenter(); }
+        public float Radius { get => GetRadius(); }
+        public float Height { get => GetHeight(); }
+        public int Direction { get => GetDirection(); }
 
-        public Vector3 GetCenter() => base.Get().center;
-        public float GetRadius() => base.Get().radius;
-        public float GetHeight() => base.Get().height;
-        public int GetDirection() => base.Get().direction;
+        public Vector3 GetCenter() => Get().center;
+        public float GetRadius() => Get().radius;
+        public float GetHeight() => Get().height;
+        public int GetDirection() => Get().direction;
 
         public override void CreateVisual()
         {
@@ -201,11 +200,11 @@ namespace DebugHelper.Objects
     public sealed class DebugMeshCollider : BaseDebugCollider<MeshCollider>
     {
         private MeshFilter m_filter;
-        public Mesh Mesh { get => this.GetMesh(); }
-        public bool Convex { get => this.IsConvex(); }
+        public Mesh Mesh { get => GetMesh(); }
+        public bool Convex { get => IsConvex(); }
 
-        public Mesh GetMesh() => base.Get().sharedMesh;
-        public bool IsConvex() => base.Get().convex;
+        public Mesh GetMesh() => Get().sharedMesh;
+        public bool IsConvex() => Get().convex;
 
         public override void CreateVisual()
         {
