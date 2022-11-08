@@ -27,6 +27,7 @@ Mods for developers
 
 ---
 # Recently updated!
+- 11/7/22: [DebugHelper](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/DebugHelper.md) - Overhauled collider debugging system.
 - 11/2/22: [DebugHelper](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/DebugHelper.md) - First public release! Added plenty of commands and options for testing.
 - 10/23/22: [ECCLibrary](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#ecclibray---uploaded-on-nexus-mods) - Major optimizations and fixes of bugs that were long overdue. I also have big plans for more!
 ---
