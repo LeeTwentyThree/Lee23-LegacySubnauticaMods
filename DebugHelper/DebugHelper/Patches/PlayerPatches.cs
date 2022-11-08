@@ -1,4 +1,5 @@
-﻿using DebugHelper.Systems;
+﻿using DebugHelper.Managers;
+using DebugHelper.Systems;
 using HarmonyLib;
 
 namespace DebugHelper.Patches
@@ -12,6 +13,7 @@ namespace DebugHelper.Patches
         {
             __instance.gameObject.EnsureComponent<DebugAutomation>();
             DebugOverlay.CreateInstance();
+            DebugCollidersManager.CreateInstance();
         }
     }
 }

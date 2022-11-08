@@ -70,15 +70,14 @@ There are several options added into the Mod Options menu to help modders, playt
 - `lookingat (hitTriggers = false)` - Returns the name of the hit collider, its parent, attached rigidbody, and entity root. Also useful for RuntimeEditor and similar tools.
 
 #### Collider commands
-- `showallcolliders [maxRange]` - Renders all the colliders within `maxRange` meters. Calling this command also removes all previously added collider renderers.
-
-- `showcolliders (hitTriggers = false)` - Renders all the colliders on the object that is being looked at. Colliders are color coded according to various factors:
-  - Green: Solid colliders.
+- `showcolliders (range = 50) (hideMessage = false)` - Enables the continuous rendering of all the colliders within `maxRange` meters. A shorthand for this command is `sw_colls`.
+  - Blue: Mesh colliders.
+  - Green: Solid colliders with no Rigidbody present.
   - Red: Colliders attached to non-kinematic Rigidbodies.
-  - Blue: Colliders attached to mesh renderers.
-  - White: Triggers colliders.
+  - White: Colliders marked as triggers.
+  - Yellow: Colliders attached to kinematic Rigidbodies.
 
-- `hidecolliders` - Destroys all collider renderers in the scene.
+- `hidecolliders` - Cancels the `showcolliders` command and destroys all collider renderers in the scene. A shorthand for this command is `hd_colls`.
 
 #### Player commands
 - `forcewalkmode` - Calls `Player.main.SetPrecursorOutOfWater(true)`, forcing them to walk.

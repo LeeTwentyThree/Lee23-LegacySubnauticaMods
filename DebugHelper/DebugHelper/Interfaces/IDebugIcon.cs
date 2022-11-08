@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using DebugHelper.Systems;
 
-namespace DebugHelper.Systems
+namespace DebugHelper.Interfaces
 {
     public interface IDebugIcon
     {

@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using DebugHelper.Systems.Projection;
 using System.Collections.Generic;
+using DebugHelper.Managers;
 
 namespace DebugHelper.Systems
 {

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using SMLHelper.V2.Commands;
 using System.Collections.Generic;
-using UWE;
+using DebugHelper.Interfaces;
 using DebugHelper.Systems;
 
 namespace DebugHelper.Commands
