@@ -1,0 +1,15 @@
+{
+  "Id": "DebugHelper",
+  "DisplayName": "DebugHelper",
+  "Author": "Lee23",
+  "Version": "1.1.1",
+  "VersionDependencies": {
+    "SMLHelper": "2.9"
+  },
+  "VersionChecker": {
+    "LatestVersionURL": "https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/DebugHelper/mod.json"
+  },
+  "Enable": true,
+  "Game": "Subnautica",
+  "AssemblyName": "DebugHelper.dll"
+}
