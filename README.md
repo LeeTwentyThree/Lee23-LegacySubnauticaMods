@@ -46,3 +46,7 @@ Thank you so much to all of my Patrons for your incredible support!
     <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Images/PatreonImage.png" width=300px alt="Become a Patron">
   </a>
 </div>
+
+### Other
+
+You can leave feedback or report an issue [here](https://forms.gle/MAa7Kovx6CRodsd77).
