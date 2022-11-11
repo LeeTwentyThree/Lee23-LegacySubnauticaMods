@@ -15,6 +15,7 @@ Normal mods
 - [Wind Turbines](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#wind-turbines---uploaded-on-nexus-mods)
 
 Challenge mods & uncategorized commissions  
+- [Lava Rising](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#lavarising)
 - [MirrorWorld](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#mirrorworld)  
 - [MonkeySayMonkeyGet](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#monkeysaymonkeyget)  
 - [RandomEvents](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#randomevents)
@@ -26,7 +27,8 @@ Mods for developers
 [Accessibility mods](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#accessibility-mods)
 
 ---
-# Recently updated!
+# Recently updated! (MM/DD/YY)
+- 11/11/22: [LavaRising](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/RisingLava.zip) - First public release!
 - 11/7/22: [DebugHelper](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/DebugHelper.md) - Overhauled collider debugging system.
 - 11/2/22: [DebugHelper](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/DebugHelper.md) - First public release! Added plenty of commands and options for testing.
 - 10/23/22: [ECCLibrary](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#ecclibray---uploaded-on-nexus-mods) - Major optimizations and fixes of bugs that were long overdue. I also have big plans for more!
@@ -139,6 +141,21 @@ Requirements:
 # Challenge mods & uncategorized commissions
 
 These mods were not designed for regular playthroughs, but I am uploading them here for people who are curious to try them.
+
+---
+
+### [LavaRising](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/RisingLava.zip)
+[Download page with more information](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/LavaRising.md)
+<div>
+  <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/SubnauticaButLavaRisesTN.png" height=200px>
+</div>
+
+This challenge mod adds a layer of lava to planet 4546B. It's fully customizable and rises and falls based on how you set it up.
+
+Go watch [SpeedyMouse's video](https://youtu.be/6795wM_aHJw) on it!
+
+Requirements:
+- [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
 
 ---
 
