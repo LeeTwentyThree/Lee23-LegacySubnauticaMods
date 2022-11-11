@@ -15,7 +15,7 @@ Normal mods
 - [Wind Turbines](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#wind-turbines---uploaded-on-nexus-mods)
 
 Challenge mods & uncategorized commissions  
-- [Lava Rising](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#lavarising)
+- [LavaRising](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#lavarising)
 - [MirrorWorld](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#mirrorworld)  
 - [MonkeySayMonkeyGet](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#monkeysaymonkeyget)  
 - [RandomEvents](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#randomevents)
