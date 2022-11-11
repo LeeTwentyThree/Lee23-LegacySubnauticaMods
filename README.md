@@ -34,9 +34,11 @@ For even more great mods, go visit the #mod-downloads-mirror channel of the Subn
 
 Thank you so much to all of my Patrons for your incredible support!
 
-- SteveKong
-- Brad Giles
+- Andrea
+- Brad
 - Dylan
+- SpeedyMouse
+- SteveKong
 - The Last Bacon
 
 <div>
@@ -44,3 +46,7 @@ Thank you so much to all of my Patrons for your incredible support!
     <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Images/PatreonImage.png" width=300px alt="Become a Patron">
   </a>
 </div>
+
+### Other
+
+You can leave feedback or report an issue on the [Issues tab](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/issues). If you are unable to make an account or want to ask in private, you can fill out [this form](https://forms.gle/MAa7Kovx6CRodsd77).
