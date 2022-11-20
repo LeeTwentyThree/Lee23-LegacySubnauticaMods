@@ -8,5 +8,8 @@
   },
   "Enable": true,
   "Game": "Subnautica",
-  "AssemblyName": "FreecamRoll.dll"
+  "AssemblyName": "FreecamRoll.dll",
+  "VersionChecker": {
+    "LatestVersionURL": "https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/FreecamRoll/mod.json"
+  }
 }
