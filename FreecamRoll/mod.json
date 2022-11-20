@@ -1,0 +1,12 @@
+{
+  "Id": "FreecamRoll",
+  "DisplayName": "Freecam Roll",
+  "Author": "Lee23",
+  "Version": "1.0.0",
+  "VersionDependencies": {
+    "SMLHelper": "2.9"
+  },
+  "Enable": true,
+  "Game": "Subnautica",
+  "AssemblyName": "FreecamRoll.dll"
+}
