@@ -22,7 +22,7 @@ namespace FreecamRoll
             if (Input.GetKey(KeyCode.Q)) rollDelta = 1;
             else if (Input.GetKey(KeyCode.E)) rollDelta = -1;
             rollDelta *= Main.sensitivity;
-            rollDelta *= Time.deltaTime;
+            rollDelta *= Time.unscaledDeltaTime;
             __instance.tr.localEulerAngles += new Vector3(0, 0, rollDelta);
         }
     }
