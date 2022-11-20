@@ -11,6 +11,7 @@ public static class DB
     public static MethodInfo returnFalse;
     private static MethodInfo echo;
     private static MethodInfo echoWithArgs;
+    private static MethodInfo echoWithReturn;
     
     internal static void Setup()
     {
@@ -18,6 +19,7 @@ public static class DB
         returnFalse = AccessTools.Method(typeof(DB), nameof(False));
         echo = AccessTools.Method(typeof(DB), nameof(Echo));
         echoWithArgs = AccessTools.Method(typeof(DB), nameof(EchoArgs));
+        echoWithReturn = AccessTools.Method(typeof(DB), nameof(EchoReturn));
 
         var allMods = QModServices.Main.GetAllMods();
         foreach (var mod in allMods)
@@ -29,7 +31,7 @@ public static class DB
         }
     }
 
-    public static void Echo(MethodBase __originalMethod)
+    private static void Echo(MethodBase __originalMethod)
     {
         var methodName = $"{__originalMethod.DeclaringType.FullName}.{__originalMethod.Name}";
         var message = $"Method run: {methodName}";
@@ -44,22 +46,30 @@ public static class DB
         ErrorMessage.AddMessage(message);
     }
 
-    public static void EchoArgs(object[] __args)
+    private static void EchoArgs(object[] __args, MethodBase __originalMethod)
     {
-        var message = $"Method run. Echoing arguments: ";
+        var message = $"Method run. Echoing arguments: \n";
+        var argNames = __originalMethod.GetParameters();
         if (__args != null)
         {
             for (int i = 0; i < __args.Length; i++)
             {
-                if (__args[i] == null) message += "null";
-                else message += __args[i].ToString();
+                var valueString = __args[i] == null ? "null" : __args[i].ToString();
+
+                message += $"{argNames[i]}: {valueString}";
+
                 if (i < __args.Length - 1)
                 {
-                    message += ", ";
+                    message += ", \n";
                 }
             }
         }
         ErrorMessage.AddMessage(message);
+    }
+
+    private static void EchoReturn(object __result)
+    {
+        ErrorMessage.AddMessage($"Method run. Echoing return value: {(__result == null ? "null" : __result)}");
     }
 
     private static bool False()
@@ -68,54 +78,146 @@ public static class DB
     }
 
     #region Listen
-    public static void Listen(MethodInfo original, bool prefix = false) // whenever the method is run, shows information about it on screen
+    public static string Listen(MethodInfo original, bool prefix = false) // whenever the method is run, shows information about it on screen
     {
+        if(original == null)
+        {
+            return "Could not find method to listen for";
+        }
+
         if (prefix) harmony.Patch(original, new HarmonyMethod(echo));
         else harmony.Patch(original, null, new HarmonyMethod(echo));
+        return "Patched";
     }
 
-    public static void Listen(string location, bool prefix = false)
+    public static string Listen(string location, bool prefix = false)
     {
-        if (prefix) harmony.Patch(Method(location), new HarmonyMethod(echo));
-        else harmony.Patch(Method(location), null, new HarmonyMethod(echo));
+        return Listen(Method(location), prefix);
     }
 
-    public static void Listen(string typeName, string methodName, bool prefix = false)
+    public static string Listen(string typeName, string methodName, bool prefix = false)
     {
-        if (prefix) harmony.Patch(Method(typeName, methodName), new HarmonyMethod(echo));
-        else harmony.Patch(Method(typeName, methodName), null, new HarmonyMethod(echo));
+        return Listen(Method(typeName, methodName), prefix);
     }
 
-    public static void Listen(System.Type type, string methodName, bool prefix = false)
+    public static string Listen(System.Type type, string methodName, bool prefix = false)
     {
-        if (prefix) harmony.Patch(Method(type, methodName), new HarmonyMethod(echo));
-        else harmony.Patch(Method(type, methodName), null, new HarmonyMethod(echo));
+        return Listen(Method(type, methodName), prefix);
     }
     #endregion
 
     #region Listen args
-    public static void ListenArgs(MethodInfo original, bool prefix = false) // whenever the method is run, shows information about it on screen
+    public static string ListenArgs(MethodInfo original, bool prefix = false) // whenever the method is run, shows information about it on screen
     {
+        if(original.GetParameters().Length <= 0)
+        {
+            return "Method does not have arguments";
+        }
+
         if (prefix) harmony.Patch(original, new HarmonyMethod(echoWithArgs));
         else harmony.Patch(original, null, new HarmonyMethod(echoWithArgs));
+        return "Patch applied";
     }
 
-    public static void ListenArgs(string location, bool prefix = false)
+    public static string ListenArgs(string location, bool prefix = false)
     {
-        if (prefix) harmony.Patch(Method(location), new HarmonyMethod(echoWithArgs));
-        else harmony.Patch(Method(location), null, new HarmonyMethod(echoWithArgs));
+        return ListenArgs(Method(location), prefix);
     }
 
-    public static void ListenArgs(string typeName, string methodName, bool prefix = false)
+    public static string ListenArgs(string typeName, string methodName, bool prefix = false)
     {
-        if (prefix) harmony.Patch(Method(typeName, methodName), new HarmonyMethod(echoWithArgs));
-        else harmony.Patch(Method(typeName, methodName), null, new HarmonyMethod(echoWithArgs));
+        return ListenArgs(Method(typeName, methodName), prefix);
     }
 
-    public static void ListenArgs(System.Type type, string methodName, bool prefix = false)
+    public static string ListenArgs(System.Type type, string methodName, bool prefix = false)
     {
-        if (prefix) harmony.Patch(Method(type, methodName), new HarmonyMethod(echoWithArgs));
-        else harmony.Patch(Method(type, methodName), null, new HarmonyMethod(echoWithArgs));
+        return ListenArgs(Method(type, methodName), prefix);
+    }
+    #endregion
+    
+    #region Listen return
+    public static string ListenReturn(MethodInfo original, bool prefix = false) // whenever the method is run, shows information about it on screen
+    {
+        if (original.ReturnType == typeof(void))
+        {
+            return "Method does not have return type";
+        }
+
+        if (prefix) harmony.Patch(original, new HarmonyMethod(echoWithReturn));
+        else harmony.Patch(original, null, new HarmonyMethod(echoWithReturn));
+        return "Patch applied";
+    }
+
+    public static string ListenReturn(string location, bool prefix = false)
+    {
+        return ListenReturn(Method(location), prefix);
+    }
+
+    public static string ListenReturn(string typeName, string methodName, bool prefix = false)
+    {
+        return ListenReturn(Method(typeName, methodName), prefix);
+    }
+
+    public static string ListenReturn(System.Type type, string methodName, bool prefix = false)
+    {
+        return ListenReturn(Method(type, methodName), prefix);
+    }
+    #endregion
+
+    #region Listen all
+    public static string ListenAll(MethodInfo original, bool prefix = false) // whenever the method is run, shows information about it on screen
+    {
+        if (original == null)
+        {
+            return "Could not find method to listen for";
+        }
+
+        string message = "Patched";
+
+        //patch the main listen
+        if (prefix) harmony.Patch(original, new HarmonyMethod(echo));
+        else harmony.Patch(original, null, new HarmonyMethod(echo));
+
+        //patch the listen with return type
+        if (original.ReturnType != typeof(void))
+        {
+            if (prefix) harmony.Patch(original, new HarmonyMethod(echoWithReturn));
+            else harmony.Patch(original, null, new HarmonyMethod(echoWithReturn));
+            message += " with return type";
+        }
+        else
+        {
+            message += " without return type";
+        }
+
+        //patch the listen with arguments
+        if(original.GetParameters().Length > 0)
+        {
+            if (prefix) harmony.Patch(original, new HarmonyMethod(echoWithArgs));
+            else harmony.Patch(original, null, new HarmonyMethod(echoWithArgs));
+            message += " and arguments";
+        }
+        else
+        {
+            message += " and no arguments";
+        }
+
+        return message;
+    }
+
+    public static string ListenAll(string location, bool prefix = false)
+    {
+        return ListenAll(Method(location), prefix);
+    }
+
+    public static string ListenAll(string typeName, string methodName, bool prefix = false)
+    {
+        return ListenAll(Method(typeName, methodName), prefix);
+    }
+
+    public static string ListenAll(System.Type type, string methodName, bool prefix = false)
+    {
+        return ListenAll(Method(type, methodName), prefix);
     }
     #endregion
 
@@ -180,7 +282,9 @@ public static class DB
         {
             return "Useful methods:\n" +
                 "- Listen(MethodInfo original, bool prefix = false): Outputs method call information onto the screen whenever the given method is called.\n" +
-                "- [BROKEN] ListenArgs(MethodInfo original, bool prefix = false): Outputs method call information onto the screen whenever the given method is called. Also outputs all parameters passed into the method call.\n" +
+                "- ListenArgs(MethodInfo original, bool prefix = false): Outputs method call information onto the screen whenever the given method is called. Also outputs all parameters passed into the method call.\n" +
+                "- ListenReturn(MethodInfo original, bool prefix = false): Outputs method call information onto the screen whenever the given method is called. Also outputs the returned value of the original method.\n" +
+                "- ListenAll(MethodInfo original, bool prefix = false): Outputs method call information onto the screen whenever the given method is called. Also outputs the returned value and all parameters passed to the method.\n" +
                 "- Mute(MethodInfo original): Stops a method from being called.\n" +
                 "- Method(string location): Returns a MethodInfo by its name (ex: \"Peeper.Start\")\n" +
                 "- Method(System.Type type, string methodName): Also returns a MethodInfo (ex: typeof(Peeper), \"Start\")\n";
