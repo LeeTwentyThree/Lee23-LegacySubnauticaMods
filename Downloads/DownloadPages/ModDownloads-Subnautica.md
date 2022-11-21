@@ -21,8 +21,9 @@ Challenge mods & uncategorized commissions
 - [RandomEvents](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#randomevents)
 - [ShrekLeviathan](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#shrekleviathan)
 
-Mods for developers  
+Mods for testing  
 - [DebugHelper](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#debughelper)
+- [FreecamRoll](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#debughelper)
 
 [Accessibility mods](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#accessibility-mods)
 
@@ -226,6 +227,11 @@ Adds various console commands and a new `DB` class for the REPL console. A list 
 
 Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
+
+### [FreecamRoll](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/FreecamRoll.zip)
+[Download page with more information](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/FreecamRoll.md)
+
+The FreecamRoll mod allows you to rotate the camera around the forward axis with the Q & E keys.
 
 ---
 
