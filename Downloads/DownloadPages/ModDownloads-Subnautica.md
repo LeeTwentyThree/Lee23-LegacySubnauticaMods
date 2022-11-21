@@ -5,7 +5,7 @@ Mods are sorted alphabetically. Download ZIPs are linked in the title. All files
 
 ### Table of Contents
 
-Normal mods  
+🐠  **Normal Mods**  🐟
 - [Alterra Sea Voyager](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#alterra-sea-voyager---uploaded-on-nexus-mods)  
 - [Bloop & Blaza](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#bloop--blaza)  
 - [CustomInventoryColors](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#custominventorycolors)  
@@ -14,21 +14,21 @@ Normal mods
 - [ECCLibrary](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#ecclibray---uploaded-on-nexus-mods)  
 - [Wind Turbines](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#wind-turbines---uploaded-on-nexus-mods)
 
-Challenge mods & uncategorized commissions  
+🎲 **Challenge Mods & uncategorized commissions**  👽
 - [LavaRising](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#lavarising)
 - [MirrorWorld](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#mirrorworld)  
 - [MonkeySayMonkeyGet](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#monkeysaymonkeyget)  
 - [RandomEvents](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#randomevents)
 - [ShrekLeviathan](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#shrekleviathan)
 
-Mods for testing  
+🖥️  **Mods for testing**  📊
 - [DebugHelper](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#debughelper)
 - [FreecamRoll](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#debughelper)
 
 [Accessibility mods](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#accessibility-mods)
 
 ---
-# Recently updated! (MM/DD/YY)
+# Recently updated! 🎉 (MM/DD/YY)
 - 11/21/22: [DebugHelper](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/DebugHelper.md) - Much better Listen methods for REPL console!
 - 11/17/22: [De-Extinction](https://www.nexusmods.com/subnautica/mods/640?tab=files) - Baby Gulper Leviathan! 🥰
 - 11/11/22: [LavaRising](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/RisingLava.zip) - First public release!
@@ -37,7 +37,7 @@ Mods for testing
 - 10/23/22: [ECCLibrary](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md#ecclibray---uploaded-on-nexus-mods) - Major optimizations and fixes of bugs that were long overdue. I also have big plans for more!
 ---
 
-# Normal mods
+# 🐠 Normal Mods 🐟
 
 ### Alterra Sea Voyager - Uploaded on Nexus Mods
 [Download page with more information](https://www.nexusmods.com/subnautica/mods/604)
@@ -141,7 +141,7 @@ Requirements:
 
 ---
 
-# Challenge mods & uncategorized commissions
+# 🎲 Challenge Mods & uncategorized commissions 👽
 
 These mods were not designed for regular playthroughs, but I am uploading them here for people who are curious to try them.
 
@@ -218,7 +218,7 @@ Replaces the Reaper Leviathan with Shrek. Yes, I'm serious. Why? I have no idea.
 
 ---
 
-# Mods for developers
+# 🖥️ Mods for testing 📊
 
 ### [DebugHelper](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/DebugHelper.zip)
 [Download page with more information](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/DebugHelper.md)
@@ -237,7 +237,7 @@ The FreecamRoll mod allows you to rotate the camera around the forward axis with
 
 ---
 
-# Accessibility mods
+# ♿ Accessibility mods ✅
 
 Mods made for very specific purposes. Unless these issues concern you, I do not recommend the following mods as they may interfere with regular gameplay. The following mods were not made for me and do not necessarily reflect my personal beliefs or opinions- I just want more people to be able to enjoy the game.
 
