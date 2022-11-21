@@ -32,10 +32,15 @@ public static class DB
         }
     }
 
+    private static string GetMethodNameText(MethodBase method)
+    {
+        var methodName = $"{method.DeclaringType.FullName}.{method.Name}";
+        return ColorCode.FormatMethodName(methodName);
+    }
+
     private static void Echo(MethodBase __originalMethod)
     {
-        var methodName = $"{__originalMethod.DeclaringType.FullName}.{__originalMethod.Name}";
-        var message = $"<color={ColorCode.header}>Running method</color> {ColorCode.FormatMethodName(methodName)}";
+        var message = $"<color={ColorCode.title}>Running method</color> {GetMethodNameText(__originalMethod)}";
         if (__originalMethod is MethodInfo method)
         {
             message += $" (returns {ColorCode.FormatType(method.ReturnType.ToString())})";
@@ -49,7 +54,7 @@ public static class DB
 
     private static void EchoArgs(object[] __args, MethodBase __originalMethod)
     {
-        var message = $"<color={ColorCode.header}>Arguments:</color>\n";
+        var message = $"{GetMethodNameText(__originalMethod)} <color={ColorCode.title}>arguments:</color>\n";
         var argNames = __originalMethod.GetParameters();
         if (__args != null)
         {
@@ -68,9 +73,9 @@ public static class DB
         ErrorMessage.AddMessage(message);
     }
 
-    private static void EchoReturn(object __result)
+    private static void EchoReturn(object __result, MethodBase __originalMethod)
     {
-        ErrorMessage.AddMessage($"<color={ColorCode.header}>Returned:</color> {ColorCode.FormatValue(__result)}");
+        ErrorMessage.AddMessage($"{GetMethodNameText(__originalMethod)} <color={ColorCode.title}>returned:</color> {ColorCode.FormatValue(__result)}");
     }
 
     private static bool False()
@@ -188,7 +193,7 @@ public static class DB
         {
             if (prefix) harmony.Patch(original, new HarmonyMethod(echoWithReturn));
             else harmony.Patch(original, null, new HarmonyMethod(echoWithReturn));
-            message += " return type";
+            message += " return values";
             includeAnd = true;
             shouldFixGrammar = false;
         }
@@ -198,7 +203,7 @@ public static class DB
         {
             if (prefix) harmony.Patch(original, new HarmonyMethod(echoWithArgs));
             else harmony.Patch(original, null, new HarmonyMethod(echoWithArgs));
-            if (includeAnd) message += "and";
+            if (includeAnd) message += " and";
             message += " arguments";
             shouldFixGrammar = false;
         }
@@ -256,7 +261,7 @@ public static class DB
 
     public static MethodInfo Method(string typeName, string methodName) // fast way to reference a method ("Creature", "Start")
     {
-        return AccessTools.Method(TypeByName(typeName), methodName);
+        return Method(TypeByName(typeName), methodName);
     }
 
     public static MethodInfo Method(System.Type type, string methodName) // fast-ish way to reference a method (typeof(Creature), "Start")
@@ -283,11 +288,26 @@ public static class DB
     {
         get
         {
-            return "<color=#ffea00>Useful methods:</color>\n" +
+            return $"<color={ColorCode.replTitle}>Useful methods:</color>\n" +
+                $"<color={ColorCode.codeSegment}>" +
                 "- Listen(MethodInfo original, bool prefix = false): Outputs the returned value and all parameters passed into the method when it is called.\n" +
                 "- Mute(MethodInfo original): Stops a method from being called.\n" +
                 "- Method(string location): Returns a MethodInfo by its name (ex: \"Peeper.Start\")\n" +
-                "- Method(System.Type type, string methodName): Also returns a MethodInfo (ex: typeof(Peeper), \"Start\")";
+                "- Method(System.Type type, string methodName): Also returns a MethodInfo (ex: typeof(Peeper), \"Start\")\n" +
+                "</color>" +
+
+                $"<color={ColorCode.replTitle}>All methods:</color>\n" +
+                $"<color={ColorCode.codeSegment}>" +
+                "Listen(MethodInfo method, bool prefix = false)\n" +
+                "Listen(string location, bool prefix = false)\n" +
+                "Listen(string typeName, string methodName, bool prefix = false)\n" +
+                "Listen(Type type, string methodName, bool prefix = false)\n" +
+                "Mute(MethodInfo original)\n" +
+                "Mute(string location)\n" +
+                "Mute(string typeName, string methodName)\n" +
+                "Mute(Type type, string methodName)\n" +
+                "</color>" +
+                $"<color={ColorCode.replTitle}>More info here:</color> <color={ColorCode.url}>https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/DebugHelper.md</color>";
             }
     }
 
@@ -295,13 +315,16 @@ public static class DB
     {
         public static string error = "#fcf25b";
         public static string success = "#a8ff9e";
-        public static string header = "#a8ff9e";
+        public static string title = "#ff00b3";
+        public static string replTitle = "#00ffbb";
         public static string methodName = "#fcf25b";
         public static string type = "#00ffc3";
         public static string arg = "#ff5900";
         public static string namespacePath = "#ffffff";
         public static string white = "#ffffff";
         public static string keywords = "#569cd6";
+        public static string url = "#569cd6";
+        public static string codeSegment = "#cffaff";
 
         public static string FormatType(string path)
         {
