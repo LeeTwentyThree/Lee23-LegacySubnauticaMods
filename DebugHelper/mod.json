@@ -2,7 +2,7 @@
   "Id": "DebugHelper",
   "DisplayName": "DebugHelper",
   "Author": "Lee23",
-  "Version": "1.1.1",
+  "Version": "1.2.0",
   "VersionDependencies": {
     "SMLHelper": "2.9"
   },
