@@ -126,6 +126,8 @@ All of the methods in this class have various overloads which can be viewed [her
 ### Credits
 
 Programming done by Lee23. Thanks to EldritchCarMaker for testing & feedback.
+- Credit to [Polybroo](https://github.com/Polybroo) for a [collider debugging overhaul](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/pull/1)
+- Credit to [EldritchCarMaker](https://github.com/EldritchCarMaker) for [vastly improving the Listen command and other REPL tools](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/pull/2)
 
 ### [Back to mods list](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md)
 
