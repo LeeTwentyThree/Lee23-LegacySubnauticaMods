@@ -1,4 +1,4 @@
-# DebugHelper v1.1.1
+# DebugHelper v1.2.0
 
 Added October 22 2022, last updated November 7 2022.
 
