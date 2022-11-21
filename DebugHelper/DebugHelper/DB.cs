@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using QModManager.API;
+using UnityEngine;
 
 /* Global namespace and short name to make it as accessible as possible
  * Class to help with the REPL console */
@@ -34,29 +35,29 @@ public static class DB
     private static void Echo(MethodBase __originalMethod)
     {
         var methodName = $"{__originalMethod.DeclaringType.FullName}.{__originalMethod.Name}";
-        var message = $"Method run: {methodName}";
+        var message = $"<color={ColorCode.header}>Running method</color> {ColorCode.FormatMethodName(methodName)}";
         if (__originalMethod is MethodInfo method)
         {
-            message += $" (returns {method.ReturnType})";
+            message += $" (returns {ColorCode.FormatType(method.ReturnType.ToString())})";
         }
         if (__originalMethod.IsVirtual)
         {
-            message += " (Virtual)";
+            message += " (virtual)";
         }
         ErrorMessage.AddMessage(message);
     }
 
     private static void EchoArgs(object[] __args, MethodBase __originalMethod)
     {
-        var message = $"Method run. Echoing arguments: \n";
+        var message = $"<color={ColorCode.header}>Arguments:</color>\n";
         var argNames = __originalMethod.GetParameters();
         if (__args != null)
         {
             for (int i = 0; i < __args.Length; i++)
             {
-                var valueString = __args[i] == null ? "null" : __args[i].ToString();
+                var valueString = ColorCode.FormatValue(__args[i]);
 
-                message += $"{argNames[i]}: {valueString}";
+                message += $"{ColorCode.FormatArgName(argNames[i].ToString())}: {valueString}";
 
                 if (i < __args.Length - 1)
                 {
@@ -69,7 +70,7 @@ public static class DB
 
     private static void EchoReturn(object __result)
     {
-        ErrorMessage.AddMessage($"Method run. Echoing return value: {(__result == null ? "null" : __result)}");
+        ErrorMessage.AddMessage($"<color={ColorCode.header}>Returned:</color> {ColorCode.FormatValue(__result)}");
     }
 
     private static bool False()
@@ -77,8 +78,8 @@ public static class DB
         return false;
     }
 
-    #region Listen
-    public static string Listen(MethodInfo original, bool prefix = false) // whenever the method is run, shows information about it on screen
+    #region ListenBasic
+    public static string ListenBasic(MethodInfo original, bool prefix = false) // whenever the method is run, shows information about it on screen
     {
         if(original == null)
         {
@@ -90,19 +91,19 @@ public static class DB
         return "Patched";
     }
 
-    public static string Listen(string location, bool prefix = false)
+    public static string ListenBasic(string location, bool prefix = false)
     {
-        return Listen(Method(location), prefix);
+        return ListenBasic(Method(location), prefix);
     }
 
-    public static string Listen(string typeName, string methodName, bool prefix = false)
+    public static string ListenBasic(string typeName, string methodName, bool prefix = false)
     {
-        return Listen(Method(typeName, methodName), prefix);
+        return ListenBasic(Method(typeName, methodName), prefix);
     }
 
-    public static string Listen(System.Type type, string methodName, bool prefix = false)
+    public static string ListenBasic(System.Type type, string methodName, bool prefix = false)
     {
-        return Listen(Method(type, methodName), prefix);
+        return ListenBasic(Method(type, methodName), prefix);
     }
     #endregion
 
@@ -164,30 +165,32 @@ public static class DB
     }
     #endregion
 
-    #region Listen all
-    public static string ListenAll(MethodInfo original, bool prefix = false) // whenever the method is run, shows information about it on screen
+    #region Listen (all)
+    public static string Listen(MethodInfo original, bool prefix = false) // whenever the method is run, shows information about it on screen
     {
         if (original == null)
         {
-            return "Could not find method to listen for";
+            return $"<color={ColorCode.error}>Could not find method to listen for!</color>";
         }
 
-        string message = "Patched";
+        string message = $"Patched method '{original.Name}', listening for";
+
+        bool shouldFixGrammar = true;
 
         //patch the main listen
         if (prefix) harmony.Patch(original, new HarmonyMethod(echo));
         else harmony.Patch(original, null, new HarmonyMethod(echo));
+
+        bool includeAnd = False();
 
         //patch the listen with return type
         if (original.ReturnType != typeof(void))
         {
             if (prefix) harmony.Patch(original, new HarmonyMethod(echoWithReturn));
             else harmony.Patch(original, null, new HarmonyMethod(echoWithReturn));
-            message += " with return type";
-        }
-        else
-        {
-            message += " without return type";
+            message += " return type";
+            includeAnd = true;
+            shouldFixGrammar = false;
         }
 
         //patch the listen with arguments
@@ -195,29 +198,29 @@ public static class DB
         {
             if (prefix) harmony.Patch(original, new HarmonyMethod(echoWithArgs));
             else harmony.Patch(original, null, new HarmonyMethod(echoWithArgs));
-            message += " and arguments";
-        }
-        else
-        {
-            message += " and no arguments";
+            if (includeAnd) message += "and";
+            message += " arguments";
+            shouldFixGrammar = false;
         }
 
-        return message;
+        if (shouldFixGrammar) message += " method calls";
+
+        return $"<color={ColorCode.success}>{message}.</color>";
     }
 
-    public static string ListenAll(string location, bool prefix = false)
+    public static string Listen(string location, bool prefix = false)
     {
-        return ListenAll(Method(location), prefix);
+        return Listen(Method(location), prefix);
     }
 
-    public static string ListenAll(string typeName, string methodName, bool prefix = false)
+    public static string Listen(string typeName, string methodName, bool prefix = false)
     {
-        return ListenAll(Method(typeName, methodName), prefix);
+        return Listen(Method(typeName, methodName), prefix);
     }
 
-    public static string ListenAll(System.Type type, string methodName, bool prefix = false)
+    public static string Listen(System.Type type, string methodName, bool prefix = false)
     {
-        return ListenAll(Method(type, methodName), prefix);
+        return Listen(Method(type, methodName), prefix);
     }
     #endregion
 
@@ -280,14 +283,71 @@ public static class DB
     {
         get
         {
-            return "Useful methods:\n" +
-                "- Listen(MethodInfo original, bool prefix = false): Outputs method call information onto the screen whenever the given method is called.\n" +
-                "- ListenArgs(MethodInfo original, bool prefix = false): Outputs method call information onto the screen whenever the given method is called. Also outputs all parameters passed into the method call.\n" +
-                "- ListenReturn(MethodInfo original, bool prefix = false): Outputs method call information onto the screen whenever the given method is called. Also outputs the returned value of the original method.\n" +
-                "- ListenAll(MethodInfo original, bool prefix = false): Outputs method call information onto the screen whenever the given method is called. Also outputs the returned value and all parameters passed to the method.\n" +
+            return "<color=#ffea00>Useful methods:</color>\n" +
+                "- Listen(MethodInfo original, bool prefix = false): Outputs the returned value and all parameters passed into the method when it is called.\n" +
                 "- Mute(MethodInfo original): Stops a method from being called.\n" +
                 "- Method(string location): Returns a MethodInfo by its name (ex: \"Peeper.Start\")\n" +
-                "- Method(System.Type type, string methodName): Also returns a MethodInfo (ex: typeof(Peeper), \"Start\")\n";
+                "- Method(System.Type type, string methodName): Also returns a MethodInfo (ex: typeof(Peeper), \"Start\")";
+            }
+    }
+
+    private static class ColorCode
+    {
+        public static string error = "#fcf25b";
+        public static string success = "#a8ff9e";
+        public static string header = "#a8ff9e";
+        public static string methodName = "#fcf25b";
+        public static string type = "#00ffc3";
+        public static string arg = "#ff5900";
+        public static string namespacePath = "#ffffff";
+        public static string white = "#ffffff";
+        public static string keywords = "#569cd6";
+
+        public static string FormatType(string path)
+        {
+            string failed = $"<color={error}>Unknown</color>";
+            if (string.IsNullOrEmpty(path)) return failed;
+            var split = path.Split('.');
+            if (split.Length == 0) return failed;
+
+            string typeNamespace = "";
+            for (int i = 0; i < split.Length - 1; i++)
+            {
+                typeNamespace += split[i] + ".";
+            }
+
+            return $"<color={namespacePath}>{typeNamespace}</color><color={type}>{split[split.Length - 1]}</color>";
+        }
+
+        public static string FormatMethodName(string path)
+        {
+            string failed = $"<color={error}>Unknown</color>";
+            if (string.IsNullOrEmpty(path)) return failed;
+            var split = path.Split('.');
+            if (split.Length < 2 || string.IsNullOrEmpty(split[split.Length - 1])) return failed;
+
+            string methodNamespace = "";
+            for (int i = 0; i < split.Length - 2; i++)
+            {
+                methodNamespace += split[i] + ".";
+            }
+
+            return $"<color={namespacePath}>{methodNamespace}</color><color={type}>{split[split.Length - 2]}</color>.<color={methodName}>{split[split.Length - 1]}</color>";
+        }
+
+        public static string FormatValue(object value)
+        {
+            if (value == null)
+            {
+                return $"<color={keywords}>null</color>";
+            }
+            return value.ToString();
+        }
+
+        public static string FormatArgName(string arg)
+        {
+            var split = arg.Split(' ');
+            return $"<color={type}>{split[0]}</color> <color={white}>{split[1]}</color>";
         }
     }
 }
