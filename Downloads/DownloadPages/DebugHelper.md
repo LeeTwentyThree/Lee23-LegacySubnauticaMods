@@ -9,6 +9,10 @@ My goal with this mod is to add as many useful commands and tools for debugging 
 Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
 
+## Table of contents
+- [Commands](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/DebugHelper.md#commands)
+- [REPL Console Tools](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/DebugHelper.md#repl-console-tools)
+
 ## Comprehensive list of features
 ### Mod options
 There are several options added into the Mod Options menu to help modders, playtesters, and even the average player to discover things about the Subnautica world that were once hidden behind obscure code. Several options related to visualization of once abstract concepts are available. Most of them activate commands that are explained in the list below.
