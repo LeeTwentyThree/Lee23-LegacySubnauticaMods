@@ -228,6 +228,8 @@ Adds various console commands and a new `DB` class for the REPL console. A list 
 Requirements:
 - [SMLHelper](https://www.nexusmods.com/subnautica/mods/113)
 
+---
+
 ### [FreecamRoll](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/FreecamRoll.zip)
 [Download page with more information](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/FreecamRoll.md)
 
