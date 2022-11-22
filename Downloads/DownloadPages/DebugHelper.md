@@ -17,7 +17,7 @@ Requirements:
 ### Mod options
 There are several options added into the Mod Options menu to help modders, playtesters, and even the average player to discover things about the Subnautica world that were once hidden behind obscure code. Several options related to visualization of once abstract concepts are available. Most of them activate commands that are explained in the list below.
 ### Commands
-#### Prefab commands
+#### Prefab commands 📦
 - `spawnc [classId]` - Spawns a prefab by its ClassID. These are 36 character GUID strings, found in [this file](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Resources/SN1-PrefabPaths.json).
 
 - `spawnp [path]` - Spawns a prefab by its path in resources folder. These can be found on the right side of each entry in [this file](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Resources/SN1-PrefabPaths.json). May become obsolete with Modpocalypse.
@@ -34,7 +34,7 @@ There are several options added into the Mod Options menu to help modders, playt
 
 - `hidespawninfo` - Hides all SpawnInfo Debug Icons.
 
-#### Audio commands
+#### Audio commands 🔊
 - `playsound [path] (maxDuration = 10)` - Plays an FMOD event by its path. [Here](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Resources/SN1-FMODEvents.txt) is a comprehensive list of all sound events in the game.
 
 - `ps [path] (maxDuration = 10)` - Shorthand for `playsound`.
@@ -45,35 +45,35 @@ There are several options added into the Mod Options menu to help modders, playt
 
 - `hideemitters` - Hides FMOD emitter Debug Icons.
 
-#### Creature commands
+#### Creature commands 🐌
 - `creatureactions [inRange]` - Shows the current CreatureAction on every Creature in range, through the Debug Icons system.
 
 - `hidecreatureactions` - Hides CreatureAction Debug Icons.
 
-#### Light commands
+#### Light commands 💡
 - `showlights [inRange]` - Displays Light components on every GameObject in range, through the Debug Icons system.
 
 - `hidelights` - Hides Light Debug Icons.
 
-#### LiveMixin commands
+#### LiveMixin commands 💉
 - `showhealth [inRange]` - Shows the current health on all LiveMixins in range, through the Debug Icons system.
 
 - `hidehealth` - Hides LiveMixin Debug Icons.
 
-#### Rigidbody commands
+#### Rigidbody commands ⚽
 - `showrigidbodies [inRange]` - Displays information about every Rigidbody on every prefab in range, through the Debug Icons system.
 
 - `hiderigidbodies` - Hides all Rigidbody Debug Icons.
 
-#### SkyApplier commands
+#### SkyApplier commands 🌐
 - `showskyappliers [inRange]` - Displays every SkyApplier on every prefab in range, through the Debug Icons system. Yellow sky appliers should be found in interior locations, while blue sky appliers are generally in exterior locations. "Outside" sky appliers that are not affected by the day/night cycle should appear dark green.
 
 - `hideskyappliers` - Hides all SkyApplier Debug Icons.
 
-#### Targeting commands
+#### Targeting commands 🎯
 - `lookingat (hitTriggers = false)` - Returns the name of the hit collider, its parent, attached rigidbody, and entity root. Also useful for RuntimeEditor and similar tools.
 
-#### Collider commands
+#### Collider commands 👁
 - `showcolliders (range = 50) (hideMessage = false)` - Enables the continuous rendering of all the colliders within `maxRange` meters. A shorthand for this command is `sw_colls`.
   - Blue: Mesh colliders.
   - Green: Solid colliders with no Rigidbody present.
@@ -83,7 +83,7 @@ There are several options added into the Mod Options menu to help modders, playt
 
 - `hidecolliders` - Cancels the `showcolliders` command and destroys all collider renderers in the scene. A shorthand for this command is `hd_colls`.
 
-#### Player commands
+#### Player commands 🤿
 - `forcewalkmode` - Calls `Player.main.SetPrecursorOutOfWater(true)`, forcing them to walk.
 
 - `swimmode` - Calls `Player.main.SetPrecursorOutOfWater(false)`, removing them from walking mode if they had used the `forcewalkmode` command.
@@ -94,7 +94,7 @@ There are several options added into the Mod Options menu to help modders, playt
 
 - `playeranimfloat [parameter: string] [value: float]` - Sets the `parameter` float field on the player's animator to `value`.
 
-#### Miscellaneous commands
+#### Miscellaneous commands ❓
 - `copyposition` 📋 - Copies a constructor for the player's current position vector to **clipboard**.
 
 - `copyrayposition` 📋 - Copies a constructor for the position of a raycast hit (starting at the crosshair) to **clipboard**.
@@ -103,7 +103,7 @@ There are several options added into the Mod Options menu to help modders, playt
 
 - `drawstar [duration] (radius = 1)` - Draws a star shape with Debug.DrawLine at the player's camera. Useful for testing the Debug Overlay system.
 
-### REPL Console Tools
+### REPL Console Tools 👨‍💻
 This mod adds the [DB](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/DebugHelper/DebugHelper/DB.cs) class (in the global namespace) to assist with debugging and patching at Runtime. Call these methods in the REPL console (RuntimeEditor).
 
 `DB.Help` - Call this in a REPL console if you forget how something is done.
@@ -123,7 +123,7 @@ All of the methods in this class have various overloads which can be viewed [her
 
 ---
 
-### Credits
+### Credits 👍
 
 Programming done by Lee23. Thanks to EldritchCarMaker for testing & feedback.
 - Credit to [Polybroo](https://github.com/Polybroo) for a [collider debugging overhaul](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/pull/1)
