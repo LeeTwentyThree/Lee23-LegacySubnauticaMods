@@ -31,7 +31,7 @@ Contact me: `32Eel#3756`
 
 For even more great mods, go visit the #mod-downloads-mirror channel of the Subnautica Modding Server.
 
-### Patreon 👍
+### Patreon ❤️
 
 Thank you so much to all of my Patrons for your incredible support!
 
