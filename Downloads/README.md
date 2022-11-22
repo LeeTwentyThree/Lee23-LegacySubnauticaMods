@@ -1,1 +1,0 @@
-This folder contains files that are used in my mod download pages. It is recommended that you download your files from [those](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md) instead.
