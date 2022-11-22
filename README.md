@@ -15,7 +15,7 @@
 
 ### Mods from other developers
 
-[EldritchCarMaker](https://github.com/EldritchCarMaker/My-Subnautica-Mods/blob/main/README.md)
+- [EldritchCarMaker](https://github.com/EldritchCarMaker/My-Subnautica-Mods/blob/main/README.md)
 
 For even more great mods, go visit eldritch car maker's github, linked above.
 
