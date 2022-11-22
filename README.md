@@ -2,6 +2,8 @@
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Images/MainPageHeader.png" width=1000px alt="Lee23's Subnautica Mods">
 </div>
 
+# Lee work on tim the enchanter mod
+
 # Mod lists
 
 ### [Click here for a list of some amazing mods for the first Subnautica game!](https://github.com/EldritchCarMaker/My-Subnautica-Mods/blob/main/README.md)
