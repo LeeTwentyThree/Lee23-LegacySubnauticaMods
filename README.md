@@ -2,7 +2,7 @@
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Images/MainPageHeader.png" width=1000px alt="Lee23's Subnautica Mods">
 </div>
 
-# Mod Homepages 🏠
+# Mod lists
 
 ### [Click here for a list of my mods for the first Subnautica game!](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md)
 - While I host mods in various places, all of my publicly released mods have been listed here.
