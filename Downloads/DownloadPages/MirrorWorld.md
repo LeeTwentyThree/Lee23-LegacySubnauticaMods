@@ -1,7 +1,7 @@
 [ᐊ Return to mod list](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md)
 # MirrorWorld
 
-Added Oct 16 2022, last updated August 30 2022.
+Added Oct 16 2022, last updated Oct 16 2022.
 
 ### [Download Here](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/MirrorWorld.zip)
 
