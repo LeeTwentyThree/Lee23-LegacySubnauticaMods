@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using ECCLibrary;
 
 namespace ArcticMigration.Creatures
 {
@@ -38,8 +39,8 @@ namespace ArcticMigration.Creatures
             MakeAggressiveTo(15, 1, EcoTargetType.MediumFish, 0.8f, 1);
             MakeAggressiveTo(15, 1, EcoTargetType.SmallFish, 0.95f, 1);
 
-            var trailRoot = prefab.FindChild("spine1_phys");
-            var trailBones = new Transform[] { trailRoot.FindChild("spine2_phys").transform, trailRoot.FindChild("spine3_phys").transform, trailRoot.FindChild("tail_base_phys").transform };
+            var trailRoot = prefab.SearchChild("spine1_phys");
+            var trailBones = new Transform[] { trailRoot.SearchChild("spine2_phys").transform, trailRoot.SearchChild("spine3_phys").transform, trailRoot.SearchChild("tail_base_phys").transform };
             var trail = CreateTrail(trailRoot, trailBones, components, 1);
             var multiplierCurve = new AnimationCurve(new Keyframe(0, 1), new Keyframe(1, 1));
             trail.pitchMultiplier = multiplierCurve;

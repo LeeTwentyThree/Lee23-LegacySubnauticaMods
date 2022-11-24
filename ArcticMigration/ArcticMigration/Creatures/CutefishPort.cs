@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using ArcticMigration.Mono;
 
 namespace ArcticMigration.Creatures
 {
@@ -35,6 +36,7 @@ namespace ArcticMigration.Creatures
             components.swimRandom.swimForward = 2;
             var leash = prefab.GetComponent<StayAtLeashPosition>();
             leash.swimVelocity = 10;
+            prefab.AddComponent<LeashFollowsPlayer>();
         }
 
         public override void SetLiveMixinData(ref LiveMixinData liveMixinData)

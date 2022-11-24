@@ -27,6 +27,21 @@ namespace ArcticMigration
 
             var cutefish = new CutefishPort("CuteFishPort", bundle.LoadAsset<GameObject>("CuteFish"));
             cutefish.Patch();
+            var crystalCutefish = new CutefishPort("CrystalCutefish", bundle.LoadAsset<GameObject>("CrystalCuteFish"));
+            crystalCutefish.Patch();
+
+            var reefback = new ReefbackPort("ArcticReefback", bundle.LoadAsset<GameObject>("ArcticReefback"));
+            reefback.Patch();
+
+            var crimsonRay = new CrimsonRayPort("CrimsonRayPort", "Crimson Ray", bundle.LoadAsset<GameObject>("GhostRayRed"));
+            crimsonRay.Patch();
+            var iceRay = new CrimsonRayPort("IceRay", "Ice Ray", bundle.LoadAsset<GameObject>("IceRay"));
+            iceRay.Patch();
+            var purpleRay = new CrimsonRayPort("PurpleRay", "Purple Ray", bundle.LoadAsset<GameObject>("PurpleRay"));
+            purpleRay.Patch();
+
+            var reaperPort = new ReaperPort("ReaperPort", bundle.LoadAsset<GameObject>("ReaperLeviathan"));
+            reaperPort.Patch();
         }
     }
 }
