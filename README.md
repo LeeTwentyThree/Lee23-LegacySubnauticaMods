@@ -44,7 +44,7 @@ Thank you so much to all of my Patrons for your incredible support!
 - SteveKong
 - The Last Bacon
 
-If you want your name changed/removed/added from the Patreon list, please message me through Patreon.
+If you want your name changed/removed/added to the Patreon list, please message me through Patreon.
 
 <div>
   <a href="https://patreon.com/user?u=71441969&utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_creator">
