@@ -39,6 +39,7 @@ Thank you so much to all of my Patrons for your incredible support!
 - Brad
 - Dylan
 - Ej
+- FireGodDemon
 - Indigo
 - SpeedyMouse
 - SteveKong
