@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace CreatureMorphs
 {
-    internal class CreatureMorph : MonoBehaviour
+    internal class MorphType
     {
-        public CreatureMorph(string morphClassId)
+        public MorphType(string creatureClassId)
         {
-            _morphClassId = morphClassId;
+            _morphClassId = creatureClassId;
         }
 
         private string _morphClassId;
@@ -38,13 +38,5 @@ namespace CreatureMorphs
         }
 
         protected virtual void Setup() { }
-
-        private void Update()
-        {
-            foreach (var ability in abilities)
-            {
-                ability.OnUpdate();
-            }
-        }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace CreatureMorphs.Morphs
 {
-    internal class PeeperMorph : CreatureMorph
+    internal class PeeperMorph : MorphType
     {
         public PeeperMorph(string morphClassId) : base(morphClassId)
         {
