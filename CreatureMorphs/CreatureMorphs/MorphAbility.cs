@@ -8,7 +8,7 @@ namespace CreatureMorphs
 
         protected float timeCooldownEnds;
 
-        public MorphBehaviour morph;
+        public MorphController morphController;
 
         public MorphAbility()
         {

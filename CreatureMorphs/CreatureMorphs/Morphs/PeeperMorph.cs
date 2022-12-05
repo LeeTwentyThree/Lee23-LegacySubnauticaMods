@@ -8,9 +8,14 @@ namespace CreatureMorphs.Morphs
         {
         }
 
-        protected override void Setup()
+        protected override void SetEssentials()
         {
-            AddAbility(new Abilities.Bite(), GameInput.Button.LeftHand);
+            CameraFollowDistance = 4f;
+        }
+
+        internal override void SetupController(MorphController controller)
+        {
+            controller.AddAbility(new Bite(), PrimaryActionKey);
         }
     }
 }

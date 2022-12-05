@@ -1,42 +1,34 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace CreatureMorphs
 {
-    internal class MorphType
+    public class MorphType
     {
         public MorphType(string creatureClassId)
         {
-            _morphClassId = creatureClassId;
+            MorphClassId = creatureClassId;
+            SetEssentials();
         }
 
-        private string _morphClassId;
+        public string MorphClassId { get; private set; }
 
-        protected float cameraFollowDistance = 3f;
+        public float CameraFollowDistance { get; protected set; } = 5f;
 
-        private List<MorphAbility> abilities = new List<MorphAbility>();
+        /// <summary>
+        /// Use this method to assign permanent fields like <see cref="CameraFollowDistance"/>. Called during patch time.
+        /// </summary>
+        protected virtual void SetEssentials() { }
 
-        public MorphAbility AddAbility(MorphAbility ability, KeyCode input)
-        {
-            abilities.Add(ability);
-            if (input != KeyCode.None) ability.SetInput(() => Input.GetKeyDown(input));
-            return ability;
-        }
+        /// <summary>
+        /// Use this method to set instance fields on the <paramref name="behaviour"/> component/GameObject. Called at runtime.
+        /// </summary>
+        /// <param name="behaviour"></param>
+        internal virtual void SetupController(MorphController behaviour) { }
 
-        public MorphAbility AddAbility(MorphAbility ability, GameInput.Button input)
-        {
-            abilities.Add(ability);
-            ability.SetInput(() => GameInput.GetButtonDown(input));
-            return ability;
-        }
-
-        public MorphAbility AddAbility(MorphAbility ability, System.Func<bool> input)
-        {
-            abilities.Add(ability);
-            ability.SetInput(input);
-            return ability;
-        }
-
-        protected virtual void Setup() { }
+        protected readonly GameInput.Button PrimaryActionKey = GameInput.Button.LeftHand;
+        protected readonly GameInput.Button SecondaryActionKey = GameInput.Button.RightHand;
+        protected readonly GameInput.Button MobilityKey = GameInput.Button.Sprint;
     }
 }
