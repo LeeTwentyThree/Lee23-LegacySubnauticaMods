@@ -16,6 +16,8 @@ namespace CreatureMorphs
 
         public float CameraFollowDistance { get; protected set; } = 5f;
 
+        public MorphModeType MorphModeType { get; protected set; }
+
         /// <summary>
         /// Use this method to assign permanent fields like <see cref="CameraFollowDistance"/>. Called during patch time.
         /// </summary>
@@ -30,5 +32,7 @@ namespace CreatureMorphs
         protected readonly GameInput.Button PrimaryActionKey = GameInput.Button.LeftHand;
         protected readonly GameInput.Button SecondaryActionKey = GameInput.Button.RightHand;
         protected readonly GameInput.Button MobilityKey = GameInput.Button.Sprint;
+
+        protected static FMODAsset genericBiteSound = Helpers.GetFmodAsset("event:/creature/biter/bite_1");
     }
 }

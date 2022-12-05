@@ -16,6 +16,8 @@ namespace CreatureMorphs
         private static void AddBuiltInEntries()
         {
             AddMorphType(new PeeperMorph(GetClassIdForTechType(TechType.Peeper)), TechType.Peeper);
+            AddMorphType(new HoverfishMorph(GetClassIdForTechType(TechType.Hoverfish)), TechType.Hoverfish);
+            AddMorphType(new BoomerangMorph(GetClassIdForTechType(TechType.Boomerang)), TechType.Boomerang);
 
             if (ModExists("ProjectAncients"))
             {

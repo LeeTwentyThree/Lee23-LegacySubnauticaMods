@@ -2,9 +2,9 @@
 
 namespace CreatureMorphs.Morphs
 {
-    internal class PeeperMorph : MorphType
+    internal class HoverfishMorph : MorphType
     {
-        public PeeperMorph(string morphClassId) : base(morphClassId)
+        public HoverfishMorph(string morphClassId) : base(morphClassId)
         {
         }
 
@@ -16,7 +16,7 @@ namespace CreatureMorphs.Morphs
 
         internal override void SetupController(MorphController controller)
         {
-            controller.AddAbility(new Bite(4f, null, genericBiteSound), PrimaryActionKey);
+            controller.AddAbility(new Bite(10f, null, genericBiteSound), PrimaryActionKey);
         }
     }
 }

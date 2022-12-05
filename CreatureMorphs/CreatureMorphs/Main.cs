@@ -11,6 +11,8 @@ namespace CreatureMorphs
     {
         public static AssetBundle bundle;
 
+        public static Config config = OptionsPanelHandler.Main.RegisterModOptions<Config>();
+
         [QModPatch]
         public static void Entry()
         {
@@ -18,7 +20,10 @@ namespace CreatureMorphs
 
             bundle = Helpers.LoadAssetBundleFromAssetsFolder(assembly, "creaturemorphs");
 
+            ModAudio.PatchAudio();
+            MorphModeData.Setup();
             MorphDatabase.Setup();
+
             ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(PlayerMorphController));
 
             new Harmony("Lee23.CreatureMorhps").PatchAll(assembly);

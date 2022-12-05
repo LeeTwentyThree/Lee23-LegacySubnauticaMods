@@ -41,6 +41,7 @@ internal static class RadialTabHelper
             element.button.onClick = selectors[i].onPress;
             element.label = selectors[i].name;
             element.GetComponentInChildren<Text>().name = selectors[i].buttonName;
+            elements[i] = element;
         }
         menu.elements = new List<RMF_RadialMenuElement>(elements);
         canvas.SetActive(true);
