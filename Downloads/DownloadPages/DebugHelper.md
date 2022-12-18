@@ -12,7 +12,7 @@ Requirements:
 
 ## Table of contents
 - [Commands](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/DebugHelper.md#commands)
-- [REPL Console Tools](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/DebugHelper.md#repl-console-tools)
+- [REPL Console Tools](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/DebugHelper.md#repl-console-tools-)
 
 ## Comprehensive list of features
 ### Mod options
