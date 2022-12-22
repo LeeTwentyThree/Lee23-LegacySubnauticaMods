@@ -8,7 +8,7 @@ CLICK [HERE](https://github.com/LeeTwentyThree/SubnauticaMods) TO SEE MY REPOSIT
 # Mod lists
 
 ### [Click here for a list of my mods for the LEGACY BRANCH of Subnautica](https://github.com/LeeTwentyThree/SubnauticaMods/blob/main/README.md)
-- While I host mods in various places, all of my publicly released mods have been listed here.
+- While I host mods in various places, all of my publicly released mods for the legacy branch have been archived here.
 
 ---
 
