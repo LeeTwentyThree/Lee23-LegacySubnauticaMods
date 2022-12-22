@@ -2,7 +2,7 @@
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Images/MainPageHeader.png" width=1000px alt="Lee23's Subnautica Mods">
 </div>
 
-# THIS MOD SITE IS MADE FOR THE LEGACY BRANCH. CLICK [HERE](https://github.com/LeeTwentyThree/SubnauticaMods) TO SEE MY REPOSITORY FOR THE LATEST UPDATE.
+# THIS REPOSITORY HAS BEEN ARCHIVED FOR THE LEGACY BRANCH. CLICK [HERE](https://github.com/LeeTwentyThree/SubnauticaMods) TO SEE MY REPOSITORY FOR THE LATEST UPDATE.
 
 # Mod lists
 
