@@ -3,7 +3,7 @@
 </div>
 
 # THIS REPOSITORY HAS BEEN ARCHIVED FOR THE LEGACY BRANCH!!!
-CLICK [HERE](https://github.com/LeeTwentyThree/SubnauticaMods) TO SEE MY REPOSITORY FOR THE LATEST UPDATE.
+[CLICK HERE TO SEE MY REPOSITORY FOR THE LATEST UPDATE.](https://github.com/LeeTwentyThree/SubnauticaMods)
 
 # Mod lists
 
