@@ -7,7 +7,7 @@
 
 # Mod lists
 
-### [Click here for a list of my mods for the LEGACY BRANCH of Subnautica](https://github.com/LeeTwentyThree/SubnauticaMods/blob/main/README.md)
+### [Click here for a list of my mods for the LEGACY BRANCH of Subnautica](https://github.com/LeeTwentyThree/Lee23-LegacySubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md)
 - While I host mods in various places, all of my publicly released mods for the legacy branch have been archived here.
 
 ---
