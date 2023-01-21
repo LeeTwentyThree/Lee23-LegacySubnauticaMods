@@ -34,9 +34,6 @@ Contact me: `32Eel#3756`
 
 For even more great mods, go visit the #mod-downloads-mirror channel of the Subnautica Modding Server.
 
-### Statistics
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=LeeTwentyThree)](https://github.com/anuraghazra/github-readme-stats)
-
 ### Patreon ❤️
 
 Thank you so much to all of my Patrons for your incredible support!
