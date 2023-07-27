@@ -29,7 +29,7 @@ Mods are sorted alphabetically. Download ZIPs are linked in the title. All files
 
 ---
 # Recently updated! 🎉 (MM/DD/YY)
-- 11/21/22: [RandomEvents](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/RandomEvents.md) - Much better Listen methods for REPL console!
+- 07/27/23: [RandomEvents](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/RandomEvents.md) - New options menu, banana ducks, and bug fixes!
 - 11/21/22: [DebugHelper](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/DebugHelper.md) - Much better Listen methods for REPL console!
 - 11/17/22: [De-Extinction](https://www.nexusmods.com/subnautica/mods/640?tab=files) - Baby Gulper Leviathan! 🥰
 - 11/11/22: [LavaRising](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/RisingLava.zip) - First public release!
