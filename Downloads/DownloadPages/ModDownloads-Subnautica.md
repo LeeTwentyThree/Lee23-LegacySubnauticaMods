@@ -29,6 +29,7 @@ Mods are sorted alphabetically. Download ZIPs are linked in the title. All files
 
 ---
 # Recently updated! 🎉 (MM/DD/YY)
+- 11/21/22: [RandomEvents](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/RandomEvents.md) - Much better Listen methods for REPL console!
 - 11/21/22: [DebugHelper](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/DebugHelper.md) - Much better Listen methods for REPL console!
 - 11/17/22: [De-Extinction](https://www.nexusmods.com/subnautica/mods/640?tab=files) - Baby Gulper Leviathan! 🥰
 - 11/11/22: [LavaRising](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/RisingLava.zip) - First public release!
@@ -192,13 +193,13 @@ Requirements:
 
 --- 
 
-### [RandomEvents](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/RandomEvents.zip)
+### [RandomEvents](https://github.com/LeeTwentyThree/Lee23-LegacySubnauticaMods/raw/main/Downloads/RandomEvents-2.0.0.zip)
 [Download page with more information and alternate downloads](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/RandomEvents.md)
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/RandomEvents.png" width=200px>
 </div>
 
-A random event happens every 30 seconds. Maybe a Ghost Leviathan will spawn outside your base. Maybe water (bottles) will rain from the sky. Or Shrek will look down upon you from space. Yes, there is Among Us too. This mod is very dangerous, so install at your own risk.
+A random event happens every 30 seconds (configurable). Maybe a Ghost Leviathan will spawn outside your base. Maybe water (bottles) will rain from the sky. Or Shrek will look down upon you from space. Yes, there is Among Us too. This mod is very dangerous, so install at your own risk.
 
 Go watch [Socksfor1's video](https://youtu.be/j4lmTD8n4ls) on it!
 

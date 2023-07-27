@@ -1,15 +1,11 @@
 [ᐊ Return to mod list](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/ModDownloads-Subnautica.md)
 # RandomEvents
 
-Added Oct 16 2022, last updated Nov 5 2021.
+Added Oct 16 2022, last updated Jul 27 2023.
 
-### [Download Here](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/RandomEvents.zip)
+### [Download Here](https://github.com/LeeTwentyThree/Lee23-LegacySubnauticaMods/raw/main/Downloads/RandomEvents-2.0.0.zip)
 
-[Alternate version - Events happen every second](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/RandomEvents%201s.zip)
-
-[Alternate version - Events happen every minute](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/RandomEvents%201m.zip)
-
-This mod adds SEVERAL events into the game, which occur randomly at 30 second intervals (more or less depending on the version). There are so many different events that can happen that you'll never see them all.
+This mod adds SEVERAL events into the game, which occur randomly at 30 second intervals (as of the latest update it can be tweaked now!). There are so many different events that can happen that you'll never see them all.
 
 Maybe a Ghost Leviathan will spawn outside your base. Maybe water (bottles) will rain from the sky. Or Shrek will look down upon you from space. This mod is very dangerous, so install at your own risk.
 
