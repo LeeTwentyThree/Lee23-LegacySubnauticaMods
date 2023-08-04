@@ -29,6 +29,7 @@ Mods are sorted alphabetically. Download ZIPs are linked in the title. All files
 
 ---
 # Recently updated! 🎉 (MM/DD/YY)
+- 08/04/23: [MonkeySayMonkeyGet](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/MonkeySayMonkeyGet.md) - Bug fixes!
 - 07/27/23: [RandomEvents](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/RandomEvents.md) - New options menu, banana ducks, and bug fixes!
 - 11/21/22: [DebugHelper](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/DebugHelper.md) - Much better Listen methods for REPL console!
 - 11/17/22: [De-Extinction](https://www.nexusmods.com/subnautica/mods/640?tab=files) - Baby Gulper Leviathan! 🥰
@@ -178,7 +179,7 @@ Requirements:
 
 --- 
 
-### [MonkeySayMonkeyGet](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/MonkeySayMonkeyGet.zip)
+### [MonkeySayMonkeyGet](https://github.com/LeeTwentyThree/Lee23-LegacySubnauticaMods/raw/main/Downloads/MonkeySayMonkeyGet-1.0.1.zip)
 [Download page with more information](https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/blob/main/Downloads/DownloadPages/MonkeySayMonkeyGet.md)
 <div>
   <img src="https://github.com/LeeTwentyThree/Lee23-SubnauticaMods/raw/main/Downloads/Thumbnails/MonkeySayMonkeyGet.png" width=200px>
